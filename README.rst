@@ -25,7 +25,6 @@ A python library that adds to the long list of "scaffolding" projects already av
    :target: https://app.codecov.io/gh/hendrikdutoit/bee-Project
    :alt: Codecov
 
-pypi-AgEIcHlwaS5vcmcCJGEwNWYyY2JmLTM0OGMtNGM0NC1hYmVmLTdkNGE3YTc1YTRiNwACPHsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJiZWUtcHJvamVjdCJdfSwgInZlcnNpb24iOiAxfQAABiCXQMRX6qRbv4vh8-OdQx4rb-AliE5NMffb5cxEg_g0cA
 
 It adds to the long list of "scaffolding" projects already available.  Bright Edge eServices used some (crude) in-house tracking methods.  This module is in support of these crude methods and will be evolved over time to be less crude.
 
