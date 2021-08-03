@@ -1,6 +1,17 @@
 BEE Project
 ===========
 
+A python library that adds to the long list of "scaffolding" projects already available.  Bright Edge eServices used some (crude) in-house tracking methods.  This module is in support of these crude methods and will evolve over time to be less crude.
+
+
+
+
+
+
+
+
+
+
 .. image:: https://img.shields.io/pypi/v/bee-Project
    :target: https://pypi.org/project/bee-Project/
    :alt: PyPI
