@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Coverage report</title>
+    <link rel="icon" sizes="32x32" href="favicon_32.png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.ba-throttle-debounce.min.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(coverage.index_ready);
+    </script>
+</head>
+<body class="indexfile">
+<div id="header">
+    <div class="content">
+        <h1>Coverage report:
+            <span class="pc_cov">89%</span>
+        </h1>
+        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+        <form id="filter_container">
+            <input id="filter" type="text" value="" placeholder="filter..." />
+        </form>
+    </div>
+</div>
+<div class="help_panel">
+    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <p class="legend">Hot-keys on this page</p>
+    <div>
+    <p class="keyhelp">
+        <span class="key">n</span>
+        <span class="key">s</span>
+        <span class="key">m</span>
+        <span class="key">x</span>
+        <span class="key">c</span> &nbsp; change column sorting
+    </p>
+    </div>
+</div>
+<div id="index">
+    <table class="index">
+        <thead>
+            <tr class="tablehead" title="Click to sort">
+                <th class="name left headerSortDown shortkey_n">Module</th>
+                <th class="shortkey_s">statements</th>
+                <th class="shortkey_m">missing</th>
+                <th class="shortkey_x">excluded</th>
+                <th class="right shortkey_c">coverage</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr class="total">
+                <td class="name left">Total</td>
+                <td>820</td>
+                <td>88</td>
+                <td>0</td>
+                <td class="right" data-ratio="732 820">89%</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr class="file">
+                <td class="name left"><a href="src_beetools___init___py.html">src\beetools\__init__.py</a></td>
+                <td>3</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="3 3">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="src_beetools_beetools_py.html">src\beetools\beetools.py</a></td>
+                <td>416</td>
+                <td>67</td>
+                <td>0</td>
+                <td class="right" data-ratio="349 416">84%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test__init___py.html">tests\test__init__.py</a></td>
+                <td>40</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="40 40">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_activate_venv_cmd_py.html">tests\test_activate_venv_cmd.py</a></td>
+                <td>14</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="12 14">86%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_do_examples_py.html">tests\test_do_examples.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_example_messaging_py.html">tests\test_example_messaging.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_example_scripting_py.html">tests\test_example_scripting.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_example_virtual_environment_py.html">tests\test_example_virtual_environment.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_exec_batch_py.html">tests\test_exec_batch.py</a></td>
+                <td>19</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="17 19">89%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_exec_batch_in_session_py.html">tests\test_exec_batch_in_session.py</a></td>
+                <td>16</td>
+                <td>1</td>
+                <td>0</td>
+                <td class="right" data-ratio="15 16">94%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_exec_cmd_py.html">tests\test_exec_cmd.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_get_os_py.html">tests\test_get_os.py</a></td>
+                <td>17</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="right" data-ratio="13 17">76%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_get_tmp_fldr_py.html">tests\test_get_tmp_fldr.py</a></td>
+                <td>17</td>
+                <td>3</td>
+                <td>0</td>
+                <td class="right" data-ratio="14 17">82%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_get_venv_fldr_py.html">tests\test_get_venv_fldr.py</a></td>
+                <td>15</td>
+                <td>1</td>
+                <td>0</td>
+                <td class="right" data-ratio="14 15">93%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_install_in_venv_py.html">tests\test_install_in_venv.py</a></td>
+                <td>17</td>
+                <td>1</td>
+                <td>0</td>
+                <td class="right" data-ratio="16 17">94%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_is_struct_the_same_py.html">tests\test_is_struct_the_same.py</a></td>
+                <td>28</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="28 28">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_msg_display_py.html">tests\test_msg_display.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_msg_error_py.html">tests\test_msg_error.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_msg_header_py.html">tests\test_msg_header.py</a></td>
+                <td>9</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 9">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_msg_info_py.html">tests\test_msg_info.py</a></td>
+                <td>9</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 9">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_msg_milestone_py.html">tests\test_msg_milestone.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_msg_ok_py.html">tests\test_msg_ok.py</a></td>
+                <td>10</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="10 10">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_print_footer_py.html">tests\test_print_footer.py</a></td>
+                <td>8</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="8 8">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_print_header_py.html">tests\test_print_header.py</a></td>
+                <td>9</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="9 9">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_result_rep_py.html">tests\test_result_rep.py</a></td>
+                <td>11</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="11 11">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_rm_locked_file_py.html">tests\test_rm_locked_file.py</a></td>
+                <td>14</td>
+                <td>1</td>
+                <td>0</td>
+                <td class="right" data-ratio="13 14">93%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_rm_tree_py.html">tests\test_rm_tree.py</a></td>
+                <td>21</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="19 21">90%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_select_os_fldr_from_config_py.html">tests\test_select_os_fldr_from_config.py</a></td>
+                <td>19</td>
+                <td>3</td>
+                <td>0</td>
+                <td class="right" data-ratio="16 19">84%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_set_up_venv_py.html">tests\test_set_up_venv.py</a></td>
+                <td>15</td>
+                <td>1</td>
+                <td>0</td>
+                <td class="right" data-ratio="14 15">93%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="tests_test_write_script_py.html">tests\test_write_script.py</a></td>
+                <td>13</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="13 13">100%</td>
+            </tr>
+        </tbody>
+    </table>
+    <p id="no_rows">
+        No items found using the specified filter.
+    </p>
+</div>
+<div id="footer">
+    <div class="content">
+        <p>
+            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
+            created at 2021-07-20 16:21 +0200
+        </p>
+    </div>
+</div>
+</body>
+</html>
