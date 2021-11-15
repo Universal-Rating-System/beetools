@@ -1,0 +1,8 @@
+
+[0.0.0]
+Version = '0.0.0'
+Title = 'Creation of the project'
+Description = ['List all the changes to the project here.',
+               'Changes listed here will be in the release notes under the above heading.']
+FileChanges = [['filename01.py','Insert change description here.'],
+               ['filename02.txt','Insert change description here.']]
