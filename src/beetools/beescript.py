@@ -118,7 +118,6 @@ def exec_batch_in_session(
     compl_proc = exec_cmd(script, p_crash, p_verbose=p_verbose, p_shell=p_shell)
     if os.path.isfile(batch_pth):
         os.remove(batch_pth)
-        pass
     return compl_proc
 
 
