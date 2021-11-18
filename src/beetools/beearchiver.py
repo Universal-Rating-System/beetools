@@ -530,7 +530,6 @@ def example_archiver(p_cls=True):
     --------
 
     '''
-
     success = True
     app_name = 'TestApp'
     app_desc = 'Test application description'
