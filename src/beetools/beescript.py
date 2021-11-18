@@ -364,7 +364,7 @@ def do_examples(p_cls=True):
 
     # Initiate the Archiver
     success = True
-    b_tls = beeutils.Archiver(_PROJ_NAME, _PROJ_DESC, _PROJ_PATH)
+    b_tls = beeutils.Archiver(_PROJ_DESC, _PROJ_PATH)
     b_tls.print_header(p_cls=p_cls)
     success = example_scripting() and success
     b_tls.print_footer()

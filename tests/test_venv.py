@@ -11,7 +11,7 @@ _PROJ_NAME = _PROJ_PATH.stem
 _PROJ_VERSION = '0.0.5'
 
 
-btls = beearchiver.Archiver(_PROJ_NAME, _PROJ_DESC, _PROJ_PATH)
+btls = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
 
 
 class TestVenv:

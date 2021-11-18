@@ -199,7 +199,7 @@ def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) ->
         p_verbose=p_verbose,
     )
     script_name = 'set_up'
-    script_cmds.append('{}\n'.format(activate(p_venv_root_dir, p_venv_name)))
+    script_cmds.append('{}'.format(activate(p_venv_root_dir, p_venv_name)))
     if not p_package_list:
         p_package_list = []
     for package in p_package_list:
@@ -290,7 +290,7 @@ def do_examples(p_cls=True):
 
     # Initiate the Archiver
     success = True
-    b_tls = Archiver(_PROJ_DESC, _PROJ_DESC, _PROJ_PATH)
+    b_tls = Archiver(_PROJ_DESC, _PROJ_PATH)
     b_tls.print_header(p_cls=p_cls)
     success = example_virtual_environment() and success
     b_tls.print_footer()

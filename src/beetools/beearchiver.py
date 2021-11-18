@@ -112,13 +112,12 @@ class Archiver:
 
     def __init__(
         self,
-        p_parent_log_name,
         p_app_desc,
         p_app_pth,
+        p_parent_log_name=None,
         p_app_ver=None,
         p_app_ini_file_name=None,
         p_cls=True,
-        p_logger=False,
         p_arc_excl_dir=None,
         p_arc_extern_dir=None,
         p_arc_incl_ext=None,
@@ -153,7 +152,7 @@ class Archiver:
         '''
 
         self.success = True
-        if p_logger:
+        if p_parent_log_name:
             self.log_name = '{}.{}'.format(p_parent_log_name, _PROJ_NAME)
             self.logger = logging.getLogger(self.log_name)
         else:
@@ -540,9 +539,7 @@ def example_archiver(p_cls=True):
         app_pth.touch()
         arc_extern_dir = Path(temp_dir, 'external')
         # arc_extern_dir.mkdir(parents = True)
-        t_archiver = Archiver(
-            app_name, app_desc, app_pth, p_arc_extern_dir=arc_extern_dir
-        )
+        t_archiver = Archiver(app_desc, app_pth, p_arc_extern_dir=arc_extern_dir)
     t_archiver.print_header(p_cls=p_cls)
     t_archiver.print_footer()
     # working_dir.rmdir()

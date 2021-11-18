@@ -603,7 +603,7 @@ def do_examples(p_app_path=None, p_cls=True):
     '''
 
     # Initiate the Archiver
-    b_tls = Archiver(_PROJ_NAME, _PROJ_DESC, p_app_path)
+    b_tls = Archiver(_PROJ_DESC, p_app_path)
     b_tls.print_header(p_cls=p_cls)
     success = example_tools()
     b_tls.print_footer()

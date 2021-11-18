@@ -9,7 +9,7 @@ _PROJ_PATH = Path(__file__)
 _PROJ_NAME = _PROJ_PATH.stem
 
 
-btls = beearchiver.Archiver(_PROJ_NAME, _PROJ_DESC, _PROJ_PATH)
+btls = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
 
 
 class TestArchiver:
@@ -18,7 +18,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -57,10 +56,9 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
-            p_logger=True,
+            p_parent_log_name=module_setup.app_name,
             p_arc_incl_ext=['ini', 'txt'],
         )
 
@@ -97,7 +95,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -135,7 +132,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
             p_arc_excl_dir='Cov',
@@ -175,7 +171,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
             p_arc_extern_dir=module_setup.dir,
@@ -218,7 +213,6 @@ class TestArchiver:
         )
         app_pth = module_setup.app_dir / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -257,7 +251,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -296,7 +289,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -335,7 +327,7 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name, module_setup.app_desc, app_pth, p_app_ver='1.1.1'
+            module_setup.app_desc, app_pth, p_app_ver='1.1.1'
         )
 
         assert t_archiver.app_desc == 'Test application description'
@@ -374,9 +366,7 @@ class TestArchiver:
             '[metadata]\nversion = 2.2.2\n'
         )
         app_pth = module_setup.app_dir / 'testapp.py'
-        t_archiver = beearchiver.Archiver(
-            module_setup.app_name, module_setup.app_desc, app_pth
-        )
+        t_archiver = beearchiver.Archiver(module_setup.app_desc, app_pth)
 
         assert t_archiver.app_desc == 'Test application description'
         assert t_archiver.app_ini_file_name is None
@@ -416,7 +406,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -428,7 +417,6 @@ class TestArchiver:
         module_setup = setup_env_package
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -440,7 +428,6 @@ class TestArchiver:
         module_setup = setup_env_sitepackage
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -452,7 +439,6 @@ class TestArchiver:
         module_setup = setup_env_tests
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -464,7 +450,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir.parents[1]
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -476,7 +461,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
         )
@@ -487,7 +471,6 @@ class TestArchiver:
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
             # p_arc_extern_dir=module_setup.arc_extern_dir
@@ -502,7 +485,6 @@ class TestArchiver:
         app_pth = module_setup.app_dir / 'testapp' / 'testapp.py'
         arc_extern_dir = module_setup.dir / 'extarchive'
         t_archiver = beearchiver.Archiver(
-            module_setup.app_name,
             module_setup.app_desc,
             app_pth,
             p_arc_extern_dir=arc_extern_dir,
@@ -543,12 +525,12 @@ class TestArchiver:
 
     def test_print_footer(self):
         '''Testing archiver_print_footer()'''
-        t_archiver = beearchiver.Archiver(_PROJ_NAME, _PROJ_DESC, _PROJ_PATH)
+        t_archiver = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
         assert t_archiver.print_footer()
 
     def test_print_header_simple(self):
         '''Testing print_header_simple()'''
-        t_archiver = beearchiver.Archiver(_PROJ_NAME, _PROJ_DESC, _PROJ_PATH)
+        t_archiver = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
         assert t_archiver.print_header()
 
 
