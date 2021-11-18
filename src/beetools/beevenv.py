@@ -141,7 +141,7 @@ def install_in(
         script_cmds = []
         if p_verbose:
             script_cmds.append('@ECHO OFF')
-    script_cmds.append('{}\n'.format(activate(p_venv_root_dir, p_venv_name)))
+    script_cmds.append('{}'.format(activate(p_venv_root_dir, p_venv_name)))
     for instr in p_instructions:
         script_cmds.append(instr)
     if beeutils.get_os() == beeutils.LINUX:
