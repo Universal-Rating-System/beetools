@@ -248,12 +248,11 @@ def example_virtual_environment():
         set_up(beeutils.get_tmp_dir(), venv_name, package_list, p_verbose=True)
         and success
     )
-
     # Install/upgrade in an existing venv
     instructions = [
-        'ECHO Setting up the {} VEnv...'.format(venv_name),
+        'echo Setting up the {} VEnv...'.format(venv_name),
         'pip install --upgrade wheel',
-        'ECHO Done!',
+        'echo Done!',
     ]
     success = (
         install_in(beeutils.get_tmp_dir(), venv_name, instructions, p_verbose=True)
