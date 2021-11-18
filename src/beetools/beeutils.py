@@ -24,6 +24,7 @@ import os
 from pathlib import Path
 import shutil
 import sys
+import tempfile
 
 # from beetools.beemsg import ok as msg_ok, error as msg_error
 from beetools.beearchiver import Archiver, msg_ok, msg_error
@@ -219,7 +220,7 @@ def get_os() -> str:
     return curr_os
 
 
-def get_tmp_dir() -> Path:
+def get_tmp_dir(p_prefix=None) -> Path:
     '''Return os related temporary folder for user.
 
     Parameters
@@ -237,14 +238,11 @@ def get_tmp_dir() -> Path:
     PosixPath('/tmp')
 
     '''
-    temp = None
-    if get_os() == LINUX:
-        temp = '/tmp'
-    elif get_os() == WINDOWS:
-        temp = os.environ['TEMP']
-    elif get_os() == MACOS:
-        temp = os.environ['TMPDIR']
-    return Path(temp)
+    if p_prefix:
+        temp_dir = Path(tempfile.mkdtemp(prefix=p_prefix))
+    else:
+        temp_dir = Path(tempfile.mkdtemp())
+    return temp_dir
 
 
 def is_struct_the_same(p_x, p_y, p_ref='') -> bool:
@@ -605,7 +603,7 @@ def do_examples(p_app_path=None, p_cls=True):
     '''
 
     # Initiate the Archiver
-    b_tls = Archiver(_PROJ_NAME, _PROJ_VERSION, _PROJ_DESC, p_app_path)
+    b_tls = Archiver(_PROJ_NAME, _PROJ_DESC, p_app_path)
     b_tls.print_header(p_cls=p_cls)
     success = example_tools()
     b_tls.print_footer()

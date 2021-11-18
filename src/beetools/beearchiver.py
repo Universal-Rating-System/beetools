@@ -13,6 +13,7 @@ To Do
 
 '''
 
+import configparser
 import datetime
 import logging
 import os
@@ -31,7 +32,7 @@ _PROJ_VERSION = '3.3.0'
 
 class Archiver:
     '''Archiver creates an archive of the key project files to zip file. It assumes the
-    following project structure of the caling application:
+    following project structure of the calling application:
 
     Module
     ======
@@ -112,9 +113,9 @@ class Archiver:
     def __init__(
         self,
         p_parent_log_name,
-        p_app_ver,
         p_app_desc,
         p_app_pth,
+        p_app_ver=None,
         p_app_ini_file_name=None,
         p_cls=True,
         p_logger=False,
@@ -146,7 +147,7 @@ class Archiver:
 
         Examples
         --------
-        >>> au = Archiver(_PROJ_NAME, _PROJ_VERSION, __doc__, p_app_pth=Path(__file__))
+        >>> t_archiver = Archiver(_PROJ_NAME, _PROJ_VERSION, __doc__, p_app_pth=Path(__file__))
         >>>
 
         '''
@@ -163,11 +164,15 @@ class Archiver:
         else:
             self.app_pth = p_app_pth
 
+        self.app_name = self.app_pth.stem
+        self.app_root_dir = self.find_app_root_dir()
+
+        self.app_setup_cfg = self._get_app_setup_cfg()
+        self.app_ver = self._get_version(p_app_ver)
+
         self.app_desc = p_app_desc
         self.app_ini_file_name = p_app_ini_file_name
-        self.app_name = self.app_pth.stem
-        self.app_ver = p_app_ver
-        self.app_root_dir = self.find_app_root_dir()
+        self.app_setup_cfg_pth = None
         self.arc_dir = None
         self.arc_excl_dir = _add_parm(
             ['Archive', 'VersionArchive', 'build'], p_arc_excl_dir
@@ -192,6 +197,23 @@ class Archiver:
         self.make_archive_external()
         pass
 
+    def _get_app_setup_cfg(self):
+        setup_cfg = None
+        if (self.app_root_dir / 'setup.cfg').exists():
+            self.app_setup_cfg_pth = self.app_root_dir / 'setup.cfg'
+            setup_cfg = configparser.ConfigParser(inline_comment_prefixes='#')
+            setup_cfg.read([self.app_setup_cfg_pth])
+        return setup_cfg
+
+    def _get_version(self, p_app_ver):
+        version = '0.0.0'
+        if p_app_ver:
+            version = p_app_ver
+        elif self.app_setup_cfg:
+            if self.app_setup_cfg.has_option('metadata', 'version'):
+                version = self.app_setup_cfg.get('metadata', 'version')
+        return version
+
     def is_dev_mode(self):
         '''Determine if it is a production module or not.
 
@@ -211,7 +233,7 @@ class Archiver:
         return success
 
     def find_app_root_dir(self):
-        app_root_dir = None
+        app_root_dir = Path()
         if 'src' in self.app_pth.parts:
             idx = self.app_pth.parts.index('src')
             app_root_dir = self.app_pth.parents[len(self.app_pth.parts) - idx - 1]
@@ -221,11 +243,11 @@ class Archiver:
         elif 'site-packages' in self.app_pth.parts:
             app_root_dir = self.app_pth.parents[1]
         else:
-            for i, part in enumerate(self.app_pth.parts[:-1]):
-                if part.lower() == self.app_pth.parts[i + 1].lower():
-                    app_root_dir = self.app_pth.parents[
-                        len(self.app_pth.parents) - i - 1
-                    ]
+            t_dir = Path()
+            for i, part in enumerate(self.app_pth.parts):
+                t_dir = t_dir / part
+                if part.lower() == self.app_name.lower():
+                    app_root_dir = t_dir
                     break
         return app_root_dir
 
@@ -366,7 +388,7 @@ def msg_display(p_msg, p_len=MSG_LEN, p_color='white') -> str:
 
     Examples
     --------
-    >>> from beetools import msg.display
+    >>> from beetools import msg_display
     >>> msg.display( 'Display message' )
     '\\x1b[37mDisplay message                               '
 
@@ -390,8 +412,8 @@ def msg_error(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg.error
-    >>> msg.error( 'Error message' )
+    >>> from beetools import msg_error
+    >>> msg_error( 'Error message' )
     '\\x1b[31mError message\\x1b[0m'
 
     '''
@@ -413,8 +435,8 @@ def msg_header(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg.header
-    >>> msg.header( 'Header message' )
+    >>> from beetools import msg_header
+    >>> msg_header( 'Header message' )
     '\\x1b[36mHeader message\\x1b[0m'
 
     '''
@@ -436,8 +458,8 @@ def msg_info(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg.info
-    >>> msg.info( 'Info message' )
+    >>> from beetools import msg_info
+    >>> msg_info( 'Info message' )
     '\\x1b[33mInfo message\\x1b[0m'
 
     '''
@@ -459,8 +481,8 @@ def msg_milestone(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg.milestone
-    >>> msg.milestone( 'Milestone message' )
+    >>> from beetools import msg_milestone
+    >>> msg_milestone( 'Milestone message' )
     '\\x1b[35mMilestone message\\x1b[0m'
 
     '''
@@ -482,8 +504,8 @@ def msg_ok(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg.ok
-    >>> msg.ok( 'OK message' )
+    >>> from beetools import msg_ok
+    >>> msg_ok( 'OK message' )
     '\\x1b[32mOK message\\x1b[0m'
 
     '''
@@ -511,7 +533,6 @@ def example_archiver(p_cls=True):
 
     success = True
     app_name = 'TestApp'
-    app_version = '0.0.1'
     app_desc = 'Test application description'
     with tempfile.TemporaryDirectory() as temp_dir:
         app_dir = Path(temp_dir, app_name, 'src', app_name.lower())
@@ -521,7 +542,7 @@ def example_archiver(p_cls=True):
         arc_extern_dir = Path(temp_dir, 'external')
         # arc_extern_dir.mkdir(parents = True)
         t_archiver = Archiver(
-            app_name, app_version, app_desc, app_pth, p_arc_extern_dir=arc_extern_dir
+            app_name, app_desc, app_pth, p_arc_extern_dir=arc_extern_dir
         )
     t_archiver.print_header(p_cls=p_cls)
     t_archiver.print_footer()

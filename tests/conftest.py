@@ -19,24 +19,24 @@ _PROJ_VERSION = '0.0.1'
 
 class SetUpParams:
     def __init__(self, p_type):
-        self.anchor_dir = WorkingDir().bee_dir
+        self.dir = WorkingDir().dir
         self.app_desc = 'Test application description'
         self.app_dir = None
         self.app_name = 'TestApp'
-        self.app_ver = '0.0.1'
+        self.app_ver = '0.0.0'
         self.app_type = p_type
         self._setup_env()
 
     def _setup_env(self):
         '''Setup the environment base structure.'''
-        app_root_dir = Path(self.anchor_dir, self.app_name)
+        app_root_dir = Path(self.dir, self.app_name)
         if self.app_type == 'module':
             self.app_dir = Path(app_root_dir, 'src', self.app_name.lower())
         elif self.app_type == 'tests':
             self.app_dir = Path(app_root_dir, 'tests')
         elif self.app_type == 'site-package':
             self.app_dir = Path(
-                self.anchor_dir,
+                self.dir,
                 'site-packages',
                 self.app_name.lower(),
                 self.app_name.lower(),
@@ -64,40 +64,40 @@ class SetUpParams:
 
 class WorkingDir:
     def __init__(self):
-        self.bee_dir = Path(mkdtemp(prefix='beetools_'))
+        self.dir = Path(mkdtemp(prefix='beetools_'))
 
 
 @pytest.fixture
 def make_self_destruct_working_dir():
     '''Set up the environment base structure'''
-    working_dir = WorkingDir()
-    yield working_dir
-    rm_tree(working_dir.bee_dir, p_crash=False)
+    sup = WorkingDir()
+    yield sup
+    rm_tree(sup.dir, p_crash=False)
 
 
 @pytest.fixture
 def setup_env_module():
     sup = SetUpParams('module')
     yield sup
-    rm_tree(sup.anchor_dir, p_crash=False)
+    rm_tree(sup.dir, p_crash=False)
 
 
 @pytest.fixture
 def setup_env_tests():
     sup = SetUpParams('tests')
     yield sup
-    rm_tree(sup.anchor_dir, p_crash=False)
+    rm_tree(sup.dir, p_crash=False)
 
 
 @pytest.fixture
 def setup_env_sitepackage():
     sup = SetUpParams('site-package')
     yield sup
-    rm_tree(sup.anchor_dir, p_crash=False)
+    rm_tree(sup.dir, p_crash=False)
 
 
 @pytest.fixture
 def setup_env_package():
     sup = SetUpParams('package')
     yield sup
-    rm_tree(sup.anchor_dir, p_crash=False)
+    rm_tree(sup.dir, p_crash=False)
