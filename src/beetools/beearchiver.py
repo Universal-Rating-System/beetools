@@ -147,7 +147,7 @@ class Archiver:
 
         Examples
         --------
-        >>> t_archiver = Archiver(_PROJ_NAME, _PROJ_VERSION, __doc__, p_app_pth=Path(__file__))
+        >>> t_archiver = Archiver(_PROJ_NAME, __doc__, p_app_pth=Path(__file__))
         >>>
 
         '''
@@ -389,7 +389,7 @@ def msg_display(p_msg, p_len=MSG_LEN, p_color='white') -> str:
     Examples
     --------
     >>> from beetools import msg_display
-    >>> msg.display( 'Display message' )
+    >>> msg_display( 'Display message' )
     '\\x1b[37mDisplay message                               '
 
     '''
