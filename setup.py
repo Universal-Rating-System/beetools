@@ -9,7 +9,7 @@ with open('requirements.txt', 'r') as fh:
 
 setuptools.setup(
     name='beetools',
-    version='4.2.0',
+    version='4.2.1',
     author='Hendrik du Toit',
     author_email='hendrik@brightedge.co.za',
     description='Insert project description here',
