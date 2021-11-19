@@ -53,11 +53,11 @@ class TestVenv:
 
     def test_venv_set_up(self, make_self_destruct_working_dir):
         '''Testing venv_set_up()'''
-        project_name = "new-project"
+        project_name = "new_project"
         assert beevenv.set_up(
             make_self_destruct_working_dir.dir,
             project_name,
-            ["pip", "wheel"],
+            [['pypi', "pip"], ['pypi', "wheel"]],
             p_verbose=False,
         )
 

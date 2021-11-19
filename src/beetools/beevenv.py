@@ -203,7 +203,7 @@ def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) ->
     if not p_package_list:
         p_package_list = []
     for package in p_package_list:
-        if package[0] == 'Web':
+        if package[0] == 'pypi':
             script_cmds.append('{} install {}'.format(pip_cmd, package[1]))
         elif package[0] == 'Local':
             script_cmds.append(
