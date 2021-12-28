@@ -4,46 +4,46 @@
 .. ======================================================
 
 ========
-beetools
+BEETools
 ========
 
-.. image:: https://img.shields.io/pypi/status/beetools
+.. image:: https://img.shields.io/pypi/status/BEETools
     :alt: PyPI - Status
 
-.. image:: https://img.shields.io/pypi/wheel/beetools
+.. image:: https://img.shields.io/pypi/wheel/BEETools
     :alt: PyPI - Wheel
 
-.. image:: https://img.shields.io/pypi/pyversions/beetools
+.. image:: https://img.shields.io/pypi/pyversions/BEETools
     :alt: PyPI - Python Version
 
-.. image:: https://img.shields.io/github/v/release/hendrikdutoit/beetools
+.. image:: https://img.shields.io/github/v/release/hendrikdutoit/BEETools
     :alt: GitHub release (latest by date)
 
-.. image:: https://img.shields.io/github/license/hendrikdutoit/beetools
+.. image:: https://img.shields.io/github/license/hendrikdutoit/BEETools
     :alt: License
 
-.. image:: https://img.shields.io/github/issues-raw/hendrikdutoit/beetools
+.. image:: https://img.shields.io/github/issues-raw/hendrikdutoit/BEETools
     :alt: GitHub issues
 
-.. image:: https://img.shields.io/pypi/dm/BEETest21
+.. image:: https://img.shields.io/pypi/dm/BEETools
     :alt: PyPI - Downloads
 
-.. image:: https://img.shields.io/github/search/hendrikdutoit/beetools/GitHub hit
+.. image:: https://img.shields.io/github/search/hendrikdutoit/BEETools/GitHub
     :alt: GitHub Searches
 
-.. image:: https://img.shields.io/codecov/c/gh/hendrikdutoit/beetools
+.. image:: https://img.shields.io/codecov/c/gh/hendrikdutoit/BEETools
     :alt: CodeCov
-    :target: https://app.codecov.io/gh/hendrikdutoit/beetools
+    :target: https://app.codecov.io/gh/hendrikdutoit/BEETools
 
-.. image:: https://img.shields.io/github/workflow/status/hendrikdutoit/beetools/Pre-Commit
+.. image:: https://img.shields.io/github/workflow/status/hendrikdutoit/BEETools/Pre-Commit
     :alt: GitHub Actions - Pre-Commit
-    :target: https://github.com/hendrikdutoit/beetools/actions/workflows/pre-commit.yaml
+    :target: https://github.com/hendrikdutoit/BEETools/actions/workflows/pre-commit.yaml
 
-.. image:: https://img.shields.io/github/workflow/status/hendrikdutoit/beetools/CI
+.. image:: https://img.shields.io/github/workflow/status/hendrikdutoit/BEETools/CI
     :alt: GitHub Actions - CI
-    :target: https://github.com/hendrikdutoit/beetools/actions/workflows/ci.yaml
+    :target: https://github.com/hendrikdutoit/BEETools/actions/workflows/ci.yaml
 
-.. image:: https://img.shields.io/pypi/v/beetools
+.. image:: https://img.shields.io/pypi/v/BEETools
     :alt: PyPi
 
 Project Short Description (default ini)
