@@ -33,7 +33,8 @@ class TestVenv:
 
     def test_venv_do_example(self):
         '''Testing venv_do_example()'''
-        assert beevenv.do_examples()
+        assert beevenv.do_examples() == 0
+        pass
 
     def test_venv_get_dir(self, make_self_destruct_working_dir):
         '''Testing venv_get_dir()'''
@@ -45,20 +46,27 @@ class TestVenv:
         '''Testing install_in_venv()'''
         project_name = "new-project"
         beevenv.set_up(beeutils.get_tmp_dir(), project_name, ["pip"], p_verbose=True)
-        assert beevenv.install_in(
-            make_self_destruct_working_dir.dir,
-            project_name,
-            ["echo Installing in VEnv", "pip install wheel", "echo Done!"],
+        assert (
+            beevenv.install_in(
+                make_self_destruct_working_dir.dir,
+                project_name,
+                ["echo Installing in VEnv", "pip install wheel", "echo Done!"],
+            )
+            == 0
         )
+        pass
 
     def test_venv_set_up(self, make_self_destruct_working_dir):
         '''Testing venv_set_up()'''
         project_name = "new_project"
-        assert beevenv.set_up(
-            make_self_destruct_working_dir.dir,
-            project_name,
-            [['pypi', "pip"], ['pypi', "wheel"]],
-            p_verbose=False,
+        assert (
+            beevenv.set_up(
+                make_self_destruct_working_dir.dir,
+                project_name,
+                [['pypi', "pip"], ['pypi', "wheel"]],
+                p_verbose=False,
+            )
+            == 0
         )
 
 

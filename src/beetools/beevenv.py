@@ -92,9 +92,7 @@ def get_dir(p_venv_root_dir, p_name_pref) -> Path:
     return p_venv_root_dir / Path('{}_env'.format(p_name_pref))
 
 
-def install_in(
-    p_venv_root_dir, p_venv_name, p_instructions, p_crash=True, p_verbose=True
-):
+def install_in(p_venv_root_dir, p_venv_name, p_instructions, p_verbose=True):
     '''Execute (install) commands in a virtual environment
 
     Parameters
@@ -152,7 +150,6 @@ def install_in(
         p_script_name=script_name,
         p_verbose=p_verbose,
         p_switches=switches,
-        p_crash=p_crash,
     )
     return ret_code
 
@@ -240,7 +237,7 @@ def example_virtual_environment():
         p_cmd = ['rd', '/S', '/Q', get_dir(beeutils.get_tmp_dir(), venv_name)]
     else:
         p_cmd = ['rm', '-f', '-r', get_dir(beeutils.get_tmp_dir(), venv_name)]
-    success = beescript.exec_cmd(p_cmd, p_crash=False, p_verbose=True)
+    beescript.exec_cmd(p_cmd, p_verbose=True)
 
     # Install a new venv including termcolor in a tmp directory
     package_list = [['Web', 'termcolor'], ['Web', 'wheel']]

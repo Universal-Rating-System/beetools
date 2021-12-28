@@ -36,7 +36,6 @@ _PROJ_VERSION = '3.2.0'
 def exec_batch_in_session(
     p_script_cmds,
     p_switches=None,
-    p_crash=True,
     p_script_name=False,
     p_verbose=False,
     p_shell=False,
@@ -115,36 +114,37 @@ def exec_batch_in_session(
                 '==[Start {0}]====\n{1}==[ End {0} ]===='.format(batch_pth, contents)
             )
         )
-    compl_proc = exec_cmd(script, p_crash, p_verbose=p_verbose, p_shell=p_shell)
+    rc = exec_cmd(script, p_verbose=p_verbose, p_shell=p_shell)
     if os.path.isfile(batch_pth):
         os.remove(batch_pth)
-    return compl_proc
+    return rc
 
 
-def exec_batch(p_batch, p_verbose=False):
-    '''Execute a batch.
+def exec_batch(p_batch: list, p_verbose: bool = False) -> bool:
+    '''Execute a batch of commands independnatly.
 
     Each command will be executed independantly of the previous one i.e it
     will be in a different session.
-    Parameters
-    ----------
 
-    Returns
-    -------
-    bool
+    :param p_batch:
+        List of the independent commands to execute.
+
+    :param p_verbose:
+        Write output to console.
+
+    :return:
+        bool
         If successful it returns True (subprocess.CompletedProcess = 0)
         alternatively it returns a subprocess.CompletedProcess
         See https://docs.python.org/3.9/library/subprocess.html#subprocess.CompletedProcess
 
-    Examples
-    --------
+    :example:
     >>> from beetools import exec_batch
     >>> exec_batch([[ 'echo', 'Hello'],['echo','Goodbye']])
     True
-
     '''
+
     success = True
-    # c_cmd = 1
     for cmd in p_batch:
         rc = exec_cmd(cmd, p_verbose=p_verbose)
         if rc is not True:
@@ -152,15 +152,13 @@ def exec_batch(p_batch, p_verbose=False):
     return success
 
 
-def exec_cmd(p_cmd, p_crash=True, p_shell=None, p_verbose=False) -> bool:
+def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
     '''Execute a command line instruction on tools.LINUX or tools.WINDOWS
 
     Parameters
     ----------
     p_cmd
         Command to execute.  See See https://docs.python.org/3.9/library/subprocess.html#subprocess.run
-    p_crash
-        Stop (crash) or continue execution should a command fail.
     p_shell
         Run the script in a shell.  See https://docs.python.org/3.9/library/subprocess.html#subprocess.run
         Default is None
@@ -182,7 +180,6 @@ def exec_cmd(p_cmd, p_crash=True, p_shell=None, p_verbose=False) -> bool:
     True
 
     '''
-    success = True
     p_cmd = [str(s) for s in p_cmd]
     inst_str = ' '.join(p_cmd)
     if p_verbose:
@@ -192,11 +189,7 @@ def exec_cmd(p_cmd, p_crash=True, p_shell=None, p_verbose=False) -> bool:
     elif beeutils.get_os() == beeutils.WINDOWS and not p_shell:
         shell = True
     elif beeutils.get_os() not in [beeutils.WINDOWS, beeutils.LINUX, beeutils.MACOS]:
-        print(
-            colored(
-                'Unknow OS ({})\nSystem terminated!'.format(beeutils.get_os()), 'red'
-            )
-        )
+        print(colored(f'Unknow OS ({beeutils.get_os()})\nSystem terminated!', 'red'))
         sys.exit()
     else:
         shell = p_shell
@@ -206,15 +199,11 @@ def exec_cmd(p_cmd, p_crash=True, p_shell=None, p_verbose=False) -> bool:
         )
         comp_proc.check_returncode()
     except subprocess.CalledProcessError:
-        print('\nCmd:\t{}\nrc:\t{}'.format(inst_str, comp_proc.returncode))
-        if p_crash:
-            print(colored('System terminated!', 'red'))
-            sys.exit()
-        else:
-            print('Crash = False.  Execution will continue...')
-    if comp_proc.returncode != 0:
-        success = comp_proc.returncode
-    return success
+        if p_verbose:
+            print('\nCmd:\t{}\nrc:\t{}'.format(inst_str, comp_proc.returncode))
+    finally:
+        rc = comp_proc.returncode
+    return rc
 
 
 def write_script(p_pth, p_contents):
@@ -279,7 +268,8 @@ def example_scripting():
             'mkdir -p {}'.format(tmp_t1),
             'ls -l {}'.format(tmp_test),
         ]
-    success = exec_batch_in_session(batch, p_verbose=False) and success
+    if exec_batch_in_session(batch, p_verbose=False) != 0:
+        success = False
 
     # Execute some commands in a batch
     if beeutils.get_os() == beeutils.WINDOWS:
@@ -293,7 +283,8 @@ def example_scripting():
             ['mkdir', '-p', '{}'.format(tmp_t1)],
             ['ls', '-l', '{}'.format(tmp_test)],
         ]
-    success = exec_batch(cmds) and success
+    if exec_batch(cmds) != 0:
+        success = False
 
     # Write a script
     script_pth = beeutils.get_tmp_dir() / _PROJ_NAME
@@ -336,7 +327,9 @@ def example_scripting():
         cnf, 'Folders', 'MyFolderOnSystem'
     )
     print(os_system_flder)
-    success = os_system_flder and success
+    if not os_system_flder:
+        success = False
+
     beeutils.result_rep(success, p_comment='Done')
     return success
 

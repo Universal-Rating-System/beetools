@@ -1,8 +1,9 @@
+[4.3.0]
+Title = 'No "crash protection"  when exec_batch method crash'
+Description = ['Remove "crash" handling.',
+               'Currently the beescript.exec_batch, and beescript.exec_cmd, make use of a "p_crash" indicator to prevent the exception from "crashing" the procedure or not.  The exception should rather be handled by passing the resulting error code back to the caller instead of attempting to handle it by itself.']
 
 [0.0.0]
-Version = '0.0.0'
 Title = 'Creation of the project'
 Description = ['List all the changes to the project here.',
                'Changes listed here will be in the release notes under the above heading.']
-FileChanges = [['filename01.py','Insert change description here.'],
-               ['filename02.txt','Insert change description here.']]
