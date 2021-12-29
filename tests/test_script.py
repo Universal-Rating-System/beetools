@@ -35,26 +35,7 @@ class TestScript:
                 ['md', '{}'.format(tmp_t1)],
                 ['dir', '/B', '{}'.format(tmp_test)],
             ]
-        assert beescript.exec_batch(cmds, p_verbose=False) == 0
-        pass
-
-    def test__exec_batch_crash(self, make_self_destruct_working_dir):
-        """Testing script_exec_batch()"""
-
-        tmp_test = make_self_destruct_working_dir.dir / "test"
-        tmp_t1 = tmp_test / "T1"
-        cmds = []
-        if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
-            cmds = [
-                ['mkdir', '-p', '{}'.format(tmp_t1)],
-                ['mkdir', '-p', '{}'.format(tmp_t1)],
-            ]
-        elif beeutils.get_os() == beeutils.WINDOWS:
-            cmds = [
-                ['md', '{}'.format(tmp_t1)],
-                ['md', '{}'.format(tmp_t1)],
-            ]
-        assert not beescript.exec_batch(cmds, p_verbose=False)
+        assert beescript.exec_batch(cmds, p_verbose=False) == [0, 0]
         pass
 
     def test__exec_batch_in_session(self, make_self_destruct_working_dir):

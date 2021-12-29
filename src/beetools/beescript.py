@@ -1,4 +1,4 @@
-'''Tools for Bright Edge eServices developments & projects
+"""Tools for Bright Edge eServices developments & projects
 
 These tools was designed for the use in the Bright Edge eServices echo system.
 It defines methods and functions for general use purposes and standardization
@@ -15,7 +15,7 @@ To Do
 1.  Better example on the logging integration
 2.  Complete doctests for all methods & functions
 
-'''
+"""
 
 import configparser
 import os
@@ -39,8 +39,8 @@ def exec_batch_in_session(
     p_script_name=False,
     p_verbose=False,
     p_shell=False,
-) -> bool:
-    '''Execute a script in the same session
+) -> int:
+    """Execute a script in the same session
 
     Useful when commands has to be exucuted in one session for instance if
     it a a virtual environment is envoked and the commands must be executed
@@ -53,9 +53,6 @@ def exec_batch_in_session(
     p_switches
         Switches for the bash script.
         Default is None.
-    p_crash
-        Stop (crash) or continue execution should a command fail.
-        Default is True
     p_script_name
         Name of the script to use
         Default is False and will be set to "do_bashs_cript_temp"
@@ -78,7 +75,7 @@ def exec_batch_in_session(
     tmp_t1 = tmp_test / 't1'
     cmd = ['mkdir -p {}'.format(tmp_t1), 'ls -l {}'.format(tmp_test), 'rm -R {}'.format(tmp_test)]
     exec_batch_in_session(cmd)
-    '''
+    """
     if isinstance(p_switches, list):
         switches = p_switches
     elif isinstance(p_switches, str):
@@ -120,8 +117,8 @@ def exec_batch_in_session(
     return rc
 
 
-def exec_batch(p_batch: list, p_verbose: bool = False) -> bool:
-    '''Execute a batch of commands independnatly.
+def exec_batch(p_batch: list, p_verbose: bool = False) -> list:
+    """Execute a batch of commands independnatly.
 
     Each command will be executed independantly of the previous one i.e it
     will be in a different session.
@@ -133,27 +130,24 @@ def exec_batch(p_batch: list, p_verbose: bool = False) -> bool:
         Write output to console.
 
     :return:
-        bool
-        If successful it returns True (subprocess.CompletedProcess = 0)
-        alternatively it returns a subprocess.CompletedProcess
+        list
+        A list with the return code for each batch command.
         See https://docs.python.org/3.9/library/subprocess.html#subprocess.CompletedProcess
 
     :example:
     >>> from beetools import exec_batch
     >>> exec_batch([[ 'echo', 'Hello'],['echo','Goodbye']])
     True
-    '''
+    """
 
-    success = True
+    rc = []
     for cmd in p_batch:
-        rc = exec_cmd(cmd, p_verbose=p_verbose)
-        if rc is not True:
-            success = False
-    return success
+        rc.append(exec_cmd(cmd, p_verbose=p_verbose))
+    return rc
 
 
 def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
-    '''Execute a command line instruction on tools.LINUX or tools.WINDOWS
+    """Execute a command line instruction on tools.LINUX or tools.WINDOWS
 
     Parameters
     ----------
@@ -179,7 +173,7 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
     >>> exec_cmd([ 'echo', 'Hello'])
     True
 
-    '''
+    """
     p_cmd = [str(s) for s in p_cmd]
     inst_str = ' '.join(p_cmd)
     if p_verbose:
@@ -207,7 +201,7 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
 
 
 def write_script(p_pth, p_contents):
-    '''Write a script to disk
+    """Write a script to disk
 
     Parameters
     ----------
@@ -227,7 +221,7 @@ def write_script(p_pth, p_contents):
     >>> beevenv.set_up(beeutils.get_tmp_dir(),'new-project',['pip','wheel'],p_verbose=False)
     True
 
-    '''
+    """
     contents = ''
     for line in p_contents:
         if isinstance(line, list):
@@ -239,7 +233,7 @@ def write_script(p_pth, p_contents):
 
 
 def example_scripting():
-    '''Standard example to illustrate standard use.
+    """Standard example to illustrate standard use.
 
     Parameters
     ----------
@@ -252,7 +246,7 @@ def example_scripting():
     Examples
     --------
 
-    '''
+    """
     success = True
     # Run a few commands in a script.  Useful when executing commands in a
     # venv in the same session.
@@ -283,7 +277,7 @@ def example_scripting():
             ['mkdir', '-p', '{}'.format(tmp_t1)],
             ['ls', '-l', '{}'.format(tmp_test)],
         ]
-    if exec_batch(cmds) != 0:
+    if exec_batch(cmds) != [0, 0, 0]:
         success = False
 
     # Write a script
@@ -335,12 +329,10 @@ def example_scripting():
 
 
 def do_examples(p_cls=True):
-    '''Example to illustrate usage
+    """Example to illustrate usage
 
     Parameters
     ----------
-    p_app_path
-        Path to the application module
     p_cls
         Clear the screen before start
         Default is True
@@ -353,7 +345,7 @@ def do_examples(p_cls=True):
     Examples
     --------
 
-    '''
+    """
 
     # Initiate the Archiver
     success = True
@@ -362,7 +354,7 @@ def do_examples(p_cls=True):
     success = example_scripting() and success
     b_tls.print_footer()
     if success:
-        return b_tls.arc_pth
+        return True
     return False
 
 

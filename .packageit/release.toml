@@ -1,3 +1,7 @@
+[4.4.0]
+Title = "Version 4.4.0"
+Description = [ "[Bug]: Return code for exec_batch is not accurate", "n submitting a batch of commands,: If them fail, then the batch is marked as failed. This is correct, but not accurate.",]
+
 [4.3.2]
 Title = "Version 4.3.2"
 Description = [ "[Bug]: Name in setup.cfg is wrong", "Copied a setup.cfg file file from another project and did not correct the name.",]
