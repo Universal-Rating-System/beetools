@@ -1,3 +1,7 @@
+[4.3.2]
+Title = "Version 4.3.2"
+Description = [ "[Bug]: Name in setup.cfg is wrong", "Copied a setup.cfg file file from another project and did not correct the name.",]
+
 [4.3.1]
 Title = "Version 4.3.1"
 Description = [ "[Bug]: Github Build distribution fails", "A release to be distributed to PyPi. It failed due to the .github/workflow/release.yml still containing code from when setup.py was used to build the distribution.",]
