@@ -1,3 +1,7 @@
+[4.3.1]
+Title = "Version 4.3.1"
+Description = [ "[Bug]: Github Build distribution fails", "A release to be distributed to PyPi. It failed due to the .github/workflow/release.yml still containing code from when setup.py was used to build the distribution.",]
+
 [4.3.0]
 Title = "Version 4.3.0"
 Description = [ "No \"crash protection\"  when exec_batch method crash", "Remove \"crash\" handling.", "Currently the beescript.exec_batch, and beescript.exec_cmd, make use of a \"p_crash\" indicator to prevent the exception from \"crashing\" the procedure or not.  The exception should rather be handled by passing the resulting error code back to the caller instead of attempting to handle it by itself.",]
