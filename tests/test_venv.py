@@ -44,18 +44,11 @@ class TestVenv:
         assert beevenv.install_in(self_destruct_work_dir.dir, project_name, batch) == 0
         pass
 
-    # def test_venv_set_up(self, self_destruct_work_dir):
-    #     '''Testing venv_set_up()'''
-    #     project_name = 'new_project'
-    #     assert (
-    #         beevenv.set_up(
-    #             self_destruct_work_dir.dir,
-    #             project_name,
-    #             [['pypi', 'pip'], ['pypi', 'wheel']],
-    #             p_verbose=False,
-    #         )
-    #         == 0
-    #     )
+    def test_venv_set_up(self, self_destruct_work_dir):
+        '''Testing venv_set_up()'''
+        project_name = 'new_project'
+        package_list = [['pypi', 'pip'], ['pypi', 'wheel']]
+        assert beevenv.set_up(self_destruct_work_dir.dir, project_name, package_list, p_verbose=False) == 0
 
 
 del btls
