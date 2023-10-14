@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BEETools.iml" filepath="$PROJECT_DIR$/.idea/BEETools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/beetools.iml" filepath="$PROJECT_DIR$/.idea/beetools.iml" />
     </modules>
   </component>
 </project>

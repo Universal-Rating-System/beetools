@@ -1,7 +1,9 @@
 """Testing script__init__()"""
-
 from pathlib import Path
-from beetools import beescript, beearchiver, beeutils
+
+from beetools import beearchiver
+from beetools import beescript
+from beetools import beeutils
 
 
 _PROJ_DESC = __doc__.split('\n')[0]
@@ -22,55 +24,53 @@ class TestScript:
     def test__exec_batch(self, make_self_destruct_working_dir):
         """Testing script_exec_batch()"""
 
-        tmp_test = make_self_destruct_working_dir.dir / "test"
-        tmp_t1 = tmp_test / "T1"
+        tmp_test = make_self_destruct_working_dir.dir / 'test'
+        tmp_t1 = tmp_test / 'T1'
         cmds = []
         if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
             cmds = [
-                ['mkdir', '-p', '{}'.format(tmp_t1)],
-                ['ls', '-l', '{}'.format(tmp_test)],
+                ['mkdir', '-p', f'{tmp_t1}'],
+                ['ls', '-l', f'{tmp_test}'],
             ]
         elif beeutils.get_os() == beeutils.WINDOWS:
             cmds = [
-                ['md', '{}'.format(tmp_t1)],
-                ['dir', '/B', '{}'.format(tmp_test)],
+                ['md', f'{tmp_t1}'],
+                ['dir', '/B', f'{tmp_test}'],
             ]
         assert beescript.exec_batch(cmds, p_verbose=False) == [0, 0]
         pass
 
     def test__exec_batch_in_session(self, make_self_destruct_working_dir):
         """Testing script_exec_batch_in_session()"""
-        tmp_test = make_self_destruct_working_dir.dir / "test"
-        tmp_t1 = tmp_test / "T1"
+        tmp_test = make_self_destruct_working_dir.dir / 'test'
+        tmp_t1 = tmp_test / 'T1'
         batch = []
         if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
             batch = [
-                "mkdir -p {}".format(tmp_t1),
-                "ls -l {}".format(tmp_test),
-                "rm -R {}".format(tmp_test),
+                f'mkdir -p {tmp_t1}',
+                f'ls -l {tmp_test}',
+                f'rm -R {tmp_test}',
             ]
         elif beeutils.get_os() == beeutils.WINDOWS:
             batch = [
-                "md {}".format(tmp_t1),
-                "dir /B {}".format(tmp_test),
-                "rd /Q /S {}".format(tmp_test),
+                f'md {tmp_t1}',
+                f'dir /B {tmp_test}',
+                f'rd /Q /S {tmp_test}',
             ]
         assert beescript.exec_batch_in_session(batch, p_verbose=False) == 0
         pass
 
     def test__exec_cmd(self, make_self_destruct_working_dir):
         """Testing script_exec_cmd()"""
-        tmp_dir = make_self_destruct_working_dir.dir / "test" / "T1"
+        tmp_dir = make_self_destruct_working_dir.dir / 'test' / 'T1'
         if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
-            cmd1 = ['mkdir', '-p', '{}'.format(tmp_dir)]
+            cmd1 = ['mkdir', '-p', f'{tmp_dir}']
             # cmd2 = ['ls', '-l', '{}'.format(tmp_dir)]
         elif beeutils.get_os() == beeutils.WINDOWS:
-            cmd1 = ['md', '{}'.format(tmp_dir)]
+            cmd1 = ['md', f'{tmp_dir}']
             # cmd2 = ['dir', '/B', '{}'.format(tmp_dir)]
         assert beescript.exec_cmd(cmd1) == 0
-        assert (
-            beescript.exec_cmd(cmd1) == 1
-        )  # Do it a second time to create an exception
+        assert beescript.exec_cmd(cmd1) == 1  # Do it a second time to create an exception
 
         pass
 

@@ -2,12 +2,12 @@
 
 Define the fixture functions in this file to make them accessible across multiple test files.
 '''
-
-
 import datetime
 from pathlib import Path
 from tempfile import mkdtemp
+
 import pytest
+
 from beetools.beeutils import rm_tree
 
 
@@ -55,10 +55,7 @@ class SetUpParams:
         (self.app_dir / Path(self.app_name.lower()).with_suffix('.txt')).touch()
         start_time = datetime.datetime.now()
         start_date_str = start_time.strftime('%y%m%d%H%M%S')
-        (
-            app_ver_arc_dir
-            / '{} {} ({} Beta).zip'.format(self.app_name, start_date_str, self.app_ver)
-        ).touch()
+        (app_ver_arc_dir / f'{self.app_name} {start_date_str} ({self.app_ver} Beta).zip').touch()
         (app_arc_dir / Path(self.app_name.lower()).with_suffix('.py')).touch()
 
 

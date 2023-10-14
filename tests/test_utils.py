@@ -1,9 +1,11 @@
 '''Testing script__init__()'''
-
 import configparser
-from pathlib import Path
 import sys
-from beetools import beearchiver, beescript, beeutils
+from pathlib import Path
+
+from beetools import beearchiver
+from beetools import beescript
+from beetools import beeutils
 
 
 _PROJ_DESC = __doc__.split('\n')[0]
@@ -21,13 +23,9 @@ class TestUtils:
         assert beeutils.DEF_LOG_LEV == 10
         assert beeutils.DEF_LOG_LEV_FILE == 10
         assert beeutils.DEF_LOG_LEV_CON == 30
+        assert beeutils.LOG_FILE_FORMAT == '%(asctime)s%(msecs)d;%(levelname)s;%(name)s;%(funcName)s;%(message)s'
         assert (
-            beeutils.LOG_FILE_FORMAT
-            == '%(asctime)s%(msecs)d;%(levelname)s;%(name)s;%(funcName)s;%(message)s'
-        )
-        assert (
-            beeutils.LOG_CONSOLE_FORMAT
-            == '\x1b[0;31;40m\n%(levelname)s - %(name)s - %(funcName)s - %(message)s\x1b[0m'
+            beeutils.LOG_CONSOLE_FORMAT == '\x1b[0;31;40m\n%(levelname)s - %(name)s - %(funcName)s - %(message)s\x1b[0m'
         )
 
         # Def date format strings
@@ -52,11 +50,11 @@ class TestUtils:
 
     def test_get_os(self):
         '''Testing get_os()'''
-        if sys.platform.startswith("win32"):
+        if sys.platform.startswith('win32'):
             curr_os = 'windows'
-        elif sys.platform.startswith("linux"):
+        elif sys.platform.startswith('linux'):
             curr_os = 'linux'
-        elif sys.platform.startswith("darwin"):
+        elif sys.platform.startswith('darwin'):
             curr_os = 'macos'
         assert beeutils.get_os() == curr_os
 
@@ -74,21 +72,21 @@ class TestUtils:
 
     def test_tools_is_struct_the_same_dict_eq(self):
         '''Testing is_struct_the_same_dict_eq()'''
-        x = {1: "One", 2: "Two"}
-        y = {2: "Two", 1: "One"}
+        x = {1: 'One', 2: 'Two'}
+        y = {2: 'Two', 1: 'One'}
         assert beeutils.is_struct_the_same(x, y)
 
     def test_tools_is_struct_the_same_dict_diff_keys(self):
         '''Testing is_struct_the_same_dict_diff_keys()'''
-        x = {1: "One", 3: "Two"}
-        y = {1: "One", 2: "Two"}
+        x = {1: 'One', 3: 'Two'}
+        y = {1: 'One', 2: 'Two'}
         assert not beeutils.is_struct_the_same(x, y)
 
     def test_tools_is_struct_the_same_dict_neq(self):
         '''Testing is_struct_the_same_dict_neq()'''
-        y = {2: "Two", 1: "One"}
-        z = {2: "Two", 1: "Three"}
-        assert not beeutils.is_struct_the_same(y, z, "ref str")
+        y = {2: 'Two', 1: 'One'}
+        z = {2: 'Two', 1: 'Three'}
+        assert not beeutils.is_struct_the_same(y, z, 'ref str')
 
     def test_tools_is_struct_the_same_len(self):
         '''Testing is_struct_the_same_len()'''
@@ -98,21 +96,15 @@ class TestUtils:
 
     def test_tools_result_rep_true(self):
         '''Testing tools_result_rep_true()'''
-        assert (
-            beeutils.result_rep(True)
-            == "test_tools_result_rep_true - \x1b[32mSuccess\x1b[0m (No Comment)"
-        )
+        assert beeutils.result_rep(True) == 'test_tools_result_rep_true - \x1b[32mSuccess\x1b[0m (No Comment)'
 
     def test_tools_result_rep_false(self):
         '''Testing tools_result_rep_false()'''
-        assert (
-            beeutils.result_rep(False)
-            == "test_tools_result_rep_false - \x1b[31mFailed\x1b[0m (No Comment)"
-        )
+        assert beeutils.result_rep(False) == 'test_tools_result_rep_false - \x1b[31mFailed\x1b[0m (No Comment)'
 
     def test_tools_rm_temp_locked_file(self):
         '''Testing tools_rm_temp_locked_file()'''
-        tmp_test = beeutils.get_tmp_dir() / "test"
+        tmp_test = beeutils.get_tmp_dir() / 'test'
         # if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
         #     cmd = ["mkdir -p {}".format(tmp_test)]
         # elif beeutils.get_os() == beeutils.WINDOWS:
@@ -124,9 +116,9 @@ class TestUtils:
         working_dir = make_self_destruct_working_dir.dir
         tmp_t1 = Path(working_dir, 'T1')
         if beeutils.get_os() == beeutils.WINDOWS:
-            cmd = ['md {}'.format(tmp_t1)]
+            cmd = [f'md {tmp_t1}']
         elif beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
-            cmd = ['mkdir -p {}'.format(tmp_t1)]
+            cmd = [f'mkdir -p {tmp_t1}']
         beescript.exec_batch_in_session(cmd, p_verbose=False)
         t_file = working_dir / Path('t.tmp')
         t_file.touch(mode=0o666, exist_ok=True)
@@ -140,26 +132,23 @@ class TestUtils:
         cnf = configparser.ConfigParser()
         cnf.read_dict(
             {
-                "Folders": {
-                    "windows1_MyFolderOnSystem": "c:\\Program Files",
-                    "windows2_MyFolderOnSystem": "c:\\Program Files (x86)",
-                    "linux1_MyFolderOnSystem": "/usr/local/bin",
-                    "linux2_MyFolderOnSystem": "/bin",
-                    "macos1_MyFolderOnSystem": "/System",
-                    "macos2_MyFolderOnSystem": "/Application",
+                'Folders': {
+                    'windows1_MyFolderOnSystem': 'c:\\Program Files',
+                    'windows2_MyFolderOnSystem': 'c:\\Program Files (x86)',
+                    'linux1_MyFolderOnSystem': '/usr/local/bin',
+                    'linux2_MyFolderOnSystem': '/bin',
+                    'macos1_MyFolderOnSystem': '/System',
+                    'macos2_MyFolderOnSystem': '/Application',
                 }
             }
         )
         if beeutils.get_os() == beeutils.LINUX:
-            bee_dir = "/usr/local/bin"
+            bee_dir = '/usr/local/bin'
         elif beeutils.get_os() == beeutils.WINDOWS:
-            bee_dir = "c:\\Program Files"
+            bee_dir = 'c:\\Program Files'
         elif beeutils.get_os() == beeutils.MACOS:
-            bee_dir = "/System"
-        assert (
-            str(beeutils.select_os_dir_from_config(cnf, "Folders", "MyFolderOnSystem"))
-            == bee_dir
-        )
+            bee_dir = '/System'
+        assert str(beeutils.select_os_dir_from_config(cnf, 'Folders', 'MyFolderOnSystem')) == bee_dir
 
 
 del btls

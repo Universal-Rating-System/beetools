@@ -16,18 +16,20 @@ To Do
 2.  Complete doctests for all methods & functions
 
 '''
-
 import configparser
 import inspect
 import logging
 import os
-from pathlib import Path
 import shutil
 import sys
 import tempfile
+from pathlib import Path
+
+from beetools.beearchiver import Archiver
+from beetools.beearchiver import msg_error
+from beetools.beearchiver import msg_ok
 
 # from beetools.beemsg import ok as msg_ok, error as msg_error
-from beetools.beearchiver import Archiver, msg_ok, msg_error
 
 _PROJ_DESC = __doc__.split('\n')[0]
 _PROJ_PATH = Path(__file__)
@@ -40,9 +42,7 @@ DEF_LOG_LEV_FILE = logging.DEBUG
 DEF_LOG_LEV_CON = logging.WARNING
 LOG_FILE_NAME = Path(sys.argv[0]).parent / '{}.{}'.format(Path(sys.argv[0]).stem, 'log')
 LOG_FILE_FORMAT = '%(asctime)s%(msecs)d;%(levelname)s;%(name)s;%(funcName)s;%(message)s'
-LOG_CONSOLE_FORMAT = (
-    '\x1b[0;31;40m\n%(levelname)s - %(name)s - %(funcName)s - %(message)s\x1b[0m'
-)
+LOG_CONSOLE_FORMAT = '\x1b[0;31;40m\n%(levelname)s - %(name)s - %(funcName)s - %(message)s\x1b[0m'
 
 # Default date format strings
 LOG_DATE_FORMAT = '%Y%m%d%H%M%S'
@@ -298,26 +298,20 @@ def is_struct_the_same(p_x, p_y, p_ref='') -> bool:
             y_keys_srt = sorted(p_y.keys())
             for key in x_keys_srt:
                 if key in y_keys_srt:
-                    ref = '{}.{}'.format(p_ref, key)
+                    ref = f'{p_ref}.{key}'
                     success = is_struct_the_same(p_x[key], p_y[key], ref) and success
                 else:
-                    print('Key {}[ {} ] not in both structures'.format(p_ref, key))
+                    print(f'Key {p_ref}[ {key} ] not in both structures')
                     success = False
-        elif (isinstance(p_x, list) and isinstance(p_y, list)) or (
-            isinstance(p_x, tuple) and isinstance(p_y, tuple)
-        ):
+        elif (isinstance(p_x, list) and isinstance(p_y, list)) or (isinstance(p_x, tuple) and isinstance(p_y, tuple)):
             for i, rec in enumerate(p_x):
-                ref = '{}[ {} ]'.format(p_ref, i)
+                ref = f'{p_ref}[ {i} ]'
                 success = is_struct_the_same(rec, p_y[i], ref) and success
         elif p_x != p_y:
             print('{0}.{1}\n<>\n{0}.{2}'.format(p_ref, p_x, p_y))
             success = False
     else:
-        print(
-            'Length of items in structure differ:\n{}\nx({}) = {}\ny({}) = {}'.format(
-                p_ref, x_len, p_x, y_len, p_y
-            )
-        )
+        print(f'Length of items in structure differ:\n{p_ref}\nx({x_len}) = {p_x}\ny({y_len}) = {p_y}')
         success = False
     return success
 
@@ -453,7 +447,7 @@ def select_os_dir_from_config(p_config, p_section, p_option) -> Path:
     echo system.
 
     This is useful when the application runs on different os' and an option
-    must be slected dependent on the os and/or the system.  Folders or directories
+    must be selected dependent on the os and/or the system.  Folders or directories
     are the usual culprits.
 
     Parameters
@@ -488,21 +482,14 @@ def select_os_dir_from_config(p_config, p_section, p_option) -> Path:
     options = p_config.options(p_section)
     dir = None
     for option in options:
-        if (
-            option.split('_')[0][:-1] == get_os()
-            and option.split('_')[1].lower() == p_option.lower()
-        ):
+        if option.split('_')[0][:-1] == get_os() and option.split('_')[1].lower() == p_option.lower():
             dir = Path(p_config.get(p_section, option))
             if not dir.is_dir():
                 dir = None
             else:
                 break
     if not dir:
-        print(
-            msg_error(
-                'select_os_dir_from_config not found: {}:{}'.format(p_section, p_option)
-            )
-        )
+        print(msg_error(f'select_os_dir_from_config not found: {p_section}:{p_option}'))
     return dir
 
 
@@ -528,27 +515,27 @@ def example_tools():
     # tmp_t1 = tmp_dir / 'T1'
 
     # Usage of general functions
-    print('The current os is {}'.format(get_os()))
+    print(f'The current os is {get_os()}')
     tmp_dir = get_tmp_dir() / 'test'
-    print('created a temporary folder {}'.format(tmp_dir))
+    print(f'created a temporary folder {tmp_dir}')
     success = rm_tree(tmp_dir, p_crash=True) and success
 
     # Usage of is_struct_the_same
     x = [1, 2]
     y = [1, 2]
-    print('x={}'.format(x))
-    print('y={}'.format(y))
+    print(f'x={x}')
+    print(f'y={y}')
     print(is_struct_the_same(x, y))
 
     x = {1: 'One', 2: 'Two'}
     y = {2: 'Two', 1: 'One'}
-    print('x={}'.format(x))
-    print('y={}'.format(y))
+    print(f'x={x}')
+    print(f'y={y}')
     print(is_struct_the_same(x, y))
 
     z = {2: 'Two', 1: 'Three'}
-    print('x = {}'.format(x))
-    print('y = {}'.format(y))
+    print(f'x = {x}')
+    print(f'y = {y}')
     print(is_struct_the_same(y, z, 'ref str'))
 
     # Attempt to remove a temporary locked file.

@@ -1,9 +1,9 @@
 ---
-name: Bug Report
-about: Report a bug
-title: "[Bug]: "
+name: HotFix Report
+about: An urgent, critical fix applied directly to the live environment, often bypassing regular development cycles.
+title: "[HotFix]: "
 labels:
-  - bug
+  - hotfix
 ---
 
 **What happened**:
@@ -20,9 +20,14 @@ labels:
 
 **Anything else we need to know?**:
 
+**Why is this a hotfix and not a bugfix i.e. describe the impact on the production system.**:
+
 **Environment**:
 
-- beetools version:
+- gitit version:
 - Python version:
 - Operating System:
 - Install method (pip, source):
+
+**Ticket Nr**
+<!--Will be provided by owner -->

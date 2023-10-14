@@ -12,16 +12,16 @@ To Do
 2. Complete doctests for all methods & functions.
 
 '''
-
 import configparser
 import datetime
 import logging
 import os
-import zipfile
-from pathlib import Path
 import shutil
 import sys
 import tempfile
+import zipfile
+from pathlib import Path
+
 from termcolor import colored
 
 _PROJ_DESC = __doc__.split('\n')[0]
@@ -135,7 +135,7 @@ class Archiver:
         p_app_pth
             Path to the application module
         p_app_ini_file_name
-            Ini file name used by calling application for paramenters
+            Ini file name used by calling application for parameters
             Default = None
         p_cls
             Clear the screen before start
@@ -153,7 +153,7 @@ class Archiver:
 
         self.success = True
         if p_parent_log_name:
-            self.log_name = '{}.{}'.format(p_parent_log_name, _PROJ_NAME)
+            self.log_name = f'{p_parent_log_name}.{_PROJ_NAME}'
             self.logger = logging.getLogger(self.log_name)
         else:
             self.log_name = None
@@ -173,9 +173,7 @@ class Archiver:
         self.app_ini_file_name = p_app_ini_file_name
         self.app_setup_cfg_pth = None
         self.arc_dir = None
-        self.arc_excl_dir = _add_parm(
-            ['Archive', 'VersionArchive', 'build'], p_arc_excl_dir
-        )
+        self.arc_excl_dir = _add_parm(['Archive', 'VersionArchive', 'build'], p_arc_excl_dir)
         if p_arc_extern_dir:
             self.arc_extern_dir = Path(p_arc_extern_dir)
         else:
@@ -255,12 +253,10 @@ class Archiver:
             self.arc_dir = self.app_root_dir / self.version_archive
             if not self.arc_dir.is_dir():
                 self.arc_dir.mkdir()
-            self.arc_pth = self.arc_dir / '{} {} ({} Beta).zip'.format(
-                self.app_name, self.start_date_str, self.app_ver
-            )
+            self.arc_pth = self.arc_dir / f'{self.app_name} {self.start_date_str} ({self.app_ver} Beta).zip'
             with zipfile.ZipFile(self.arc_pth, 'w') as archive_zip:
                 for ext in self.arc_incl_ext:
-                    files = self.app_root_dir.glob('**/*.{}'.format(ext))
+                    files = self.app_root_dir.glob(f'**/*.{ext}')
                     for file in files:
                         exclude_file = False
                         for excl_dir in self.arc_excl_dir:
@@ -296,16 +292,10 @@ class Archiver:
         self.elapsed_time = self.end_time - self.start_time
         self.dur_hours = int(self.elapsed_time.seconds / 3600)
         self.dur_min = int((self.elapsed_time.seconds - self.dur_hours * 3600) / 60)
-        self.dur_sec = int(
-            self.elapsed_time.seconds - self.dur_hours * 3600 - self.dur_min * 60
-        )
-        print_str = '\n{:<15}{:<15}'.format(
-            'Start:', self.start_time.strftime('%m/%d %H:%M:%S')
-        )
+        self.dur_sec = int(self.elapsed_time.seconds - self.dur_hours * 3600 - self.dur_min * 60)
+        print_str = '\n{:<15}{:<15}'.format('Start:', self.start_time.strftime('%m/%d %H:%M:%S'))
         print(print_str)
-        print_str = '{:<15}{:<15}'.format(
-            'End:', self.end_time.strftime('%m/%d %H:%M:%S')
-        )
+        print_str = '{:<15}{:<15}'.format('End:', self.end_time.strftime('%m/%d %H:%M:%S'))
         print(print_str)
         print_str = '{:<15}{:>5} {:0>2}:{:0>2}:{:0>2}'.format(
             'Duration:',
@@ -345,9 +335,7 @@ class Archiver:
                 args[i + 1] = str(self.app_ini_file_name)
         print(
             msg_header(
-                '{} ({}) {}\nDescription: {}\n'.format(
-                    self.app_name, self.app_ver, ' '.join(args), self.app_desc
-                )
+                '{} ({}) {}\nDescription: {}\n'.format(self.app_name, self.app_ver, ' '.join(args), self.app_desc)
             )
         )
         return success
@@ -416,7 +404,7 @@ def msg_error(p_msg) -> str:
     '\\x1b[31mError message\\x1b[0m'
 
     '''
-    return colored('{}'.format(p_msg), 'red')
+    return colored(f'{p_msg}', 'red')
 
 
 def msg_header(p_msg) -> str:
@@ -439,7 +427,7 @@ def msg_header(p_msg) -> str:
     '\\x1b[36mHeader message\\x1b[0m'
 
     '''
-    return colored('{}'.format(p_msg), 'cyan')
+    return colored(f'{p_msg}', 'cyan')
 
 
 def msg_info(p_msg) -> str:
@@ -462,7 +450,7 @@ def msg_info(p_msg) -> str:
     '\\x1b[33mInfo message\\x1b[0m'
 
     '''
-    return colored('{}'.format(p_msg), 'yellow')
+    return colored(f'{p_msg}', 'yellow')
 
 
 def msg_milestone(p_msg) -> str:
@@ -485,7 +473,7 @@ def msg_milestone(p_msg) -> str:
     '\\x1b[35mMilestone message\\x1b[0m'
 
     '''
-    return colored('{}'.format(p_msg), 'magenta')
+    return colored(f'{p_msg}', 'magenta')
 
 
 def msg_ok(p_msg) -> str:
@@ -508,7 +496,7 @@ def msg_ok(p_msg) -> str:
     '\\x1b[32mOK message\\x1b[0m'
 
     '''
-    return colored('{}'.format(p_msg), 'green')
+    return colored(f'{p_msg}', 'green')
 
 
 def example_archiver(p_cls=True):
@@ -564,9 +552,7 @@ def example_messaging():
     success = True
     print(
         msg_display(
-            'This message print in blue and cut at {} character because it is too long!'.format(
-                MSG_LEN
-            ),
+            f'This message print in blue and cut at {MSG_LEN} character because it is too long!',
             p_color='blue',
         )
     )
