@@ -11,10 +11,10 @@ The defaults are used in this module and across the Bright Edge eServices
 echo system.
 '''
 from .beearchiver import *
-
-# from .beemsg import *
 from .beescript import *
 from .beeutils import *
 from .beevenv import *
+
+# from .beemsg import *
 
 _VERSION = '0.0.6'

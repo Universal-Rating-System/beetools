@@ -1,6 +1,6 @@
 '''Testing archiver__init__()'''
-
 from pathlib import Path
+
 from beetools import beearchiver
 
 
@@ -32,10 +32,10 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} ({} Beta).zip'.format(
-            t_archiver.start_date_str, module_setup.app_ver
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} ({module_setup.app_ver} Beta).zip',
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -45,9 +45,7 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -71,10 +69,10 @@ class TestArchiver:
         assert t_archiver.arc_dir == module_setup.app_dir.parents[1] / 'VersionArchive'
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_incl_ext == ['ini', 'py', 'txt']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} ({} Beta).zip'.format(
-            t_archiver.start_date_str, module_setup.app_ver
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} ({module_setup.app_ver} Beta).zip',
         )
         assert t_archiver.cls
         assert t_archiver.dur_hours == 0
@@ -82,11 +80,9 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.log_name == '{}.beearchiver'.format(module_setup.app_name)
+        assert t_archiver.log_name == f'{module_setup.app_name}.beearchiver'
         assert t_archiver.logger is not None
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -108,10 +104,10 @@ class TestArchiver:
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} ({} Beta).zip'.format(
-            t_archiver.start_date_str, module_setup.app_ver
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} ({module_setup.app_ver} Beta).zip',
         )
         assert t_archiver.cls
         assert t_archiver.dur_hours == 0
@@ -121,9 +117,7 @@ class TestArchiver:
         assert t_archiver.end_time == 0
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -147,10 +141,10 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build', 'Cov']
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} ({} Beta).zip'.format(
-            t_archiver.start_date_str, module_setup.app_ver
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} ({module_setup.app_ver} Beta).zip',
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -160,9 +154,7 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -186,10 +178,10 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_extern_dir == module_setup.dir
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} ({} Beta).zip'.format(
-            t_archiver.start_date_str, module_setup.app_ver
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} ({module_setup.app_ver} Beta).zip',
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -199,18 +191,14 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
     def test__init__module_with_setup_cfg(self, setup_env_module):
         '''Assert class __init__'''
         module_setup = setup_env_module
-        (module_setup.app_dir.parents[1] / 'setup.cfg').write_text(
-            '[metadata]\nversion = 0.0.1\n'
-        )
+        (module_setup.app_dir.parents[1] / 'setup.cfg').write_text('[metadata]\nversion = 0.0.1\n')
         app_pth = module_setup.app_dir / 'testapp.py'
         t_archiver = beearchiver.Archiver(
             module_setup.app_desc,
@@ -227,10 +215,10 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} (0.0.1 Beta).zip'.format(
-            t_archiver.start_date_str
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} (0.0.1 Beta).zip',
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -240,9 +228,7 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -265,10 +251,10 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} ({} Beta).zip'.format(
-            t_archiver.start_date_str, module_setup.app_ver
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} ({module_setup.app_ver} Beta).zip',
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -278,9 +264,7 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -303,10 +287,10 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} (0.0.0 Beta).zip'.format(
-            t_archiver.start_date_str
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} (0.0.0 Beta).zip',
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -316,9 +300,7 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -326,9 +308,7 @@ class TestArchiver:
         '''Assert class __init__'''
         module_setup = setup_env_module
         app_pth = module_setup.app_dir / 'testapp.py'
-        t_archiver = beearchiver.Archiver(
-            module_setup.app_desc, app_pth, p_app_ver='1.1.1'
-        )
+        t_archiver = beearchiver.Archiver(module_setup.app_desc, app_pth, p_app_ver='1.1.1')
 
         assert t_archiver.app_desc == 'Test application description'
         assert t_archiver.app_ini_file_name is None
@@ -340,10 +320,10 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} (1.1.1 Beta).zip'.format(
-            t_archiver.start_date_str
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1],
+            'VersionArchive',
+            f'testapp {t_archiver.start_date_str} (1.1.1 Beta).zip',
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -353,18 +333,14 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
     def test__init__module_version_by_setup_cfg(self, setup_env_module):
         '''Assert class __init__'''
         module_setup = setup_env_module
-        (module_setup.app_dir.parents[1] / 'setup.cfg').write_text(
-            '[metadata]\nversion = 2.2.2\n'
-        )
+        (module_setup.app_dir.parents[1] / 'setup.cfg').write_text('[metadata]\nversion = 2.2.2\n')
         app_pth = module_setup.app_dir / 'testapp.py'
         t_archiver = beearchiver.Archiver(module_setup.app_desc, app_pth)
 
@@ -378,10 +354,8 @@ class TestArchiver:
         assert t_archiver.arc_excl_dir == ['Archive', 'VersionArchive', 'build']
         assert t_archiver.arc_extern_dir is None
         assert t_archiver.arc_incl_ext == ['ini', 'py']
-        assert t_archiver.arc_pth == module_setup.app_dir.parents[
-            1
-        ] / 'VersionArchive' / 'testapp {} (2.2.2 Beta).zip'.format(
-            t_archiver.start_date_str
+        assert t_archiver.arc_pth == Path(
+            module_setup.app_dir.parents[1], 'VersionArchive', f'testapp {t_archiver.start_date_str} (2.2.2 Beta).zip'
         )
         assert t_archiver.log_name is None
         assert t_archiver.logger is None
@@ -391,9 +365,7 @@ class TestArchiver:
         assert t_archiver.dur_sec == 0
         assert t_archiver.elapsed_time == 0
         assert t_archiver.end_time == 0
-        assert t_archiver.start_date_str == t_archiver.start_time.strftime(
-            '%y%m%d%H%M%S'
-        )
+        assert t_archiver.start_date_str == t_archiver.start_time.strftime('%y%m%d%H%M%S')
         assert t_archiver.success
         assert t_archiver.version_archive == 'VersionArchive'
 
@@ -493,35 +465,27 @@ class TestArchiver:
 
     def test_msg_display_simple(self):
         '''Testing msgdisplay()'''
-        assert (
-            beearchiver.msg_display("Display message")
-            == "\x1b[37mDisplay message                               "
-        )
+        assert beearchiver.msg_display('Display message') == '\x1b[37mDisplay message                               '
 
     def test_msg_error(self):
         '''Testing msg_error()'''
-        assert beearchiver.msg_error("Error message") == "\x1b[31mError message\x1b[0m"
+        assert beearchiver.msg_error('Error message') == '\x1b[31mError message\x1b[0m'
 
     def test_msg_header(self):
         '''Testing msg_header()'''
-        assert (
-            beearchiver.msg_header("Header message") == "\x1b[36mHeader message\x1b[0m"
-        )
+        assert beearchiver.msg_header('Header message') == '\x1b[36mHeader message\x1b[0m'
 
     def test_msg_info(self):
         '''Testing msg_info()'''
-        assert beearchiver.msg_info("Info message") == "\x1b[33mInfo message\x1b[0m"
+        assert beearchiver.msg_info('Info message') == '\x1b[33mInfo message\x1b[0m'
 
     def test_msg_milestone(self):
         '''Testing msg_milestone()'''
-        assert (
-            beearchiver.msg_milestone("Milestone message")
-            == "\x1b[35mMilestone message\x1b[0m"
-        )
+        assert beearchiver.msg_milestone('Milestone message') == '\x1b[35mMilestone message\x1b[0m'
 
     def test_msg_ok(self):
         '''Testing msg_ok()'''
-        assert beearchiver.msg_ok("OK message") == "\x1b[32mOK message\x1b[0m"
+        assert beearchiver.msg_ok('OK message') == '\x1b[32mOK message\x1b[0m'
 
     def test_print_footer(self):
         '''Testing archiver_print_footer()'''

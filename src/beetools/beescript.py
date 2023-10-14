@@ -16,16 +16,18 @@ To Do
 2.  Complete doctests for all methods & functions
 
 """
-
 import configparser
 import os
-from pathlib import Path
 import shlex
 import subprocess
 import sys
+from pathlib import Path
+
 from termcolor import colored
+
+from beetools import beeutils
+from beetools import beevenv
 from beetools.beearchiver import msg_info
-from beetools import beeutils, beevenv
 
 _PROJ_DESC = __doc__.split('\n')[0]
 _PROJ_PATH = Path(__file__)
@@ -42,8 +44,8 @@ def exec_batch_in_session(
 ) -> int:
     """Execute a script in the same session
 
-    Useful when commands has to be exucuted in one session for instance if
-    it a a virtual environment is envoked and the commands must be executed
+    Useful when commands has to be executed in one session for instance if
+    it a a virtual environment is invoked and the commands must be executed
     in the virtual environment.
 
     Parameters
@@ -91,26 +93,18 @@ def exec_batch_in_session(
         ext = 'bat'
         contents = ''
     else:
-        print(
-            colored(
-                'Unknown OS ({})\nSystem terminated!'.format(beeutils.get_os()), 'red'
-            )
-        )
+        print(colored(f'Unknown OS ({beeutils.get_os()})\nSystem terminated!', 'red'))
         sys.exit()
 
     if not p_script_name:
         p_script_name = 'exec_batch_in_session_temp'
-    batch_pth = beeutils.get_tmp_dir() / Path('{}.{}'.format(p_script_name, ext))
+    batch_pth = beeutils.get_tmp_dir() / Path(f'{p_script_name}.{ext}')
     script.append(str(batch_pth))
     contents += write_script(batch_pth, p_script_cmds)
     if beeutils.get_os() == beeutils.MACOS:
         batch_pth.chmod(0o777)
     if p_verbose:
-        print(
-            msg_info(
-                '==[Start {0}]====\n{1}==[ End {0} ]===='.format(batch_pth, contents)
-            )
-        )
+        print(msg_info('==[Start {0}]====\n{1}==[ End {0} ]===='.format(batch_pth, contents)))
     rc = exec_cmd(script, p_verbose=p_verbose, p_shell=p_shell)
     if os.path.isfile(batch_pth):
         os.remove(batch_pth)
@@ -120,7 +114,7 @@ def exec_batch_in_session(
 def exec_batch(p_batch: list, p_verbose: bool = False) -> list:
     """Execute a batch of commands independnatly.
 
-    Each command will be executed independantly of the previous one i.e it
+    Each command will be executed independently of the previous one i.e it
     will be in a different session.
 
     :param p_batch:
@@ -177,7 +171,7 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
     p_cmd = [str(s) for s in p_cmd]
     inst_str = ' '.join(p_cmd)
     if p_verbose:
-        print(msg_info('{}'.format(inst_str)))
+        print(msg_info(f'{inst_str}'))
     if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS] and not p_shell:
         shell = False
     elif beeutils.get_os() == beeutils.WINDOWS and not p_shell:
@@ -188,13 +182,11 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
     else:
         shell = p_shell
     try:
-        comp_proc = subprocess.run(
-            p_cmd, capture_output=False, shell=shell, check=False
-        )
+        comp_proc = subprocess.run(p_cmd, capture_output=False, shell=shell, check=False)
         comp_proc.check_returncode()
     except subprocess.CalledProcessError:
         if p_verbose:
-            print('\nCmd:\t{}\nrc:\t{}'.format(inst_str, comp_proc.returncode))
+            print(f'\nCmd:\t{inst_str}\nrc:\t{comp_proc.returncode}')
     finally:
         rc = comp_proc.returncode
     return rc
@@ -227,7 +219,7 @@ def write_script(p_pth, p_contents):
         if isinstance(line, list):
             contents += ' '.join(line) + '\n'
         else:
-            contents += '{}\n'.format(line)
+            contents += f'{line}\n'
     p_pth.write_text(contents)
     return contents
 
@@ -254,13 +246,13 @@ def example_scripting():
     tmp_t1 = tmp_test / 'T1'
     if beeutils.get_os() == beeutils.WINDOWS:
         batch = [
-            'md {}'.format(tmp_t1),
-            'dir /B {}'.format(tmp_test),
+            f'md {tmp_t1}',
+            f'dir /B {tmp_test}',
         ]
     else:
         batch = [
-            'mkdir -p {}'.format(tmp_t1),
-            'ls -l {}'.format(tmp_test),
+            f'mkdir -p {tmp_t1}',
+            f'ls -l {tmp_test}',
         ]
     if exec_batch_in_session(batch, p_verbose=False) != 0:
         success = False
@@ -268,14 +260,14 @@ def example_scripting():
     # Execute some commands in a batch
     if beeutils.get_os() == beeutils.WINDOWS:
         cmds = [
-            ['rd', '/S', '/Q', '{}'.format(tmp_t1)],
-            ['md', '{}'.format(tmp_t1)],
-            ['dir', '/B', '{}'.format(tmp_test)],
+            ['rd', '/S', '/Q', f'{tmp_t1}'],
+            ['md', f'{tmp_t1}'],
+            ['dir', '/B', f'{tmp_test}'],
         ]
     else:
         cmds = [
-            ['mkdir', '-p', '{}'.format(tmp_t1)],
-            ['ls', '-l', '{}'.format(tmp_test)],
+            ['mkdir', '-p', f'{tmp_t1}'],
+            ['ls', '-l', f'{tmp_test}'],
         ]
     if exec_batch(cmds) != [0, 0, 0]:
         success = False
@@ -298,10 +290,7 @@ def example_scripting():
 
     # Attempt to remove a temporary locked file.
     venv_name = 'new-project'
-    success = (
-        beeutils.rm_temp_locked_file(beevenv.get_dir(beeutils.get_tmp_dir(), venv_name))
-        and success
-    )
+    success = beeutils.rm_temp_locked_file(beevenv.get_dir(beeutils.get_tmp_dir(), venv_name)) and success
 
     # Read an option from an ini for a particular os and setup
     cnf = configparser.ConfigParser()
@@ -317,9 +306,7 @@ def example_scripting():
             }
         }
     )
-    os_system_flder = beeutils.select_os_dir_from_config(
-        cnf, 'Folders', 'MyFolderOnSystem'
-    )
+    os_system_flder = beeutils.select_os_dir_from_config(cnf, 'Folders', 'MyFolderOnSystem')
     print(os_system_flder)
     if not os_system_flder:
         success = False
