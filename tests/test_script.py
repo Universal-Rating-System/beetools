@@ -21,10 +21,10 @@ class TestScript:
         assert beescript.do_examples()
         pass
 
-    def test__exec_batch(self, make_self_destruct_working_dir):
+    def test__exec_batch(self, self_destruct_work_dir):
         """Testing script_exec_batch()"""
 
-        tmp_test = make_self_destruct_working_dir.dir / 'test'
+        tmp_test = self_destruct_work_dir.dir / 'test'
         tmp_t1 = tmp_test / 'T1'
         cmds = []
         if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
@@ -40,9 +40,9 @@ class TestScript:
         assert beescript.exec_batch(cmds, p_verbose=False) == [0, 0]
         pass
 
-    def test__exec_batch_in_session(self, make_self_destruct_working_dir):
+    def test__exec_batch_in_session(self, self_destruct_work_dir):
         """Testing script_exec_batch_in_session()"""
-        tmp_test = make_self_destruct_working_dir.dir / 'test'
+        tmp_test = self_destruct_work_dir.dir / 'test'
         tmp_t1 = tmp_test / 'T1'
         batch = []
         if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
@@ -60,9 +60,9 @@ class TestScript:
         assert beescript.exec_batch_in_session(batch, p_verbose=False) == 0
         pass
 
-    def test__exec_cmd(self, make_self_destruct_working_dir):
+    def test__exec_cmd(self, self_destruct_work_dir):
         """Testing script_exec_cmd()"""
-        tmp_dir = make_self_destruct_working_dir.dir / 'test' / 'T1'
+        tmp_dir = self_destruct_work_dir.dir / 'test' / 'T1'
         if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
             cmd1 = ['mkdir', '-p', f'{tmp_dir}']
             # cmd2 = ['ls', '-l', '{}'.format(tmp_dir)]
@@ -74,9 +74,9 @@ class TestScript:
 
         pass
 
-    def test__write_script(self, make_self_destruct_working_dir):
+    def test__write_script(self, self_destruct_work_dir):
         """Testing script_exec_batch()"""
-        script_pth = make_self_destruct_working_dir.dir / _PROJ_NAME
+        script_pth = self_destruct_work_dir.dir / _PROJ_NAME
         cmds = [
             ['echo', 'Hello'],
             ['echo', 'Goodbye'],

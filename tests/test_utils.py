@@ -111,9 +111,9 @@ class TestUtils:
         #     cmd = ["md {}".format(tmp_test)]
         assert beeutils.rm_temp_locked_file(tmp_test)
 
-    def test_tools_rm_tree(self, make_self_destruct_working_dir):
+    def test_tools_rm_tree(self, self_destruct_work_dir):
         '''Testing tools_rm_tree()'''
-        working_dir = make_self_destruct_working_dir.dir
+        working_dir = self_destruct_work_dir.dir
         tmp_t1 = Path(working_dir, 'T1')
         if beeutils.get_os() == beeutils.WINDOWS:
             cmd = [f'md {tmp_t1}']

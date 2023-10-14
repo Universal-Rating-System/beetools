@@ -65,7 +65,7 @@ class WorkingDir:
 
 
 @pytest.fixture
-def make_self_destruct_working_dir():
+def self_destruct_work_dir():
     '''Set up the environment base structure'''
     sup = WorkingDir()
     yield sup
