@@ -6,29 +6,11 @@ on:
 jobs:
   CI:
     runs-on: ${{matrix.os}}
-    env:
-      MYSQL_DATABASE: ${{vars.MYSQL_DATABASE}}
-      MYSQL_HOST:  ${{vars.MYSQL_HOST}}
-      MYSQL_INSTALLER_USERID: ${{vars.MYSQL_INSTALLER_USERID}}
-      MYSQL_INSTALLER_PWD: ${{vars.MYSQL_INSTALLER_PWD}}
-#      MYSQL_PWD: N0tS0S3curePassw0rd
-      MYSQL_TCP_PORT: ${{vars.MYSQL_TCP_PORT}}
-      SQLALCHEMY_SILENCE_UBER_WARNING: 1
     strategy:
       fail-fast: true
       matrix:
         python-version: ['3.8', '3.9', '3.10', '3.11']
         os: ['ubuntu-latest']
-    services:
-      mysql:
-        image: mysql:8.0.21
-        ports:
-          - ${{vars.MYSQL_TCP_PORT}}:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-        env:
-#          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ${{vars.MYSQL_ROOT_PWD}}
-          MYSQL_DATABASE: ${{vars.MYSQL_DATABASE}}
 
     steps:
       - name: Check out code
