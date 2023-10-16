@@ -17,51 +17,38 @@ btls = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
 
 
 class TestVenv:
-    def test_venv_activate(self, make_self_destruct_working_dir) -> object:
+    def test_venv_activate(self, self_destruct_work_dir) -> object:
         '''Testing venv_activate()'''
         if beeutils.get_os() == beeutils.WINDOWS:
-            cmd = 'CALL ' + str(make_self_destruct_working_dir.dir / Path('bee-project_env', 'Scripts', 'activate'))
+            cmd = 'CALL ' + str(self_destruct_work_dir.dir / Path('bee-project_env', 'Scripts', 'activate'))
         else:
-            cmd = 'source ' + str(make_self_destruct_working_dir.dir / Path('bee-project_env', 'bin', 'activate'))
-        assert beevenv.activate(make_self_destruct_working_dir.dir, 'bee-project') == cmd
+            cmd = 'source ' + str(self_destruct_work_dir.dir / Path('bee-project_env', 'bin', 'activate'))
+        assert beevenv.activate(self_destruct_work_dir.dir, 'bee-project') == cmd
 
     def test_venv_do_example(self):
         '''Testing venv_do_example()'''
         assert beevenv.do_examples() == 0
         pass
 
-    def test_venv_get_dir(self, make_self_destruct_working_dir):
+    def test_venv_get_dir(self, self_destruct_work_dir):
         '''Testing venv_get_dir()'''
-        assert str(beevenv.get_dir(make_self_destruct_working_dir.dir, 'bee-project')) == str(
-            Path(make_self_destruct_working_dir.dir, 'bee-project_env')
+        assert str(beevenv.get_dir(self_destruct_work_dir.dir, 'bee-project')) == str(
+            Path(self_destruct_work_dir.dir, 'bee-project_env')
         )
 
-    # def test_venv_install_in(self, make_self_destruct_working_dir):
-    #     '''Testing install_in_venv()'''
-    #     project_name = 'new-project'
-    #     beevenv.set_up(beeutils.get_tmp_dir(), project_name, ['pip'], p_verbose=True)
-    #     assert (
-    #         beevenv.install_in(
-    #             make_self_destruct_working_dir.dir,
-    #             project_name,
-    #             ['echo Installing in VEnv', 'pip install wheel', 'echo Done!'],
-    #         )
-    #         == 0
-    #     )
-    #     pass
-    #
-    # def test_venv_set_up(self, make_self_destruct_working_dir):
-    #     '''Testing venv_set_up()'''
-    #     project_name = 'new_project'
-    #     assert (
-    #         beevenv.set_up(
-    #             make_self_destruct_working_dir.dir,
-    #             project_name,
-    #             [['pypi', 'pip'], ['pypi', 'wheel']],
-    #             p_verbose=False,
-    #         )
-    #         == 0
-    #     )
+    def test_venv_install_in(self, self_destruct_work_dir):
+        '''Testing install_in_venv()'''
+        project_name = 'new-project'
+        beevenv.set_up(beeutils.get_tmp_dir(), project_name, ['pip'], p_verbose=True)
+        batch = ['echo Installing in VEnv', 'pip install wheel', 'echo Done!']
+        assert beevenv.install_in(self_destruct_work_dir.dir, project_name, batch) == 0
+        pass
+
+    def test_venv_set_up(self, self_destruct_work_dir):
+        '''Testing venv_set_up()'''
+        project_name = 'new_project'
+        package_list = [['pypi', 'pip'], ['pypi', 'wheel']]
+        assert beevenv.set_up(self_destruct_work_dir.dir, project_name, package_list, p_verbose=False) == 0
 
 
 del btls

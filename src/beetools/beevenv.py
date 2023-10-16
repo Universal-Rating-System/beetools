@@ -18,9 +18,9 @@ To Do
 '''
 from pathlib import Path
 
-from beetools import Archiver
 from beetools import beescript
 from beetools import beeutils
+from beetools.beearchiver import Archiver
 
 # import subprocess
 # import sys

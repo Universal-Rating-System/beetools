@@ -95,12 +95,26 @@ class TestUtils:
         assert not beeutils.is_struct_the_same(x, y)
 
     def test_tools_result_rep_true(self):
-        '''Testing tools_result_rep_true()'''
-        assert beeutils.result_rep(True) == 'test_tools_result_rep_true - \x1b[32mSuccess\x1b[0m (No Comment)'
+        '''Testing tools_result_rep_true()
+        Testing the method with PyTest is problematic.  It seems that because the output is intercepted by PyTest, it is
+        now seen as writing to a terminal and therefore the test does not work.  For now I keep the skeleton for the
+        test, but it is useless and needs further investigation.
+        '''
+        if sys.stdout.isatty():
+            assert beeutils.result_rep(True) == 'test_tools_result_rep_true - \x1b[32mSuccess\x1b[0m (No Comment)'
+        else:
+            assert beeutils.result_rep(True) == 'test_tools_result_rep_true - Success (No Comment)'
 
     def test_tools_result_rep_false(self):
-        '''Testing tools_result_rep_false()'''
-        assert beeutils.result_rep(False) == 'test_tools_result_rep_false - \x1b[31mFailed\x1b[0m (No Comment)'
+        '''Testing tools_result_rep_false()
+        Testing the method with PyTest is problematic.  It seems that because the output is intercepted by PyTest, it is
+        now seen as writing to a terminal and therefore the test does not work.  For now I keep the skeleton for the
+        test, but it is useless and needs further investigation.
+        '''
+        if sys.stdout.isatty():
+            assert beeutils.result_rep(False) == 'test_tools_result_rep_false - \x1b[31mFailed\x1b[0m (No Comment)'
+        else:
+            assert beeutils.result_rep(False) == 'test_tools_result_rep_false - Failed (No Comment)'
 
     def test_tools_rm_temp_locked_file(self):
         '''Testing tools_rm_temp_locked_file()'''
@@ -111,9 +125,9 @@ class TestUtils:
         #     cmd = ["md {}".format(tmp_test)]
         assert beeutils.rm_temp_locked_file(tmp_test)
 
-    def test_tools_rm_tree(self, make_self_destruct_working_dir):
+    def test_tools_rm_tree(self, self_destruct_work_dir):
         '''Testing tools_rm_tree()'''
-        working_dir = make_self_destruct_working_dir.dir
+        working_dir = self_destruct_work_dir.dir
         tmp_t1 = Path(working_dir, 'T1')
         if beeutils.get_os() == beeutils.WINDOWS:
             cmd = [f'md {tmp_t1}']
