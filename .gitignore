@@ -9,10 +9,11 @@ build/
 *.egg-info/
 *.sqlite
 desktop.ini
+dist/
 docs/build/
 docs/_build/
 docs/source/generated/
 htmlcov/
 VersionArchive/
-dist/
+tests/VersionArchive
 tmp/

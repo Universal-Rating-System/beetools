@@ -1,4 +1,4 @@
-'''Tools for Bright Edge eServices developments & projects
+"""Tools for Bright Edge eServices developments & projects
 
 Designed for the use in the Bright Edge eServices echo system. It defines
 methods and functions for general use purposes.
@@ -6,12 +6,12 @@ methods and functions for general use purposes.
 Archiver creates an archive of the key project files, print coloured messages
 to console with default parameters.
 
-To Do
+ToDo
 =====
 1. Better example on the logging integration.
 2. Complete doctests for all methods & functions.
 
-'''
+"""
 import configparser
 import datetime
 import logging
@@ -31,7 +31,7 @@ _PROJ_VERSION = '3.3.0'
 
 
 class Archiver:
-    '''Archiver creates an archive of the key project files to zip file. It assumes the
+    """Archiver creates an archive of the key project files to zip file. It assumes the
     following project structure of the calling application:
 
     Module
@@ -108,7 +108,7 @@ class Archiver:
     ├── README.md
     ├── requirements.txt
     └── setup.py
-    '''
+    """
 
     def __init__(
         self,
@@ -122,7 +122,7 @@ class Archiver:
         p_arc_extern_dir=None,
         p_arc_incl_ext=None,
     ):
-        '''Initialize the object
+        """Initialize the object
 
         Parameters
         ----------
@@ -149,7 +149,7 @@ class Archiver:
         >>> t_archiver = Archiver(_PROJ_NAME, __doc__, p_app_pth=Path(__file__))
         >>>
 
-        '''
+        """
 
         self.success = True
         if p_parent_log_name:
@@ -212,7 +212,7 @@ class Archiver:
         return version
 
     def is_dev_mode(self):
-        '''Determine if it is a production module or not.
+        """Determine if it is a production module or not.
 
         Parameters
         ----------
@@ -223,7 +223,7 @@ class Archiver:
         Examples
         --------
 
-        '''
+        """
         success = False
         if 'site-packages' not in self.app_pth.parts:
             success = True
@@ -274,7 +274,7 @@ class Archiver:
             shutil.copy(self.arc_pth, self.arc_extern_dir)
 
     def print_footer(self):
-        '''Print standard footers
+        """Print standard footers
 
         Parameters
         ----------
@@ -286,7 +286,7 @@ class Archiver:
         Examples
         --------
 
-        '''
+        """
         success = True
         self.end_time = datetime.datetime.now()
         self.elapsed_time = self.end_time - self.start_time
@@ -308,7 +308,7 @@ class Archiver:
         return success
 
     def print_header(self, p_cls=True):
-        '''Initialize the start of the module, make backup and print standard headers
+        """Initialize the start of the module, make backup and print standard headers
 
         Parameters
         ----------
@@ -322,7 +322,7 @@ class Archiver:
         Examples
         --------
 
-        '''
+        """
         success = True
         self.cls = p_cls
         if sys.platform.startswith('win32') and self.cls:
@@ -356,7 +356,7 @@ def _add_parm(def_parm, new_parm):
 
 
 def msg_display(p_msg, p_len=MSG_LEN, p_color='white') -> str:
-    '''Return a text message in white on black.
+    """Return a text message in white on black.
 
     Parameters
     ----------
@@ -375,17 +375,17 @@ def msg_display(p_msg, p_len=MSG_LEN, p_color='white') -> str:
 
     Examples
     --------
-    >>> from beetools import msg_display
+    >>> from beetools.beearchiver import msg_display
     >>> msg_display( 'Display message' )
     '\\x1b[37mDisplay message                               '
 
-    '''
+    """
     msg = colored('{: <{len}}'.format(p_msg, len=p_len), p_color)
     return msg[:p_len] + ' '
 
 
 def msg_error(p_msg) -> str:
-    '''Return an "error" text message in red on black
+    """Return an "error" text message in red on black
 
     Parameters
     ----------
@@ -399,16 +399,16 @@ def msg_error(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg_error
+    >>> from beetools.beearchiver import msg_error
     >>> msg_error( 'Error message' )
     '\\x1b[31mError message\\x1b[0m'
 
-    '''
+    """
     return colored(f'{p_msg}', 'red')
 
 
 def msg_header(p_msg) -> str:
-    '''Return a "header" text message in cyan on black
+    """Return a "header" text message in cyan on black
 
     Parameters
     ----------
@@ -422,16 +422,16 @@ def msg_header(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg_header
+    >>> from beetools.beearchiver import msg_header
     >>> msg_header( 'Header message' )
     '\\x1b[36mHeader message\\x1b[0m'
 
-    '''
+    """
     return colored(f'{p_msg}', 'cyan')
 
 
 def msg_info(p_msg) -> str:
-    '''Return an "information" text message in yellow on black
+    """Return an "information" text message in yellow on black
 
     Parameters
     ----------
@@ -445,16 +445,16 @@ def msg_info(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg_info
+    >>> from beetools.beearchiver import msg_info
     >>> msg_info( 'Info message' )
     '\\x1b[33mInfo message\\x1b[0m'
 
-    '''
+    """
     return colored(f'{p_msg}', 'yellow')
 
 
 def msg_milestone(p_msg) -> str:
-    '''Return a "milestone" text message in magenta on black
+    """Return a "milestone" text message in magenta on black
 
     Parameters
     ----------
@@ -468,16 +468,16 @@ def msg_milestone(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg_milestone
+    >>> from beetools.beearchiver import msg_milestone
     >>> msg_milestone( 'Milestone message' )
     '\\x1b[35mMilestone message\\x1b[0m'
 
-    '''
+    """
     return colored(f'{p_msg}', 'magenta')
 
 
 def msg_ok(p_msg) -> str:
-    '''Return an "OK" text message in green on black
+    """Return an "OK" text message in green on black
 
     Parameters
     ----------
@@ -491,16 +491,16 @@ def msg_ok(p_msg) -> str:
 
     Examples
     --------
-    >>> from beetools import msg_ok
+    >>> from beetools.beearchiver import msg_ok
     >>> msg_ok( 'OK message' )
     '\\x1b[32mOK message\\x1b[0m'
 
-    '''
+    """
     return colored(f'{p_msg}', 'green')
 
 
 def example_archiver(p_cls=True):
-    '''Example to illustrate usage
+    """Example to illustrate usage
 
     Parameters
     ----------
@@ -516,7 +516,7 @@ def example_archiver(p_cls=True):
     Examples
     --------
 
-    '''
+    """
     success = True
     app_name = 'TestApp'
     app_desc = 'Test application description'
@@ -535,7 +535,7 @@ def example_archiver(p_cls=True):
 
 
 def example_messaging():
-    '''Standard example to illustrate standard use.
+    """Standard example to illustrate standard use.
 
     Parameters
     ----------
@@ -548,7 +548,7 @@ def example_messaging():
     Examples
     --------
 
-    '''
+    """
     success = True
     print(
         msg_display(
