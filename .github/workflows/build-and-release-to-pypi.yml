@@ -11,13 +11,13 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/p/SQLAlchemyExample
+      url: https://pypi.org/project/BEETools
 
-    permissions:
-      id-token: write
-      contents: write
-      issues: write
-      pull-requests: write
+#    permissions:
+#      id-token: write
+#      contents: write
+#      issues: write
+#      pull-requests: write
 
     strategy:
       fail-fast: true
