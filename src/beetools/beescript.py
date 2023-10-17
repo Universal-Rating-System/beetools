@@ -262,7 +262,6 @@ def example_scripting():
         cmds = [
             ['rd', '/S', '/Q', f'{tmp_t1}'],
             ['md', f'{tmp_t1}'],
-            ['dir', '/B', f'{tmp_test}'],
         ]
     else:
         cmds = [

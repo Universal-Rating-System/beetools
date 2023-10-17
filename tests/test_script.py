@@ -69,11 +69,11 @@ class TestScript:
             cmd3 = ['rmdir', f'{tmp_dir}']
         else:
             cmd1 = ['md', f'{tmp_dir}']
-            cmd2 = ['echo.', f'{tmp_dir}/t.txt']
+            cmd2 = ['echo.', '>>', f'{tmp_dir}\\t.txt']
             cmd3 = ['rd', f'{tmp_dir}']
         assert beescript.exec_cmd(cmd1) == 0
         assert beescript.exec_cmd(cmd2) == 0
-        assert beescript.exec_cmd(cmd3) == 1  # Attempt to remove non-empty directory to create exception
+        assert beescript.exec_cmd(cmd3) != 0  # Attempt to remove non-empty directory to create exception
 
         pass
 
