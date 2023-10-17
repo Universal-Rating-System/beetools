@@ -65,12 +65,15 @@ class TestScript:
         tmp_dir = self_destruct_work_dir.dir / 'test' / 'T1'
         if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
             cmd1 = ['mkdir', '-p', f'{tmp_dir}']
-            # cmd2 = ['ls', '-l', '{}'.format(tmp_dir)]
-        elif beeutils.get_os() == beeutils.WINDOWS:
+            cmd2 = ['touch', f'{tmp_dir}/t.txt']
+            cmd3 = ['rmdir', f'{tmp_dir}']
+        else:
             cmd1 = ['md', f'{tmp_dir}']
-            # cmd2 = ['dir', '/B', '{}'.format(tmp_dir)]
+            cmd2 = ['echo.', f'{tmp_dir}/t.txt']
+            cmd3 = ['rd', f'{tmp_dir}']
         assert beescript.exec_cmd(cmd1) == 0
-        assert beescript.exec_cmd(cmd1) == 1  # Do it a second time to create an exception
+        assert beescript.exec_cmd(cmd2) == 0
+        assert beescript.exec_cmd(cmd3) == 1  # Attempt to remove non-empty directory to create exception
 
         pass
 

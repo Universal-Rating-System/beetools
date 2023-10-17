@@ -239,8 +239,6 @@ def example_scripting():
     --------
 
     """
-    # import pdb
-    # pdb.set_trace()
     success = True
     # Run a few commands in a script.  Useful when executing commands in a
     # venv in the same session.
@@ -271,7 +269,7 @@ def example_scripting():
             ['mkdir', '-p', f'{tmp_t1}'],
             ['ls', '-l', f'{tmp_test}'],
         ]
-    if exec_batch(cmds) != [0, 0, 0]:
+    if exec_batch(cmds) != [0, 0]:
         success = False
 
     # Write a script
