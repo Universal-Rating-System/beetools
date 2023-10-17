@@ -239,6 +239,8 @@ def example_scripting():
     --------
 
     """
+    # import pdb
+    # pdb.set_trace()
     success = True
     # Run a few commands in a script.  Useful when executing commands in a
     # venv in the same session.
