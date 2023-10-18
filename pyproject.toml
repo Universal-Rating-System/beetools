@@ -7,9 +7,8 @@ authors = [
 description = 'Tools for batch scripts, virtual environments, structure snapshot and utilities.'
 license = {file = 'LICENSE'}
 classifiers = [
-	'Development Status :: 3 - Alpha',
+    'Development Status :: 5 - Production/Stable',
 	'Intended Audience :: Developers',
-	'Topic :: Software Development',
 	'Topic :: Software Development',
 	'Topic :: Software Development :: Version Control',
 	'Topic :: Software Development :: Version Control :: Git',
@@ -22,28 +21,22 @@ classifiers = [
 readme = {file = 'README.rst', content-type = 'text/x-rst'}
 requires-python = '>=3.8, <=12.0'
 dependencies = [
-#    'configparserext',
     'beetools',
     'termcolor',
-#    'installit',
   ]
 
 [project.optional-dependencies]
 dev = [
-#    'releaselogit',
     'git-it',
     'pytest',
     'pytest-cov',
     'rstcheck',
-#    'semverit',
     'toml',
-    #codecov'
-    #docutils'
 ]
 
 [project.urls]
-Changelog = 'https://github.com/RealTimeEvents/rte-api/blob/enhancement/master/CHANGES.md'
-Homepage = 'https://github.com/RealTimeEvents/rte-api'
+Changelog = 'https://github.com/BrightEdgeeServices/beetools/blob/master/CHANGES.md'
+Homepage = 'https://github.com/BrightEdgeeServices/beetools'
 
 [build-system]
 requires = [
@@ -68,7 +61,6 @@ source = ['src']
 
 [tool.pytest.ini_options]
 addopts = ['--import-mode=importlib', '-vv', '--ignore-glob=*\\Archive']
-#addopts = ['--import-mode=importlib', "-v", "--cov=./", "--ignore-glob=*\\Archive", "--cov-report=html"]
 pythonpath = ['src','src/rte-db', 'tests' ]
 markers = [
     "select: Run a selection of tests",
@@ -77,5 +69,4 @@ markers = [
 filterwarnings = [
 #    "ignore::DeprecationWarning",
 ]
-#python_functions = 'demo_setup'
 testpaths = 'tests'

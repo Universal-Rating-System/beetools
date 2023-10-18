@@ -9,8 +9,8 @@ repos:
       - id: check-yaml
       - id: debug-statements
       - id: double-quote-string-fixer
-      - id: no-commit-to-branch
-        args: [ --branch, master ]
+#      - id: no-commit-to-branch
+#        args: [ --branch, master ]
       - id: pretty-format-json
       - id: requirements-txt-fixer
 
