@@ -29,10 +29,10 @@ from beetools import beeutils
 from beetools import beevenv
 from beetools.beearchiver import msg_info
 
-_PROJ_DESC = __doc__.split('\n')[0]
-_PROJ_PATH = Path(__file__)
-_PROJ_NAME = _PROJ_PATH.stem
-_PROJ_VERSION = '3.2.0'
+# _PROJ_DESC = __doc__.split('\n')[0]
+# _PROJ_PATH = Path(__file__)
+# _PROJ_NAME = _PROJ_PATH.stem
+# _PROJ_VERSION = '3.2.0'
 
 
 def exec_batch_in_session(
@@ -45,7 +45,7 @@ def exec_batch_in_session(
     """Execute a script in the same session
 
     Useful when commands has to be executed in one session for instance if
-    it a a virtual environment is invoked and the commands must be executed
+    it a virtual environment is invoked and the commands must be executed
     in the virtual environment.
 
     Parameters
@@ -129,7 +129,7 @@ def exec_batch(p_batch: list, p_verbose: bool = False) -> list:
         See https://docs.python.org/3.9/library/subprocess.html#subprocess.CompletedProcess
 
     :example:
-    >>> from beetools import exec_batch
+    >>> from beetools.beescript import exec_batch
     >>> exec_batch([[ 'echo', 'Hello'],['echo','Goodbye']])
     True
     """
@@ -163,7 +163,7 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
 
     Examples
     --------
-    >>> from beetools import exec_cmd
+    >>> from beetools.beescript import exec_cmd
     >>> exec_cmd([ 'echo', 'Hello'])
     True
 
@@ -272,7 +272,7 @@ def example_scripting():
         success = False
 
     # Write a script
-    script_pth = beeutils.get_tmp_dir() / _PROJ_NAME
+    script_pth = beeutils.get_tmp_dir() / __name__
     cmds = [
         ['echo', 'Hello'],
         ['echo', 'Goodbye'],
@@ -335,10 +335,10 @@ def do_examples(p_cls=True):
 
     # Initiate the Archiver
     success = True
-    b_tls = beeutils.Archiver(_PROJ_DESC, _PROJ_PATH)
-    b_tls.print_header(p_cls=p_cls)
+    # b_tls = beeutils.Archiver(_PROJ_DESC, _PROJ_PATH)
+    # b_tls.print_header(p_cls=p_cls)
     success = example_scripting() and success
-    b_tls.print_footer()
+    # b_tls.print_footer()
     if success:
         return True
     return False

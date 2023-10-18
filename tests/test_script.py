@@ -1,18 +1,15 @@
 """Testing script__init__()"""
-from pathlib import Path
-
-from beetools import beearchiver
+# from pathlib import Path
 from beetools import beescript
 from beetools import beeutils
 
-
-_PROJ_DESC = __doc__.split('\n')[0]
-_PROJ_PATH = Path(__file__)
-_PROJ_NAME = _PROJ_PATH.stem
-_PROJ_VERSION = '0.0.5'
+# from beetools import beearchiver
 
 
-btls = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
+# _PROJ_DESC = __doc__.split('\n')[0]
+# _PROJ_PATH = Path(__file__)
+# _PROJ_NAME = _PROJ_PATH.stem
+# _PROJ_VERSION = '0.0.5'
 
 
 class TestScript:
@@ -79,13 +76,10 @@ class TestScript:
 
     def test__write_script(self, self_destruct_work_dir):
         """Testing script_exec_batch()"""
-        script_pth = self_destruct_work_dir.dir / _PROJ_NAME
+        script_pth = self_destruct_work_dir.dir / __name__
         cmds = [
             ['echo', 'Hello'],
             ['echo', 'Goodbye'],
         ]
         assert beescript.write_script(script_pth, cmds) == 'echo Hello\necho Goodbye\n'
         pass
-
-
-del btls

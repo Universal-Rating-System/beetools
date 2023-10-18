@@ -2,23 +2,21 @@
 # import configparser
 from pathlib import Path
 
-from beetools import beearchiver
 from beetools import beeutils
 from beetools import beevenv
 
-
-_PROJ_DESC = __doc__.split('\n')[0]
-_PROJ_PATH = Path(__file__)
-_PROJ_NAME = _PROJ_PATH.stem
-_PROJ_VERSION = '0.0.5'
+# from beetools import beearchiver
 
 
-btls = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
+# _PROJ_DESC = __doc__.split('\n')[0]
+# _PROJ_PATH = Path(__file__)
+# _PROJ_NAME = _PROJ_PATH.stem
+# _PROJ_VERSION = '0.0.5'
 
 
 class TestVenv:
     def test_venv_activate(self, self_destruct_work_dir) -> object:
-        '''Testing venv_activate()'''
+        """Testing venv_activate()"""
         if beeutils.get_os() == beeutils.WINDOWS:
             cmd = 'CALL ' + str(self_destruct_work_dir.dir / Path('bee-project_env', 'Scripts', 'activate'))
         else:
@@ -49,6 +47,3 @@ class TestVenv:
         project_name = 'new_project'
         package_list = [['pypi', 'pip'], ['pypi', 'wheel']]
         assert beevenv.set_up(self_destruct_work_dir.dir, project_name, package_list, p_verbose=False) == 0
-
-
-del btls

@@ -3,18 +3,14 @@ import configparser
 import sys
 from pathlib import Path
 
-from beetools import beearchiver
 from beetools import beescript
 from beetools import beeutils
 
 
-_PROJ_DESC = __doc__.split('\n')[0]
-_PROJ_PATH = Path(__file__)
-_PROJ_NAME = _PROJ_PATH.stem
-_PROJ_VERSION = '0.0.5'
-
-
-btls = beearchiver.Archiver(_PROJ_DESC, _PROJ_PATH)
+# _PROJ_DESC = __doc__.split('\n')[0]
+# _PROJ_PATH = Path(__file__)
+# _PROJ_NAME = _PROJ_PATH.stem
+# _PROJ_VERSION = '0.0.5'
 
 
 class TestUtils:
@@ -46,7 +42,7 @@ class TestUtils:
 
     def test_tools_do_examples(self):
         '''Testing msg_do_examples()'''
-        assert beeutils.do_examples(_PROJ_PATH)
+        assert beeutils.do_examples()
 
     def test_get_os(self):
         '''Testing get_os()'''
@@ -163,6 +159,3 @@ class TestUtils:
         elif beeutils.get_os() == beeutils.MACOS:
             bee_dir = '/System'
         assert str(beeutils.select_os_dir_from_config(cnf, 'Folders', 'MyFolderOnSystem')) == bee_dir
-
-
-del btls
