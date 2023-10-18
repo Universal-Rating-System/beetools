@@ -1,15 +1,5 @@
-"""Testing script__init__()"""
-# from pathlib import Path
 from beetools import beescript
 from beetools import beeutils
-
-# from beetools import beearchiver
-
-
-# _PROJ_DESC = __doc__.split('\n')[0]
-# _PROJ_PATH = Path(__file__)
-# _PROJ_NAME = _PROJ_PATH.stem
-# _PROJ_VERSION = '0.0.5'
 
 
 class TestScript:
