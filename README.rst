@@ -1,6 +1,6 @@
-====================
-Exploring SQLAlchemy
-====================
+========
+BEETools
+========
 
 +-----------+------------------------------------------------------------------------------------+
 |**General**| |maintenance_y| |semver| |license|                                                 |
@@ -13,28 +13,15 @@ Exploring SQLAlchemy
 +-----------+------------------------------------------------------------------------------------+
 
 
-Designed for the use in the Bright Edge eServices echo system. It defines
-methods and functions for general use purposes.
+Designed for the use in the Bright Edge eServices echo system. It defines methods and functions for general use purposes.
 
 
 Installation
 ------------
 
-#. Since this is intended for experimental purposes, it is recommended to create a virtual environment to experiment for installation.
-#. Set the following environment variables in the virtual environment.  Set these in your IDE as well.
-#. Start Docker.  The ``docker-rebuild.bat`` script will git docker up and running.
-#. The setup and installation is for Windows.  Feel free to add contribute to get it running on Linux as well.
-
 .. code-block:: bash
 
-    python -m venv ./sqlalchemyexample_venv
-    pip install sqlalchemyexample
-    pre-commit install
-    SET MYSQL_HOST=localhost
-    SET MYSQL_ROOT_PWD=N0tS0S3curePassw0rd
-    SET MYSQL_TCP_PORT_EXAMPLES=50002
-    SET SQLALCHEMY_SILENCE_UBER_WARNING=1
-    docker-rebuild.bat
+    pip install beetools
 
 
 Tests
@@ -55,9 +42,6 @@ Contributing
 Naming Conventions
 ~~~~~~~~~~~~~~~~~~
 
-#. File names
-    #. Not knowing what's to come and what will be added, it is difficult to determine a naming convention for source, test and other file names.  The owner will therefore be a "benevolent dictator" to rename and change names.
-    #. Link the file name of the source code and the test so that it is easily linked.
 #. Branch names
     "enhancement" | "bug" | "hotfix"/< ticket_nr>_<description>
 
@@ -111,8 +95,8 @@ bit easier.  The scripts make use of the ``gitit`` module to simplify tasks.
     :target: http://unmaintained.tech/
     :alt: Maintenance - intended
 
-.. |license| image:: https://img.shields.io/pypi/l/SQLAlchemyExample
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/LICENSE
+.. |license| image:: https://img.shields.io/pypi/l/BEETools
+    :target: https://github.com/BrightEdgeeServices/beetools/blob/master/LICENSE
     :alt: License
 
 .. |semver| image:: https://img.shields.io/badge/Semantic%20Versioning-2.0.0-brightgreen.svg?style=flat-square
@@ -126,60 +110,60 @@ bit easier.  The scripts make use of the ``gitit`` module to simplify tasks.
 
 .. CI
 
-.. |pre_commit_ci| image:: https://img.shields.io/github/actions/workflow/status/hendrikdutoit/SQLAlchemyExample/pre-commit.yml?label=pre-commit
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/.github/workflows/pre-commit.yml
+.. |pre_commit_ci| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/pre-commit.yml?label=pre-commit
+    :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/pre-commit.yml
     :alt: Pre-Commit
 
-.. |gha_tests| image:: https://img.shields.io/github/actions/workflow/status/hendrikdutoit/SQLAlchemyExample/ci.yml?label=ci
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/.github/workflows/ci.yml
+.. |gha_tests| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/ci.yml?label=ci
+    :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/ci.yml
     :alt: Test status
 
-.. |gha_docu| image:: https://img.shields.io/readthedocs/sqlalchemyexample
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/.github/workflows/check-rst-documentation.yml
+.. |gha_docu| image:: https://img.shields.io/readthedocs/beetools
+    :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/check-rst-documentation.yml
     :alt: Read the Docs
 
-.. |codecov| image:: https://img.shields.io/codecov/c/gh/hendrikdutoit/SQLAlchemyExample
+.. |codecov| image:: https://img.shields.io/codecov/c/gh/BrightEdgeeServices/beetools
     :target: https://app.codecov.io/gh/hendrikdutoit/SQLAlchemyExample
     :alt: CodeCov
 
 
 .. PyPI
 
-.. |pypi_release| image:: https://img.shields.io/pypi/v/SQLAlchemyExample
-    :target: https://pypi.org/project/SQLAlchemyExample/
+.. |pypi_release| image:: https://img.shields.io/pypi/v/beetools
+    :target: https://pypi.org/project/beetools/
     :alt: PyPI - Package latest release
 
-.. |pypi_py_versions| image:: https://img.shields.io/pypi/pyversions/SQLAlchemyExample
-    :target: https://pypi.org/project/SQLAlchemyExample/
+.. |pypi_py_versions| image:: https://img.shields.io/pypi/pyversions/beetools
+    :target: https://pypi.org/project/beetools/
     :alt: PyPI - Supported Python Versions
 
-.. |pypi_format| image:: https://img.shields.io/pypi/wheel/SQLAlchemyExample
-    :target: https://pypi.org/project/SQLAlchemyExample/
+.. |pypi_format| image:: https://img.shields.io/pypi/wheel/beetools
+    :target: https://pypi.org/project/beetools/
     :alt: PyPI - Format
 
-.. |pypi_downloads| image:: https://img.shields.io/pypi/dm/SQLAlchemyExample
-    :target: https://pypi.org/project/SQLAlchemyExample/
+.. |pypi_downloads| image:: https://img.shields.io/pypi/dm/beetools
+    :target: https://pypi.org/project/beetools/
     :alt: PyPI - Monthly downloads
 
-.. |pypi_status| image:: https://img.shields.io/pypi/status/SQLAlchemyExample
-    :target: https://pypi.org/project/SQLAlchemyExample/
+.. |pypi_status| image:: https://img.shields.io/pypi/status/beetools
+    :target: https://pypi.org/project/beetools/
     :alt: PyPI - Status
 
 
 .. GitHub
 
-.. |gh_issues| image:: https://img.shields.io/github/issues-raw/hendrikdutoit/SQLAlchemyExample
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/issues
+.. |gh_issues| image:: https://img.shields.io/github/issues-raw/hBrightEdgeeServices/beetools
+    :target: https://github.com/BrightEdgeeServices/beetools/issues
     :alt: GitHub - Issue Counter
 
-.. |gh_language| image:: https://img.shields.io/github/languages/top/hendrikdutoit/SQLAlchemyExample
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample
+.. |gh_language| image:: https://img.shields.io/github/languages/top/BrightEdgeeServices/beetools
+    :target: https://github.com/BrightEdgeeServices/beetools
     :alt: GitHub - Top Language
 
-.. |gh_last_commit| image:: https://img.shields.io/github/last-commit/hendrikdutoit/SQLAlchemyExample/master
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/commit/master
+.. |gh_last_commit| image:: https://img.shields.io/github/last-commit/BrightEdgeeServices/beetools/master
+    :target: https://github.com/BrightEdgeeServices/beetools/commit/master
     :alt: GitHub - Last Commit
 
-.. |gh_deployment| image:: https://img.shields.io/github/deployments/hendrikdutoit/SQLAlchemyExample/pypi
-    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/deployments/pypi
+.. |gh_deployment| image:: https://img.shields.io/github/deployments/BrightEdgeeServices/beetools/pypi
+    :target: https://github.com/BrightEdgeeServices/beetools/deployments/pypi
     :alt: GitHub - PiPy Deployment
