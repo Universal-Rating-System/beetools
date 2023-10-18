@@ -1,40 +1,12 @@
-'''Tools for Bright Edge eServices developments & projects
-
-These tools are designed for the use in the Bright Edge eServices echo system.
-It defines methods and functions for general use purposes and standardization
-in the Bright Edge eServices echo system.
-
-The module define defaults for log levels, console display, operating
-system names and date formats.
-
-This module and the Bright Edge eServices echo systemuses these defaults,
-which can be changed by latering the parameters.
-
-To Do
-=====
-1. Better example on the logging integration
-2. Complete doctests for all methods & functions
-
-'''
 from pathlib import Path
 from subprocess import CompletedProcess
 
 from beetools import beescript
 from beetools import beeutils
 
-# from beetools.beearchiver import Archiver
-
-# import subprocess
-# import sys
-
-# _PROJ_DESC = __doc__.split('\n')[0]
-# _PROJ_PATH = Path(__file__)
-# _PROJ_NAME = _PROJ_PATH.stem
-# _PROJ_VERSION = '3.3.0'
-
 
 def activate(p_venv_root_dir, p_venv_name) -> str:
-    '''Compile command to activate a virtual environment
+    """Compile command to activate a virtual environment
 
     This method is useful in the exec_batch_in_session() method to invoke a virtual
     environment in a session to execute other commands in the virtual
@@ -44,7 +16,7 @@ def activate(p_venv_root_dir, p_venv_name) -> str:
     ----------
     p_venv_root_dir
         This is the "root" folder of the virtual environment will be
-        creates in
+        created in
     p_venv_name
         The name of the virtual environment.
 
@@ -60,7 +32,7 @@ def activate(p_venv_root_dir, p_venv_name) -> str:
     activate(get_tmp_dir(),'new-project')
     'source /tmp/new-project_env/bin/activate'
 
-    '''
+    """
     if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
         cmd = 'source {}'.format(get_dir(p_venv_root_dir, p_venv_name) / Path('bin', 'activate'))
     else:
@@ -69,13 +41,14 @@ def activate(p_venv_root_dir, p_venv_name) -> str:
 
 
 def get_dir(p_venv_root_dir, p_name_pref) -> Path:
-    '''Compile the virtual environment root folder in Bright Edge eServices format
+    """Compile the virtual environment root folder in Bright Edge eServices format
 
     Parameters
     ----------
+    p_name_pref
     p_venv_root_dir
         This is the "root" folder of the virtual environment will be
-        creates in
+        created in
 
     Returns
     -------
@@ -88,18 +61,17 @@ def get_dir(p_venv_root_dir, p_name_pref) -> Path:
     beetools.get_dir(beetools.get_tmp_dir(), 'new-project')
     PosixPath('/tmp/new-project_env')
 
-    '''
+    """
     return p_venv_root_dir / Path(f'{p_name_pref}_env')
 
 
 def install_in(p_venv_root_dir, p_venv_name, p_instructions, p_verbose=True):
-    '''Execute (install) commands in a virtual environment
+    """Execute (install) commands in a virtual environment
 
     Parameters
     ----------
     p_venv_root_dir
-        This is the "root" folder of the virtual environment will be
-        creates in
+        This is the "root" folder of the virtual environment will be created in
     p_venv_name
         The name of the virtual environment.
     p_instructions
@@ -125,7 +97,7 @@ def install_in(p_venv_root_dir, p_venv_name, p_instructions, p_verbose=True):
     + exit
     True
 
-    '''
+    """
     switches = []
     script_name = 'install_in'
     if beeutils.get_os() == beeutils.LINUX:
@@ -155,7 +127,7 @@ def install_in(p_venv_root_dir, p_venv_name, p_instructions, p_verbose=True):
 
 
 def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) -> CompletedProcess:
-    '''Create a virtual environment with some defaults
+    """Create a virtual environment with some defaults
 
     Parameters
     ----------
@@ -179,7 +151,7 @@ def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) ->
     >>> set_up( get_tmp_dir(),'new-project',['pip','wheel'],p_verbose=False)
     True
 
-    '''
+    """
     switches = []
     script_cmds = []
     if beeutils.get_os() == beeutils.WINDOWS:
@@ -216,7 +188,7 @@ def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) ->
 
 
 def example_virtual_environment():
-    '''Standard example to illustrate virtual environment tools.
+    """Standard example to illustrate virtual environment tools.
 
     Parameters
     ----------
@@ -229,7 +201,7 @@ def example_virtual_environment():
     Examples
     --------
 
-    '''
+    """
     success = True
     # Remove remains of any previous skeletons still hanging around.
     venv_name = 'new-project'
@@ -259,7 +231,7 @@ def example_virtual_environment():
 
 
 def do_examples(p_cls=True):
-    '''Example to illustrate usage
+    """Example to illustrate usage
 
     Parameters
     ----------
@@ -275,17 +247,9 @@ def do_examples(p_cls=True):
     Examples
     --------
 
-    '''
+    """
 
-    # Initiate the Archiver
-    success = True
-    # b_tls = Archiver(_PROJ_DESC, _PROJ_PATH)
-    # b_tls.print_header(p_cls=p_cls)
-    success = example_virtual_environment() and success
-    # b_tls.print_footer()
-    # if success:
-    #     return b_tls.archive_path
-    return success
+    return example_virtual_environment()
 
 
 if __name__ == '__main__':
