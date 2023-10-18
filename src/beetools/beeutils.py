@@ -25,16 +25,17 @@ import sys
 import tempfile
 from pathlib import Path
 
-from beetools.beearchiver import Archiver
 from beetools.beearchiver import msg_error
 from beetools.beearchiver import msg_ok
 
+# from beetools.beearchiver import Archiver
+
 # from beetools.beemsg import ok as msg_ok, error as msg_error
 
-_PROJ_DESC = __doc__.split('\n')[0]
-_PROJ_PATH = Path(__file__)
-_PROJ_NAME = _PROJ_PATH.stem
-_PROJ_VERSION = '3.3.0'
+# _PROJ_DESC = __doc__.split('\n')[0]
+# _PROJ_PATH = Path(__file__)
+# _PROJ_NAME = _PROJ_PATH.stem
+# _PROJ_VERSION = '3.3.0'
 
 # Default logging constants
 DEF_LOG_LEV = logging.DEBUG
@@ -262,24 +263,24 @@ def is_struct_the_same(p_x, p_y, p_ref='') -> bool:
     -------
     bool
         True is structure are the same.  If the contents of dictionaries are the same
-        but not necessarily in the same order, the are still regarded as "the same".
+        but not necessarily in the same order, they are still regarded as "the same".
 
     Examples
     --------
     >>> x=[1,2]
     >>> y=[1,2]
-    >>> from beetools import is_struct_the_same
+    >>> from beetools.beeutils import is_struct_the_same
     >>> is_struct_the_same(x,y)
     True
 
     >>> x={1:'One',2:'Two'}
     >>> y={2:'Two',1:'One'}
-    >>> from beetools import is_struct_the_same
+    >>> from beetools.beeutils import is_struct_the_same
     >>> is_struct_the_same(x,y)
     True
 
     >>> z={2:'Two',1:'Three'}
-    >>> from beetools import is_struct_the_same
+    >>> from beetools.beeutils import is_struct_the_same
     >>> is_struct_the_same(y,z,'ref str')
     ref str.1.One
     <>
@@ -334,7 +335,7 @@ def result_rep(p_success, p_comment='No Comment') -> str:
 
     Examples
     --------
-    >>> from beetools import result_rep
+    >>> from beetools.beeutils import result_rep
     >>> result_rep(True)
     <module> - \x1b[32mSuccess\x1b[0m (No Comment)
     '<module> - \\x1b[32mSuccess\\x1b[0m (No Comment)'
@@ -590,13 +591,13 @@ def do_examples(p_app_path=None, p_cls=True):
     '''
 
     # Initiate the Archiver
-    b_tls = Archiver(_PROJ_DESC, p_app_path)
-    b_tls.print_header(p_cls=p_cls)
-    success = example_tools()
-    b_tls.print_footer()
-    if success:
-        return b_tls.arc_pth
-    return False
+    # b_tls = Archiver(_PROJ_DESC, p_app_path)
+    # b_tls.print_header(p_cls=p_cls)
+    return example_tools()
+    # b_tls.print_footer()
+    # if success:
+    #     return b_tls.arc_pth
+    # return False
 
 
 if __name__ == '__main__':

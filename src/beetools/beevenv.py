@@ -17,18 +17,20 @@ To Do
 
 '''
 from pathlib import Path
+from subprocess import CompletedProcess
 
 from beetools import beescript
 from beetools import beeutils
-from beetools.beearchiver import Archiver
+
+# from beetools.beearchiver import Archiver
 
 # import subprocess
 # import sys
 
-_PROJ_DESC = __doc__.split('\n')[0]
-_PROJ_PATH = Path(__file__)
-_PROJ_NAME = _PROJ_PATH.stem
-_PROJ_VERSION = '3.3.0'
+# _PROJ_DESC = __doc__.split('\n')[0]
+# _PROJ_PATH = Path(__file__)
+# _PROJ_NAME = _PROJ_PATH.stem
+# _PROJ_VERSION = '3.3.0'
 
 
 def activate(p_venv_root_dir, p_venv_name) -> str:
@@ -152,11 +154,12 @@ def install_in(p_venv_root_dir, p_venv_name, p_instructions, p_verbose=True):
     return ret_code
 
 
-def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) -> bool:
+def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) -> CompletedProcess:
     '''Create a virtual environment with some defaults
 
     Parameters
     ----------
+    p_verbose
     p_venv_root_dir
         This is the "root" folder of the virtual environment will be created in
     p_venv_name
@@ -171,7 +174,8 @@ def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) ->
 
     Examples
     --------
-    >>> from beetools import set_up, get_tmp_dir
+    >>> from beetools.beevenv import set_up
+    >>> from beetools.beeutils import get_tmp_dir
     >>> set_up( get_tmp_dir(),'new-project',['pip','wheel'],p_verbose=False)
     True
 
@@ -247,7 +251,7 @@ def example_virtual_environment():
     success = install_in(beeutils.get_tmp_dir(), venv_name, instructions, p_verbose=True) and success
     beeutils.result_rep(success, p_comment='Done')
 
-    # Get the the venv activation command
+    # Get the venv activation command
     t_venv = activate(beeutils.get_tmp_dir(), venv_name)
     print(f'Cmd example:\t{t_venv}')
     success = t_venv and success
@@ -259,8 +263,6 @@ def do_examples(p_cls=True):
 
     Parameters
     ----------
-    p_app_path
-        Path to the application module
     p_cls
         Clear the screen before start
         Default is True
@@ -277,10 +279,10 @@ def do_examples(p_cls=True):
 
     # Initiate the Archiver
     success = True
-    b_tls = Archiver(_PROJ_DESC, _PROJ_PATH)
-    b_tls.print_header(p_cls=p_cls)
+    # b_tls = Archiver(_PROJ_DESC, _PROJ_PATH)
+    # b_tls.print_header(p_cls=p_cls)
     success = example_virtual_environment() and success
-    b_tls.print_footer()
+    # b_tls.print_footer()
     # if success:
     #     return b_tls.archive_path
     return success
