@@ -1,45 +1,10 @@
-"""Tools for Bright Edge eServices developments & projects
-
-Designed for the use in the Bright Edge eServices echo system. It defines
-methods and functions for general use purposes.
-
-Archiver creates an archive of the key project files, print coloured messages
-to console with default parameters.
-
-ToDo
-=====
-1. Better example on the logging integration.
-2. Complete doctests for all methods & functions.
-
-"""
-# import configparser
-# import datetime
-# import logging
-# import os
-# import shutil
-# import sys
-# import tempfile
-# import zipfile
-# from pathlib import Path
 from termcolor import colored
 
-# _PROJ_DESC = __doc__.split('\n')[0]
-# _PROJ_PATH = Path(__file__)
-# _PROJ_NAME = _PROJ_PATH.stem
-# _PROJ_VERSION = '3.3.0'
 
 # Message defaults
 BAR_LEN = 50
 MSG_LEN = 50
 CRASH_RETRY = 2
-
-
-# def _add_parm(def_parm, new_parm):
-#     if isinstance(new_parm, list):
-#         def_parm += [x for x in new_parm if x not in def_parm]
-#     elif isinstance(new_parm, str) and new_parm not in def_parm:
-#         def_parm.append(new_parm)
-#     return def_parm
 
 
 def msg_display(p_msg, p_len=MSG_LEN, p_color='white') -> str:
@@ -186,41 +151,6 @@ def msg_ok(p_msg) -> str:
     return colored(f'{p_msg}', 'green')
 
 
-# def example_archiver(p_cls=True):
-#     """Example to illustrate usage
-#
-#     Parameters
-#     ----------
-#     p_cls
-#         Clear the screen before start
-#         Default is True
-#
-#     Returns
-#     -------
-#     bool
-#         Successful execution [ b_tls.arc_pth | False ]
-#
-#     Examples
-#     --------
-#
-#     """
-#     success = True
-#     app_name = 'TestApp'
-#     app_desc = 'Test application description'
-#     with tempfile.TemporaryDirectory() as temp_dir:
-#         app_dir = Path(temp_dir, app_name, 'src', app_name.lower())
-#         app_dir.mkdir(parents=True)
-#         app_pth = app_dir / Path(app_name.lower()).with_suffix('.py')
-#         app_pth.touch()
-#         arc_extern_dir = Path(temp_dir, 'external')
-#         # arc_extern_dir.mkdir(parents = True)
-#         t_archiver = Archiver(app_desc, app_pth, p_arc_extern_dir=arc_extern_dir)
-#     t_archiver.print_header(p_cls=p_cls)
-#     t_archiver.print_footer()
-#     # working_dir.rmdir()
-#     return success
-
-
 def example_messaging():
     """Standard example to illustrate standard use.
 
@@ -251,10 +181,7 @@ def example_messaging():
 
 
 def do_examples(p_cls=True):
-    success = True
-    # success = example_archiver(p_cls=p_cls) and success
-    success = example_messaging() and success
-    return success
+    return example_messaging()
 
 
 if __name__ == '__main__':

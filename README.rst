@@ -1,91 +1,185 @@
-.. image:: https://img.shields.io/pypi/status/BEETools
-    :alt: PyPI - Status
+====================
+Exploring SQLAlchemy
+====================
 
-.. image:: https://img.shields.io/pypi/wheel/BEETools
-    :alt: PyPI - Wheel
++-----------+------------------------------------------------------------------------------------+
+|**General**| |maintenance_y| |semver| |license|                                                 |
++-----------+------------------------------------------------------------------------------------+
+|**CI**     | |gha_tests| |gha_docu| |pre_commit_ci| |codestyle| |codecov|                       |
++-----------+------------------------------------------------------------------------------------+
+|**PyPI**   | |pypi_release| |pypi_py_versions| |pypi_status| |pypi_format| |pypi_downloads|     |
++-----------+------------------------------------------------------------------------------------+
+|**Github** | |gh_issues| |gh_language| |gh_last_commit| |gh_deployment|                         |
++-----------+------------------------------------------------------------------------------------+
 
-.. image:: https://img.shields.io/pypi/pyversions/BEETools
-    :alt: PyPI - Python Version
 
-.. image:: https://img.shields.io/github/v/release/hendrikdutoit/BEETools
-    :alt: GitHub release (latest by date)
+Designed for the use in the Bright Edge eServices echo system. It defines
+methods and functions for general use purposes.
 
-.. image:: https://img.shields.io/github/license/hendrikdutoit/BEETools
+
+Installation
+------------
+
+#. Since this is intended for experimental purposes, it is recommended to create a virtual environment to experiment for installation.
+#. Set the following environment variables in the virtual environment.  Set these in your IDE as well.
+#. Start Docker.  The ``docker-rebuild.bat`` script will git docker up and running.
+#. The setup and installation is for Windows.  Feel free to add contribute to get it running on Linux as well.
+
+.. code-block:: bash
+
+    python -m venv ./sqlalchemyexample_venv
+    pip install sqlalchemyexample
+    pre-commit install
+    SET MYSQL_HOST=localhost
+    SET MYSQL_ROOT_PWD=N0tS0S3curePassw0rd
+    SET MYSQL_TCP_PORT_EXAMPLES=50002
+    SET SQLALCHEMY_SILENCE_UBER_WARNING=1
+    docker-rebuild.bat
+
+
+Tests
+-----
+
+#. This project uses ``pytest`` to run tests.
+#. There are various settings combinations in the ``[tool.pytest.ini_options]`` section of the pyproject.toml file that can used by commenting it out.
+#. This project uses ``black`` to format code and ``flake8`` for linting. We also support ``pre-commit`` to ensure these have been run. To configure your local environment please install these development dependencies and set up the commit hooks.
+
+.. code-block:: bash
+
+    pytest
+
+
+Contributing
+------------
+
+Naming Conventions
+~~~~~~~~~~~~~~~~~~
+
+#. File names
+    #. Not knowing what's to come and what will be added, it is difficult to determine a naming convention for source, test and other file names.  The owner will therefore be a "benevolent dictator" to rename and change names.
+    #. Link the file name of the source code and the test so that it is easily linked.
+#. Branch names
+    "enhancement" | "bug" | "hotfix"/< ticket_nr>_<description>
+
+    where
+        enhancement - Planned improvement or addition to functionality; non-urgent.
+
+        bug - An error or defect causing incorrect or unexpected behavior; typically fixed in regular development cycles.
+
+        hotfix - An urgent, critical fix applied directly to the live environment, often bypassing regular development cycles.
+
+        ticket_nr: Ticket number assigned to the issue in GitHub.  Once an issue is registered, the owner will assign a ticket.
+
+        description: GitHub issue title or combination of titles is more than one issue is addressed.
+
+
+Releasing
+~~~~~~~~~
+For the purpose of push and release of code two script files are included.  Use there two files to files to make life a
+bit easier.  The scripts make use of the ``gitit`` module to simplify tasks.
+
+#. ``push.bat`` - Use this script to push branches to GitHub repository.  In principle it does the following:
+
+    usage: push message
+
+    e.g. push "Changed the Infinite Improbability Drive"
+
+    #. .rst syntax check
+    #. git add -A
+    #. git commit -m message (with `pre-commit` including `black` and `flake8`)
+    #. git push --all
+
+#. ``release.bat`` - Use this script to push a new tag and release to the GitHub repository.  Remember to change the version number in the setup.cfg else the workflow will fail.
+
+    usage: release version  The version will match the release and the tag. Only issue a release once a push.bat was successful.  In principle it does the following:
+
+    e.g. release 1.2.3
+
+    #. Commit the changes
+    #. Create and push the release tag with the correct naming conventions.
+    #. Checkout master since it assumes that the branch is now merged with master and will be deleted.
+    #. display a list of all the current branches as a reminder to delete the branch on completion.
+
+
+.. General
+
+.. |maintenance_n| image:: https://img.shields.io/badge/Maintenance%20Intended-✖-red.svg?style=flat-square
+    :target: http://unmaintained.tech/
+    :alt: Maintenance - not intended
+
+.. |maintenance_y| image:: https://img.shields.io/badge/Maintenance%20Intended-✔-green.svg?style=flat-square
+    :target: http://unmaintained.tech/
+    :alt: Maintenance - intended
+
+.. |license| image:: https://img.shields.io/pypi/l/SQLAlchemyExample
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/LICENSE
     :alt: License
 
-.. image:: https://img.shields.io/github/issues-raw/hendrikdutoit/BEETools
-    :alt: GitHub issues
+.. |semver| image:: https://img.shields.io/badge/Semantic%20Versioning-2.0.0-brightgreen.svg?style=flat-square
+    :target: https://semver.org/
+    :alt: Semantic Versioning - 2.0.0
 
-.. image:: https://img.shields.io/pypi/dm/BEETools
-    :alt: PyPI - Downloads
+.. |codestyle| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+    :alt: Code Style Black
 
-.. image:: https://img.shields.io/github/search/hendrikdutoit/BEETools/GitHub
-    :alt: GitHub Searches
 
-.. image:: https://img.shields.io/codecov/c/gh/hendrikdutoit/BEETools
+.. CI
+
+.. |pre_commit_ci| image:: https://img.shields.io/github/actions/workflow/status/hendrikdutoit/SQLAlchemyExample/pre-commit.yml?label=pre-commit
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/.github/workflows/pre-commit.yml
+    :alt: Pre-Commit
+
+.. |gha_tests| image:: https://img.shields.io/github/actions/workflow/status/hendrikdutoit/SQLAlchemyExample/ci.yml?label=ci
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/.github/workflows/ci.yml
+    :alt: Test status
+
+.. |gha_docu| image:: https://img.shields.io/readthedocs/sqlalchemyexample
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/blob/master/.github/workflows/check-rst-documentation.yml
+    :alt: Read the Docs
+
+.. |codecov| image:: https://img.shields.io/codecov/c/gh/hendrikdutoit/SQLAlchemyExample
+    :target: https://app.codecov.io/gh/hendrikdutoit/SQLAlchemyExample
     :alt: CodeCov
-    :target: https://app.codecov.io/gh/hendrikdutoit/BEETools
 
-.. image:: https://img.shields.io/github/workflow/status/hendrikdutoit/BEETools/Pre-Commit
-    :alt: GitHub Actions - Pre-Commit
-    :target: https://github.com/hendrikdutoit/BEETools/actions/workflows/pre-commit.yaml
 
-.. image:: https://img.shields.io/github/workflow/status/hendrikdutoit/BEETools/CI
-    :alt: GitHub Actions - CI
-    :target: https://github.com/hendrikdutoit/BEETools/actions/workflows/ci.yaml
+.. PyPI
 
-.. image:: https://img.shields.io/pypi/v/BEETools
-    :alt: PyPi
+.. |pypi_release| image:: https://img.shields.io/pypi/v/SQLAlchemyExample
+    :target: https://pypi.org/project/SQLAlchemyExample/
+    :alt: PyPI - Package latest release
 
-Multi source file project
+.. |pypi_py_versions| image:: https://img.shields.io/pypi/pyversions/SQLAlchemyExample
+    :target: https://pypi.org/project/SQLAlchemyExample/
+    :alt: PyPI - Supported Python Versions
 
-    This still has to be sorted. See "PackageIt.create_readme"
+.. |pypi_format| image:: https://img.shields.io/pypi/wheel/SQLAlchemyExample
+    :target: https://pypi.org/project/SQLAlchemyExample/
+    :alt: PyPI - Format
 
-=======
-Testing
-=======
+.. |pypi_downloads| image:: https://img.shields.io/pypi/dm/SQLAlchemyExample
+    :target: https://pypi.org/project/SQLAlchemyExample/
+    :alt: PyPI - Monthly downloads
 
-This project uses ``pytest`` to run tests and also to test docstring examples.
+.. |pypi_status| image:: https://img.shields.io/pypi/status/SQLAlchemyExample
+    :target: https://pypi.org/project/SQLAlchemyExample/
+    :alt: PyPI - Status
 
-Install the test dependencies.
 
-.. code-block:: bash
+.. GitHub
 
-    $ pip install -r requirements_test.txt
+.. |gh_issues| image:: https://img.shields.io/github/issues-raw/hendrikdutoit/SQLAlchemyExample
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/issues
+    :alt: GitHub - Issue Counter
 
-Run the tests.
+.. |gh_language| image:: https://img.shields.io/github/languages/top/hendrikdutoit/SQLAlchemyExample
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample
+    :alt: GitHub - Top Language
 
-.. code-block:: bash
+.. |gh_last_commit| image:: https://img.shields.io/github/last-commit/hendrikdutoit/SQLAlchemyExample/master
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/commit/master
+    :alt: GitHub - Last Commit
 
-    $ pytest tests
-    === XXX passed in SSS seconds ===
-
-==========
-Developing
-==========
-
-This project uses ``black`` to format code and ``flake8`` for linting. We also support ``pre-commit`` to ensure these have been run. To configure your local environment please install these development dependencies and set up the commit hooks.
-
-.. code-block:: bash
-
-    $ pip install black flake8 pre-commit
-    $ pre-commit install
-
-=========
-Releasing
-=========
-
-Releases are published automatically when a tag is pushed to GitHub.
-
-.. code-block:: bash
-
-    # Set next version number
-    export RELEASE = x.x.x
-    
-    # Create tags
-    git commit --allow -empty -m "Release $RELEASE"
-    git tag -a $RELEASE -m "Version $RELEASE"
-    
-    # Push
-    git push upstream --tags
-
+.. |gh_deployment| image:: https://img.shields.io/github/deployments/hendrikdutoit/SQLAlchemyExample/pypi
+    :target: https://github.com/hendrikdutoit/SQLAlchemyExample/deployments/pypi
+    :alt: GitHub - PiPy Deployment
