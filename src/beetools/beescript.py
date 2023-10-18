@@ -1,21 +1,3 @@
-"""Tools for Bright Edge eServices developments & projects
-
-These tools was designed for the use in the Bright Edge eServices echo system.
-It defines methods and functions for general use purposes and standardization
-in the Bright Edge eServices echo system.
-
-The module define defaults for log levels, display on console, operating
-system names and date formats.
-
-The defaults are used in this module and across the Bright Edge eServices
-echo system.  The module basically has
-
-To Do
-=====
-1.  Better example on the logging integration
-2.  Complete doctests for all methods & functions
-
-"""
 import configparser
 import os
 import shlex
@@ -29,11 +11,6 @@ from beetools import beeutils
 from beetools import beevenv
 from beetools.beearchiver import msg_info
 
-# _PROJ_DESC = __doc__.split('\n')[0]
-# _PROJ_PATH = Path(__file__)
-# _PROJ_NAME = _PROJ_PATH.stem
-# _PROJ_VERSION = '3.2.0'
-
 
 def exec_batch_in_session(
     p_script_cmds,
@@ -45,7 +22,7 @@ def exec_batch_in_session(
     """Execute a script in the same session
 
     Useful when commands has to be executed in one session for instance if
-    it a virtual environment is invoked and the commands must be executed
+    in a virtual environment is invoked and the commands must be executed
     in the virtual environment.
 
     Parameters
@@ -333,15 +310,7 @@ def do_examples(p_cls=True):
 
     """
 
-    # Initiate the Archiver
-    success = True
-    # b_tls = beeutils.Archiver(_PROJ_DESC, _PROJ_PATH)
-    # b_tls.print_header(p_cls=p_cls)
-    success = example_scripting() and success
-    # b_tls.print_footer()
-    if success:
-        return True
-    return False
+    return example_scripting()
 
 
 if __name__ == '__main__':
