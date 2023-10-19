@@ -4,7 +4,7 @@ version = '5.0.0'
 authors = [
     { name = 'Hendrik du Toit', email = 'hendrik@brightedge.co.za' },
 ]
-description = 'Tools for batch scripts, virtual environments, structure snapshot and utilities.'
+description = 'Tools for batch scripts, virtual environments and utilities.'
 license = {file = 'LICENSE'}
 classifiers = [
     'Development Status :: 5 - Production/Stable',

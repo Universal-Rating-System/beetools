@@ -1,21 +1,3 @@
-'''Tools for Bright Edge eServices developments & projects
-
-These tools was designed for the use in the Bright Edge eServices echo system.
-It defines methods and functions for general use purposes and standardization
-in the Bright Edge eServices echo system.
-
-The module define defaults for log levels, display on console, operating
-system names and date formats.
-
-The defaults are used in this module and across the Bright Edge eServices
-echo system.  The module basically has
-
-To Do
-=====
-1.  Use in example is_struct_the_same()
-2.  Complete doctests for all methods & functions
-
-'''
 import configparser
 import inspect
 import logging
@@ -28,14 +10,6 @@ from pathlib import Path
 from beetools.beearchiver import msg_error
 from beetools.beearchiver import msg_ok
 
-# from beetools.beearchiver import Archiver
-
-# from beetools.beemsg import ok as msg_ok, error as msg_error
-
-# _PROJ_DESC = __doc__.split('\n')[0]
-# _PROJ_PATH = Path(__file__)
-# _PROJ_NAME = _PROJ_PATH.stem
-# _PROJ_VERSION = '3.3.0'
 
 # Default logging constants
 DEF_LOG_LEV = logging.DEBUG
@@ -191,7 +165,7 @@ CODEC_LIST = [
 
 
 def get_os() -> str:
-    '''Return a constant for the current operating system
+    """Return a constant for the current operating system
 
     Parameters
     ----------
@@ -206,7 +180,7 @@ def get_os() -> str:
     # No proper doctest (<<<) because it is os dependent
     get_os()
     'linux'
-    '''
+    """
     if sys.platform.startswith('win32'):
         curr_os = WINDOWS
     elif sys.platform.startswith('linux'):
@@ -216,13 +190,13 @@ def get_os() -> str:
     elif sys.platform.startswith('aix'):
         curr_os = AIX
     else:
-        print('OS not listed\nSystem will now ternminate')
+        print('OS not listed\nSystem will now terminate')
         sys.exit()
     return curr_os
 
 
 def get_tmp_dir(p_prefix=None) -> Path:
-    '''Return os related temporary folder for user.
+    """Return os related temporary folder for user.
 
     Parameters
     ----------
@@ -238,7 +212,7 @@ def get_tmp_dir(p_prefix=None) -> Path:
     get_tmp_dir()
     PosixPath('/tmp')
 
-    '''
+    """
     if p_prefix:
         temp_dir = Path(tempfile.mkdtemp(prefix=p_prefix))
     else:
@@ -247,7 +221,7 @@ def get_tmp_dir(p_prefix=None) -> Path:
 
 
 def is_struct_the_same(p_x, p_y, p_ref='') -> bool:
-    '''Compare two structures
+    """Compare two structures
 
     Parameters
     ----------
@@ -286,7 +260,7 @@ def is_struct_the_same(p_x, p_y, p_ref='') -> bool:
     <>
     ref str.1.Three
     False
-    '''
+    """
     success = True
     x_len = 0
     y_len = 0
@@ -318,7 +292,7 @@ def is_struct_the_same(p_x, p_y, p_ref='') -> bool:
 
 
 def result_rep(p_success, p_comment='No Comment') -> str:
-    '''Print a formatted result report
+    """Print a formatted result report
 
     Parameters
     ----------
@@ -339,7 +313,7 @@ def result_rep(p_success, p_comment='No Comment') -> str:
     >>> result_rep(True)
     <module> - \x1b[32mSuccess\x1b[0m (No Comment)
     '<module> - \\x1b[32mSuccess\\x1b[0m (No Comment)'
-    '''
+    """
     proc_name = inspect.getouterframes(inspect.currentframe(), 1)[1][3]
     if p_success:
         ret_str = '{} - {} ({})'.format(proc_name, msg_ok('Success'), p_comment)
@@ -350,7 +324,7 @@ def result_rep(p_success, p_comment='No Comment') -> str:
 
 
 def rm_temp_locked_file(p_file_path) -> bool:
-    '''Attempt to remove a temporary locked file
+    """Attempt to remove a temporary locked file
 
     Parameters
     ----------
@@ -365,7 +339,7 @@ def rm_temp_locked_file(p_file_path) -> bool:
     --------
     # No proper doctest (<<<) because it is os dependent
 
-    '''
+    """
     crash_retry_cntr = 0
     success = False
     while crash_retry_cntr < CRASH_RETRY:
@@ -385,7 +359,7 @@ def rm_temp_locked_file(p_file_path) -> bool:
 
 
 def rm_tree(p_pth, p_crash=True):
-    '''Remove a tree structure
+    """Remove a tree structure
 
     Parameters
     ----------
@@ -403,7 +377,7 @@ def rm_tree(p_pth, p_crash=True):
     --------
     # No proper doctest (<<<) because it is os dependent
 
-    '''
+    """
     success = False
     # tree = list(p_pth.glob('**/*'))
     # not_empty = []
@@ -444,7 +418,7 @@ def rm_tree(p_pth, p_crash=True):
 
 
 def select_os_dir_from_config(p_config, p_section, p_option) -> Path:
-    '''Select the correct folder on a specific os in the Bright Edge eServices
+    """Select the correct folder on a specific os in the Bright Edge eServices
     echo system.
 
     This is useful when the application runs on different os' and an option
@@ -479,7 +453,7 @@ def select_os_dir_from_config(p_config, p_section, p_option) -> Path:
     beetools.select_os_dir_from_config( cnf, 'Folders', 'MyFolderOnSystem' )
     PosixPath('/usr/local/bin')
 
-    '''
+    """
     options = p_config.options(p_section)
     dir = None
     for option in options:
@@ -495,7 +469,7 @@ def select_os_dir_from_config(p_config, p_section, p_option) -> Path:
 
 
 def example_tools():
-    '''Standard example to illustrate standard use.
+    """Standard example to illustrate standard use.
 
     Parameters
     ----------
@@ -508,7 +482,7 @@ def example_tools():
     Examples
     --------
 
-    '''
+    """
     success = True
 
     print()
@@ -570,7 +544,7 @@ def example_tools():
 
 
 def do_examples(p_app_path=None, p_cls=True):
-    '''Example to illustrate usage
+    """Example to illustrate usage
 
     Parameters
     ----------
@@ -588,16 +562,9 @@ def do_examples(p_app_path=None, p_cls=True):
     Examples
     --------
 
-    '''
+    """
 
-    # Initiate the Archiver
-    # b_tls = Archiver(_PROJ_DESC, p_app_path)
-    # b_tls.print_header(p_cls=p_cls)
     return example_tools()
-    # b_tls.print_footer()
-    # if success:
-    #     return b_tls.arc_pth
-    # return False
 
 
 if __name__ == '__main__':

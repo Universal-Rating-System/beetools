@@ -13,11 +13,11 @@ jobs:
       name: pypi
       url: https://pypi.org/project/BEETools
 
-#    permissions:
-#      id-token: write
-#      contents: write
-#      issues: write
-#      pull-requests: write
+    permissions:
+      id-token: write
+      contents: write
+      issues: write
+      pull-requests: write
 
     strategy:
       fail-fast: true
@@ -63,7 +63,7 @@ jobs:
         run: |
           git push origin master
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT_HDT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_HDT }}
 
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,7 +1,3 @@
-'''Create a conftest.py
-
-Define the fixture functions in this file to make them accessible across multiple test files.
-'''
 import datetime
 from pathlib import Path
 from tempfile import mkdtemp
@@ -9,12 +5,6 @@ from tempfile import mkdtemp
 import pytest
 
 from beetools.beeutils import rm_tree
-
-
-# _PROJ_DESC = __doc__.split('\n')[0]
-# _PROJ_PATH = Path(__file__)
-# _PROJ_NAME = _PROJ_PATH.stem
-# _PROJ_VERSION = '0.0.1'
 
 
 class SetUpParams:
@@ -66,7 +56,7 @@ class WorkingDir:
 
 @pytest.fixture
 def self_destruct_work_dir():
-    '''Set up the environment base structure'''
+    """Set up the environment base structure"""
     sup = WorkingDir()
     yield sup
     rm_tree(sup.dir, p_crash=False)
