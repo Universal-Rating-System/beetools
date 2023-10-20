@@ -21,7 +21,7 @@ classifiers = [
 readme = {file = 'README.rst', content-type = 'text/x-rst'}
 requires-python = '>=3.8, <=12.0'
 dependencies = [
-    'beetools',
+#    'beetools',
     'termcolor',
   ]
 
