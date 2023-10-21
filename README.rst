@@ -152,7 +152,7 @@ bit easier.  The scripts make use of the ``gitit`` module to simplify tasks.
 
 .. GitHub
 
-.. |gh_issues| image:: https://img.shields.io/github/issues-raw/hBrightEdgeeServices/beetools
+.. |gh_issues| image:: https://img.shields.io/github/issues-raw/BrightEdgeeServices/beetools
     :target: https://github.com/BrightEdgeeServices/beetools/issues
     :alt: GitHub - Issue Counter
 
