@@ -27,11 +27,13 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    'build',
     'git-it',
     'pytest',
     'pytest-cov',
     'rstcheck',
     'toml',
+    'twine',
 ]
 
 [project.urls]
