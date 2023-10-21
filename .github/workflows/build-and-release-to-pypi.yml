@@ -53,7 +53,7 @@ jobs:
           echo ********************
           echo ${{ secrets.PYPI_API_TOKEN_231021 }}
           echo ********************
-git 
+
       - name: Merge into master
         id: merge
         run: |
