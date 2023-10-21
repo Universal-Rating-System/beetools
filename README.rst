@@ -110,11 +110,11 @@ bit easier.  The scripts make use of the ``gitit`` module to simplify tasks.
 
 .. CI
 
-.. |pre_commit_ci| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/pre-commit.yml?label=pre-commit
+.. |pre_commit_ci| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/pypi-pipeline.yml?label=pre-commit
     :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/pre-commit.yml
     :alt: Pre-Commit
 
-.. |gha_tests| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/ci.yml?label=ci
+.. |gha_tests| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/pypi-pipeline.yml?label=ci
     :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/ci.yml
     :alt: Test status
 
@@ -122,8 +122,8 @@ bit easier.  The scripts make use of the ``gitit`` module to simplify tasks.
     :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/check-rst-documentation.yml
     :alt: Read the Docs
 
-.. |codecov| image:: https://img.shields.io/codecov/c/gh/BrightEdgeeServices/beetools
-    :target: https://app.codecov.io/gh/hendrikdutoit/SQLAlchemyExample
+.. |codecov| image:: https://img.shields.io/codecov/c/github/BrightEdgeeServices/beetools
+    :target: https://app.codecov.io/gh/BrightEdgeeServices/beetools
     :alt: CodeCov
 
 
