@@ -7,8 +7,8 @@ import sys
 import tempfile
 from pathlib import Path
 
-from beetools.beearchiver import msg_error
-from beetools.beearchiver import msg_ok
+from beetools.msg import error
+from beetools.msg import ok
 
 
 # Default logging constants
@@ -316,9 +316,9 @@ def result_rep(p_success, p_comment='No Comment') -> str:
     """
     proc_name = inspect.getouterframes(inspect.currentframe(), 1)[1][3]
     if p_success:
-        ret_str = '{} - {} ({})'.format(proc_name, msg_ok('Success'), p_comment)
+        ret_str = '{} - {} ({})'.format(proc_name, ok('Success'), p_comment)
     else:
-        ret_str = '{} - {} ({})'.format(proc_name, msg_error('Failed'), p_comment)
+        ret_str = '{} - {} ({})'.format(proc_name, error('Failed'), p_comment)
     print(ret_str)
     return ret_str
 
@@ -408,10 +408,10 @@ def rm_tree(p_pth, p_crash=True):
             success = True
         except OSError:
             if p_crash:
-                print(msg_error('{} could not be removed.\nSystem terminated.'))
+                print(error('{} could not be removed.\nSystem terminated.'))
                 sys.exit()
             else:
-                print(msg_error('{} could not be removed.\nExcecution will continue.'))
+                print(error('{} could not be removed.\nExcecution will continue.'))
     else:
         success = True
     return success
@@ -464,7 +464,7 @@ def select_os_dir_from_config(p_config, p_section, p_option) -> Path:
             else:
                 break
     if not dir:
-        print(msg_error(f'select_os_dir_from_config not found: {p_section}:{p_option}'))
+        print(error(f'select_os_dir_from_config not found: {p_section}:{p_option}'))
     return dir
 
 

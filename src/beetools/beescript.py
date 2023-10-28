@@ -9,7 +9,7 @@ from termcolor import colored
 
 from beetools import beeutils
 from beetools import beevenv
-from beetools.beearchiver import msg_info
+from beetools.msg import info
 
 
 def exec_batch_in_session(
@@ -81,7 +81,7 @@ def exec_batch_in_session(
     if beeutils.get_os() == beeutils.MACOS:
         batch_pth.chmod(0o777)
     if p_verbose:
-        print(msg_info('==[Start {0}]====\n{1}==[ End {0} ]===='.format(batch_pth, contents)))
+        print(info('==[Start {0}]====\n{1}==[ End {0} ]===='.format(batch_pth, contents)))
     rc = exec_cmd(script, p_verbose=p_verbose, p_shell=p_shell)
     if os.path.isfile(batch_pth):
         os.remove(batch_pth)
@@ -148,7 +148,7 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
     p_cmd = [str(s) for s in p_cmd]
     inst_str = ' '.join(p_cmd)
     if p_verbose:
-        print(msg_info(f'{inst_str}'))
+        print(info(f'{inst_str}'))
     if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS] and not p_shell:
         shell = False
     elif beeutils.get_os() == beeutils.WINDOWS and not p_shell:
