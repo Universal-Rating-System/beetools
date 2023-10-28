@@ -366,7 +366,7 @@ def rm_tree(p_pth, p_crash=True):
     p_pth
         Root f the tree to remove
     p_crash
-        If true, the system will terminate if the structure can not be removed
+        If true, the system will terminate if the structure cannot be removed
 
     Returns
     -------
@@ -393,9 +393,9 @@ def rm_tree(p_pth, p_crash=True):
                     success = True and success
                 except PermissionError:
                     success = False
-            for dir in dirs:
+            for directory in dirs:
                 try:
-                    dir_pth = os.path.join(root, dir)
+                    dir_pth = os.path.join(root, directory)
                     os.rmdir(dir_pth)
                     success = True and success
                 except OSError:
@@ -408,10 +408,10 @@ def rm_tree(p_pth, p_crash=True):
             success = True
         except OSError:
             if p_crash:
-                print(error('{} could not be removed.\nSystem terminated.'))
+                print(error('{p_pth} could not be removed.\nSystem terminated.'))
                 sys.exit()
             else:
-                print(error('{} could not be removed.\nExcecution will continue.'))
+                print(error('{p_pth} could not be removed.\nExecution will continue.'))
     else:
         success = True
     return success
@@ -455,17 +455,17 @@ def select_os_dir_from_config(p_config, p_section, p_option) -> Path:
 
     """
     options = p_config.options(p_section)
-    dir = None
+    directory = None
     for option in options:
         if option.split('_')[0][:-1] == get_os() and option.split('_')[1].lower() == p_option.lower():
-            dir = Path(p_config.get(p_section, option))
-            if not dir.is_dir():
-                dir = None
+            directory = Path(p_config.get(p_section, option))
+            if not directory.is_dir():
+                directory = None
             else:
                 break
-    if not dir:
+    if not directory:
         print(error(f'select_os_dir_from_config not found: {p_section}:{p_option}'))
-    return dir
+    return directory
 
 
 def example_tools():
@@ -543,16 +543,11 @@ def example_tools():
     return success
 
 
-def do_examples(p_app_path=None, p_cls=True):
+def do_examples():
     """Example to illustrate usage
 
     Parameters
     ----------
-    p_app_path
-        Path to the application module
-    p_cls
-        Clear the screen before start
-        Default is True
 
     Returns
     -------
@@ -568,4 +563,4 @@ def do_examples(p_app_path=None, p_cls=True):
 
 
 if __name__ == '__main__':
-    do_examples(sys.argv[0])
+    do_examples()
