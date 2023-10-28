@@ -12,7 +12,7 @@ Description = [ "[Bug]: Github Build distribution fails", "A release to be distr
 
 [4.3.0]
 Title = "Version 4.3.0"
-Description = [ "No \"crash protection\"  when exec_batch method crash", "Remove \"crash\" handling.", "Currently the beescript.exec_batch, and beescript.exec_cmd, make use of a \"p_crash\" indicator to prevent the exception from \"crashing\" the procedure or not.  The exception should rather be handled by passing the resulting error code back to the caller instead of attempting to handle it by itself.",]
+Description = [ "No \"crash protection\"  when exec_batch method crash", "Remove \"crash\" handling.", "Currently the script.exec_batch, and script.exec_cmd, make use of a \"p_crash\" indicator to prevent the exception from \"crashing\" the procedure or not.  The exception should rather be handled by passing the resulting error code back to the caller instead of attempting to handle it by itself.",]
 
 [0.0.0]
 Title = "Version 0.0.0"

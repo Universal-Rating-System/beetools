@@ -7,8 +7,8 @@ from pathlib import Path
 
 from termcolor import colored
 
-from beetools import beeutils
-from beetools import beevenv
+from beetools import utils
+from beetools import venv
 from beetools.msg import info
 
 
@@ -61,24 +61,24 @@ def exec_batch_in_session(
         switches = list(shlex.shlex(p_switches))
     else:
         switches = []
-    if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
+    if utils.get_os() in [utils.LINUX, utils.MACOS]:
         script = ['bash'] + switches
         ext = 'sh'
         contents = '#!/bin/bash\n'
-    elif beeutils.get_os() == beeutils.WINDOWS:
+    elif utils.get_os() == utils.WINDOWS:
         script = []
         ext = 'bat'
         contents = ''
     else:
-        print(colored(f'Unknown OS ({beeutils.get_os()})\nSystem terminated!', 'red'))
+        print(colored(f'Unknown OS ({utils.get_os()})\nSystem terminated!', 'red'))
         sys.exit()
 
     if not p_script_name:
         p_script_name = 'exec_batch_in_session_temp'
-    batch_pth = beeutils.get_tmp_dir() / Path(f'{p_script_name}.{ext}')
+    batch_pth = utils.get_tmp_dir() / Path(f'{p_script_name}.{ext}')
     script.append(str(batch_pth))
     contents += write_script(batch_pth, p_script_cmds)
-    if beeutils.get_os() == beeutils.MACOS:
+    if utils.get_os() == utils.MACOS:
         batch_pth.chmod(0o777)
     if p_verbose:
         print(info('==[Start {0}]====\n{1}==[ End {0} ]===='.format(batch_pth, contents)))
@@ -106,7 +106,7 @@ def exec_batch(p_batch: list, p_verbose: bool = False) -> list:
         See https://docs.python.org/3.9/library/subprocess.html#subprocess.CompletedProcess
 
     :example:
-    >>> from beetools.beescript import exec_batch
+    >>> from beetools.script import exec_batch
     >>> exec_batch([[ 'echo', 'Hello'],['echo','Goodbye']])
     True
     """
@@ -140,7 +140,7 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
 
     Examples
     --------
-    >>> from beetools.beescript import exec_cmd
+    >>> from beetools.script import exec_cmd
     >>> exec_cmd([ 'echo', 'Hello'])
     True
 
@@ -149,12 +149,12 @@ def exec_cmd(p_cmd, p_shell=None, p_verbose=True) -> int:
     inst_str = ' '.join(p_cmd)
     if p_verbose:
         print(info(f'{inst_str}'))
-    if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS] and not p_shell:
+    if utils.get_os() in [utils.LINUX, utils.MACOS] and not p_shell:
         shell = False
-    elif beeutils.get_os() == beeutils.WINDOWS and not p_shell:
+    elif utils.get_os() == utils.WINDOWS and not p_shell:
         shell = True
-    elif beeutils.get_os() not in [beeutils.WINDOWS, beeutils.LINUX, beeutils.MACOS]:
-        print(colored(f'Unknow OS ({beeutils.get_os()})\nSystem terminated!', 'red'))
+    elif utils.get_os() not in [utils.WINDOWS, utils.LINUX, utils.MACOS]:
+        print(colored(f'Unknow OS ({utils.get_os()})\nSystem terminated!', 'red'))
         sys.exit()
     else:
         shell = p_shell
@@ -186,8 +186,8 @@ def write_script(p_pth, p_contents):
 
     Examples
     --------
-    >>> from beetools import beeutils, beevenv
-    >>> beevenv.set_up(beeutils.get_tmp_dir(),'new-project',['pip','wheel'],p_verbose=False)
+    >>> from beetools import utils, venv
+    >>> venv.set_up(utils.get_tmp_dir(),'new-project',['pip','wheel'],p_verbose=False)
     True
 
     """
@@ -219,9 +219,9 @@ def example_scripting():
     success = True
     # Run a few commands in a script.  Useful when executing commands in a
     # venv in the same session.
-    tmp_test = beeutils.get_tmp_dir() / 'test'
+    tmp_test = utils.get_tmp_dir() / 'test'
     tmp_t1 = tmp_test / 'T1'
-    if beeutils.get_os() == beeutils.WINDOWS:
+    if utils.get_os() == utils.WINDOWS:
         batch = [
             f'md {tmp_t1}',
             f'dir /B {tmp_test}',
@@ -235,7 +235,7 @@ def example_scripting():
         success = False
 
     # Execute some commands in a batch
-    if beeutils.get_os() == beeutils.WINDOWS:
+    if utils.get_os() == utils.WINDOWS:
         cmds = [
             ['rd', '/S', '/Q', f'{tmp_t1}'],
             ['md', f'{tmp_t1}'],
@@ -249,7 +249,7 @@ def example_scripting():
         success = False
 
     # Write a script
-    script_pth = beeutils.get_tmp_dir() / __name__
+    script_pth = utils.get_tmp_dir() / __name__
     cmds = [
         ['echo', 'Hello'],
         ['echo', 'Goodbye'],
@@ -262,11 +262,11 @@ def example_scripting():
     t_file.touch(mode=0o666, exist_ok=True)
     t_file = tmp_t1 / Path('t.tmp')
     t_file.touch(mode=0o666, exist_ok=True)
-    success = beeutils.rm_tree(tmp_test, p_crash=True) and success
+    success = utils.rm_tree(tmp_test, p_crash=True) and success
 
     # Attempt to remove a temporary locked file.
     venv_name = 'new-project'
-    success = beeutils.rm_temp_locked_file(beevenv.get_dir(beeutils.get_tmp_dir(), venv_name)) and success
+    success = utils.rm_temp_locked_file(venv.get_dir(utils.get_tmp_dir(), venv_name)) and success
 
     # Read an option from an ini for a particular os and setup
     cnf = configparser.ConfigParser()
@@ -282,12 +282,12 @@ def example_scripting():
             }
         }
     )
-    os_system_flder = beeutils.select_os_dir_from_config(cnf, 'Folders', 'MyFolderOnSystem')
+    os_system_flder = utils.select_os_dir_from_config(cnf, 'Folders', 'MyFolderOnSystem')
     print(os_system_flder)
     if not os_system_flder:
         success = False
 
-    beeutils.result_rep(success, p_comment='Done')
+    utils.result_rep(success, p_comment='Done')
     return success
 
 
