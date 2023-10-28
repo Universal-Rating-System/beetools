@@ -243,18 +243,18 @@ def is_struct_the_same(p_x, p_y, p_ref='') -> bool:
     --------
     >>> x=[1,2]
     >>> y=[1,2]
-    >>> from beetools.beeutils import is_struct_the_same
+    >>> from beetools.utils import is_struct_the_same
     >>> is_struct_the_same(x,y)
     True
 
     >>> x={1:'One',2:'Two'}
     >>> y={2:'Two',1:'One'}
-    >>> from beetools.beeutils import is_struct_the_same
+    >>> from beetools.utils import is_struct_the_same
     >>> is_struct_the_same(x,y)
     True
 
     >>> z={2:'Two',1:'Three'}
-    >>> from beetools.beeutils import is_struct_the_same
+    >>> from beetools.utils import is_struct_the_same
     >>> is_struct_the_same(y,z,'ref str')
     ref str.1.One
     <>
@@ -309,7 +309,7 @@ def result_rep(p_success, p_comment='No Comment') -> str:
 
     Examples
     --------
-    >>> from beetools.beeutils import result_rep
+    >>> from beetools.utils import result_rep
     >>> result_rep(True)
     <module> - \x1b[32mSuccess\x1b[0m (No Comment)
     '<module> - \\x1b[32mSuccess\\x1b[0m (No Comment)'

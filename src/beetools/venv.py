@@ -1,8 +1,8 @@
 from pathlib import Path
 from subprocess import CompletedProcess
 
-from beetools import beescript
-from beetools import beeutils
+from beetools import script
+from beetools import utils
 
 
 def activate(p_venv_root_dir, p_venv_name) -> str:
@@ -33,7 +33,7 @@ def activate(p_venv_root_dir, p_venv_name) -> str:
     'source /tmp/new-project_env/bin/activate'
 
     """
-    if beeutils.get_os() in [beeutils.LINUX, beeutils.MACOS]:
+    if utils.get_os() in [utils.LINUX, utils.MACOS]:
         cmd = 'source {}'.format(get_dir(p_venv_root_dir, p_venv_name) / Path('bin', 'activate'))
     else:
         cmd = 'CALL {}'.format(get_dir(p_venv_root_dir, p_venv_name) / Path('Scripts', 'activate'))
@@ -100,10 +100,10 @@ def install_in(p_venv_root_dir, p_venv_name, p_instructions, p_verbose=True):
     """
     switches = []
     script_name = 'install_in'
-    if beeutils.get_os() == beeutils.LINUX:
+    if utils.get_os() == utils.LINUX:
         switches = ['-x']
         script_cmds = ['sudo -i << _EOF_']
-    elif beeutils.get_os() == beeutils.WINDOWS:
+    elif utils.get_os() == utils.WINDOWS:
         script_cmds = []
         if p_verbose:
             script_cmds.append('@ECHO OFF')
@@ -114,10 +114,10 @@ def install_in(p_venv_root_dir, p_venv_name, p_instructions, p_verbose=True):
     script_cmds.append(f'{activate(p_venv_root_dir, p_venv_name)}')
     for instr in p_instructions:
         script_cmds.append(instr)
-    if beeutils.get_os() == beeutils.LINUX:
+    if utils.get_os() == utils.LINUX:
         script_cmds.append('_EOF_')
         script_cmds.append('exit')
-    ret_code = beescript.exec_batch_in_session(
+    ret_code = script.exec_batch_in_session(
         script_cmds,
         p_script_name=script_name,
         p_verbose=p_verbose,
@@ -146,21 +146,21 @@ def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) ->
 
     Examples
     --------
-    >>> from beetools.beevenv import set_up
-    >>> from beetools.beeutils import get_tmp_dir
+    >>> from beetools.venv import set_up
+    >>> from beetools.utils import get_tmp_dir
     >>> set_up( get_tmp_dir(),'new-project',['pip','wheel'],p_verbose=False)
     True
 
     """
     switches = []
     script_cmds = []
-    if beeutils.get_os() == beeutils.WINDOWS:
+    if utils.get_os() == utils.WINDOWS:
         pip_cmd = 'pip'
     else:
         pip_cmd = 'pip3'
         switches = ['-x']
         script_cmds = ['sudo -i << _EOF_']
-    beescript.exec_cmd(
+    script.exec_cmd(
         [
             'python',
             '-m',
@@ -178,10 +178,10 @@ def set_up(p_venv_root_dir, p_venv_name, p_package_list=None, p_verbose=True) ->
             script_cmds.append(f'{pip_cmd} install {package[1]}')
         elif package[0] == 'Local':
             script_cmds.append(f'{pip_cmd} install --find-links {package[2]} {package[1]}')
-    if beeutils.get_os() == beeutils.LINUX:
+    if utils.get_os() == utils.LINUX:
         script_cmds.append('_EOF_')
         script_cmds.append('exit')
-    ret_code = beescript.exec_batch_in_session(
+    ret_code = script.exec_batch_in_session(
         script_cmds, p_script_name=script_name, p_verbose=p_verbose, p_switches=switches
     )
     return ret_code
@@ -205,26 +205,26 @@ def example_virtual_environment():
     success = True
     # Remove remains of any previous skeletons still hanging around.
     venv_name = 'new-project'
-    if beeutils.get_os() == beeutils.WINDOWS:
-        p_cmd = ['rd', '/S', '/Q', get_dir(beeutils.get_tmp_dir(), venv_name)]
+    if utils.get_os() == utils.WINDOWS:
+        p_cmd = ['rd', '/S', '/Q', get_dir(utils.get_tmp_dir(), venv_name)]
     else:
-        p_cmd = ['rm', '-f', '-r', get_dir(beeutils.get_tmp_dir(), venv_name)]
-    beescript.exec_cmd(p_cmd, p_verbose=True)
+        p_cmd = ['rm', '-f', '-r', get_dir(utils.get_tmp_dir(), venv_name)]
+    script.exec_cmd(p_cmd, p_verbose=True)
 
     # Install a new venv including termcolor in a tmp directory
     package_list = [['Web', 'termcolor'], ['Web', 'wheel']]
-    success = set_up(beeutils.get_tmp_dir(), venv_name, package_list, p_verbose=True) and success
+    success = set_up(utils.get_tmp_dir(), venv_name, package_list, p_verbose=True) and success
     # Install/upgrade in an existing venv
     instructions = [
         f'echo Setting up the {venv_name} VEnv...',
         'pip install --upgrade wheel',
         'echo Done!',
     ]
-    success = install_in(beeutils.get_tmp_dir(), venv_name, instructions, p_verbose=True) and success
-    beeutils.result_rep(success, p_comment='Done')
+    success = install_in(utils.get_tmp_dir(), venv_name, instructions, p_verbose=True) and success
+    utils.result_rep(success, p_comment='Done')
 
     # Get the venv activation command
-    t_venv = activate(beeutils.get_tmp_dir(), venv_name)
+    t_venv = activate(utils.get_tmp_dir(), venv_name)
     print(f'Cmd example:\t{t_venv}')
     success = t_venv and success
     return success

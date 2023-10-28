@@ -4,7 +4,7 @@ from tempfile import mkdtemp
 
 import pytest
 
-from beetools.beeutils import rm_tree
+from beetools.utils import rm_tree
 
 
 class SetUpParams:
