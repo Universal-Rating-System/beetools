@@ -47,5 +47,3 @@ assignees: ''
 - [ ] Pre-Commit successful.
 - [ ] CI successful.
 - [ ] CodeCov above 99% or justifiably less.
-- [ ] Badges are correct.
-- [ ] Changed current branch to `master`.
