@@ -1,8 +1,9 @@
 # Release 5.2.2
 
-- Update ISSUE_TEMPLATE's
+- Update ISSUE_TEMPLATE
+  - bugfix.md
 - Update GitHub Workflows
-- Implemented Poetry
+  - Cleanup 04-build-and-publish-to-pypi.yaml
 
 ______________________________________________________________________
 
