@@ -1,3 +1,10 @@
+# Release 5.2.3
+
+- Update ISSUE_TEMPLATE
+  - release.md
+
+______________________________________________________________________
+
 # Release 5.2.2
 
 - Update ISSUE_TEMPLATE
