@@ -13,9 +13,9 @@ class TestMsg:
         test, but it is useless and needs further investigation.
         """
         if sys.stdout.isatty():
-            assert msg.display('Display message') == '\x1b[37mDisplay message                               '
+            assert msg.display("Display message") == "\x1b[37mDisplay message                               "
         else:
-            assert msg.display('Display message') == 'Display message                                    '
+            assert msg.display("Display message") == "Display message                                    "
 
     def test_error(self):
         """Testing error()
@@ -25,9 +25,9 @@ class TestMsg:
         test, but it is useless and needs further investigation.
         """
         if sys.stdout.isatty():
-            assert msg.error('Error message') == '\x1b[31mError message\x1b[0m'
+            assert msg.error("Error message") == "\x1b[31mError message\x1b[0m"
         else:
-            assert msg.error('Error message') == 'Error message'
+            assert msg.error("Error message") == "Error message"
 
     def test_header(self):
         """Testing header()
@@ -37,9 +37,9 @@ class TestMsg:
         test, but it is useless and needs further investigation.
         """
         if sys.stdout.isatty():
-            assert msg.header('Header message') == '\x1b[36mHeader message\x1b[0m'
+            assert msg.header("Header message") == "\x1b[36mHeader message\x1b[0m"
         else:
-            assert msg.header('Header message') == 'Header message'
+            assert msg.header("Header message") == "Header message"
 
     def test_info(self):
         """Testing info()
@@ -49,9 +49,9 @@ class TestMsg:
         test, but it is useless and needs further investigation.
         """
         if sys.stdout.isatty():
-            assert msg.info('Info message') == '\x1b[33mInfo message\x1b[0m'
+            assert msg.info("Info message") == "\x1b[33mInfo message\x1b[0m"
         else:
-            assert msg.info('Info message') == 'Info message'
+            assert msg.info("Info message") == "Info message"
 
     def test_msg_milestone(self):
         """Testing msg_milestone()
@@ -61,9 +61,9 @@ class TestMsg:
         test, but it is useless and needs further investigation.
         """
         if sys.stdout.isatty():
-            assert msg.milestone('Milestone message') == '\x1b[35mMilestone message\x1b[0m'
+            assert msg.milestone("Milestone message") == "\x1b[35mMilestone message\x1b[0m"
         else:
-            assert msg.milestone('Milestone message') == 'Milestone message'
+            assert msg.milestone("Milestone message") == "Milestone message"
 
     def test_msg_ok(self):
         """Testing msg_ok()
@@ -73,6 +73,6 @@ class TestMsg:
         test, but it is useless and needs further investigation.
         """
         if sys.stdout.isatty():
-            assert msg.ok('OK message') == '\x1b[32mOK message\x1b[0m'
+            assert msg.ok("OK message") == "\x1b[32mOK message\x1b[0m"
         else:
-            assert msg.ok('OK message') == 'OK message'
+            assert msg.ok("OK message") == "OK message"

@@ -8,11 +8,15 @@ repos:
       - id: check-toml
       - id: check-yaml
       - id: debug-statements
-      - id: double-quote-string-fixer
-#      - id: no-commit-to-branch
-#        args: [ --branch, master ]
+#      - id: double-quote-string-fixer
+#      - id: mixed-line-ending
+#        args: [ --fix=crlf ]
+      - id: no-commit-to-branch
+        args: [ --branch, master ]
       - id: pretty-format-json
       - id: requirements-txt-fixer
+#      - id: trailing-whitespace
+#        args: [ --markdown-linebreak-ext=md ]
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.15.0
