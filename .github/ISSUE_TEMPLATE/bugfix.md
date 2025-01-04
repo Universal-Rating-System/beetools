@@ -31,7 +31,7 @@ assignees: ''
 - Python version:
 - Operating System:
 - Install method (pip, source):
-- DateId Version:
+- BeeTools Version:
 
 ## Branch Name
 
@@ -47,5 +47,3 @@ assignees: ''
 - [ ] Pre-Commit successful.
 - [ ] CI successful.
 - [ ] CodeCov above 99% or justifiably less.
-- [ ] Badges are correct.
-- [ ] Changed current branch to `master`.
