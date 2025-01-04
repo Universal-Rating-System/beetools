@@ -7,7 +7,7 @@ MSG_LEN = 50
 CRASH_RETRY = 2
 
 
-def display(p_msg, p_len=MSG_LEN, p_color='white') -> str:
+def display(p_msg, p_len=MSG_LEN, p_color="white") -> str:
     """Return a text message in white on black.
 
     Parameters
@@ -32,8 +32,8 @@ def display(p_msg, p_len=MSG_LEN, p_color='white') -> str:
     '\\x1b[37mDisplay message                               '
 
     """
-    msg = colored('{: <{len}}'.format(p_msg, len=p_len), p_color)
-    return msg[:p_len] + ' '
+    msg = colored("{: <{len}}".format(p_msg, len=p_len), p_color)
+    return msg[:p_len] + " "
 
 
 def error(p_msg) -> str:
@@ -56,7 +56,7 @@ def error(p_msg) -> str:
     '\\x1b[31mError message\\x1b[0m'
 
     """
-    return colored(f'{p_msg}', 'red')
+    return colored(f"{p_msg}", "red")
 
 
 def header(p_msg) -> str:
@@ -79,7 +79,7 @@ def header(p_msg) -> str:
     '\\x1b[36mHeader message\\x1b[0m'
 
     """
-    return colored(f'{p_msg}', 'cyan')
+    return colored(f"{p_msg}", "cyan")
 
 
 def info(p_msg) -> str:
@@ -102,7 +102,7 @@ def info(p_msg) -> str:
     '\\x1b[33mInfo message\\x1b[0m'
 
     """
-    return colored(f'{p_msg}', 'yellow')
+    return colored(f"{p_msg}", "yellow")
 
 
 def milestone(p_msg) -> str:
@@ -125,7 +125,7 @@ def milestone(p_msg) -> str:
     '\\x1b[35mMilestone message\\x1b[0m'
 
     """
-    return colored(f'{p_msg}', 'magenta')
+    return colored(f"{p_msg}", "magenta")
 
 
 def ok(p_msg) -> str:
@@ -148,7 +148,7 @@ def ok(p_msg) -> str:
     '\\x1b[32mOK message\\x1b[0m'
 
     """
-    return colored(f'{p_msg}', 'green')
+    return colored(f"{p_msg}", "green")
 
 
 def example_messaging():
@@ -169,14 +169,14 @@ def example_messaging():
     success = True
     print(
         display(
-            f'This message print in blue and cut at {MSG_LEN} character because it is too long!',
-            p_color='blue',
+            f"This message print in blue and cut at {MSG_LEN} character because it is too long!",
+            p_color="blue",
         )
     )
-    print(ok('This message is an OK message'))
-    print(info('This is an info message'))
-    print(milestone('This is a milestone message'))
-    print(error('This is a warning message'))
+    print(ok("This message is an OK message"))
+    print(info("This is an info message"))
+    print(milestone("This is a milestone message"))
+    print(error("This is a warning message"))
     return success
 
 
@@ -184,5 +184,5 @@ def do_examples():
     return example_messaging()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     do_examples()
