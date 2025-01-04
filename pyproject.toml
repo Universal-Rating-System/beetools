@@ -28,7 +28,7 @@ profile = "black"
 
 [tool.poetry]
 name = 'beetools'
-version = '5.2.2'
+version = '5.2.3'
 description = 'Tools for batch scripts, virtual environments and utilities.'
 authors = [
     "Hendrik du Toit <hendrik@brightedge.co.za>",
