@@ -5,7 +5,7 @@ BEETools
 +-----------+------------------------------------------------------------------------------------+
 |**General**| |maintenance_y| |semver| |license|                                                 |
 +-----------+------------------------------------------------------------------------------------+
-|**CI**     | |gha_tests| |gha_docu| |pre_commit_ci| |codestyle| |codecov|                       |
+|**CI**     | |codestyle| |codecov|                                                              |
 +-----------+------------------------------------------------------------------------------------+
 |**PyPI**   | |pypi_release| |pypi_py_versions| |pypi_status| |pypi_format| |pypi_downloads|     |
 +-----------+------------------------------------------------------------------------------------+
@@ -114,11 +114,11 @@ bit easier.  The scripts make use of the ``gitit`` module to simplify tasks.
     :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/pre-commit.yml
     :alt: Pre-Commit
 
-.. |gha_tests| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/pypi-pipeline.yml?label=ci
+.. |gh_tests| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/beetools/pypi-pipeline.yml?label=ci
     :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/ci.yml
     :alt: Test status
 
-.. |gha_docu| image:: https://img.shields.io/readthedocs/beetools
+.. |gh_docu| image:: https://img.shields.io/readthedocs/beetools
     :target: https://github.com/BrightEdgeeServices/beetools/blob/master/.github/workflows/check-rst-documentation.yml
     :alt: Read the Docs
 
