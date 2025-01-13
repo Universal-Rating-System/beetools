@@ -1,6 +1,5 @@
 from termcolor import colored
 
-
 # Message defaults
 BAR_LEN = 50
 MSG_LEN = 50

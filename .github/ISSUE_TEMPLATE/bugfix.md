@@ -31,7 +31,7 @@ assignees: ''
 - Python version:
 - Operating System:
 - Install method (pip, source):
-- BeeTools Version:
+- Source Code Version:
 
 ## Branch Name
 
