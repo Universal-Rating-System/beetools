@@ -10,7 +10,6 @@ from pathlib import Path
 from beetools.msg import error
 from beetools.msg import ok
 
-
 # Default logging constants
 DEF_LOG_LEV = logging.DEBUG
 DEF_LOG_LEV_FILE = logging.DEBUG
