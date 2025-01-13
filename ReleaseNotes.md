@@ -1,3 +1,10 @@
+# Release 5.2.4
+
+- Increase python range to 3.10 to later
+- Upgrade pyproject.toml to Poetry 2.0.1
+
+______________________________________________________________________
+
 # Release 5.2.3
 
 - Update ISSUE_TEMPLATE
