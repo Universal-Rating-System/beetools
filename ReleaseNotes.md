@@ -1,3 +1,27 @@
+# Release 4.2.5
+
+- Update ISSUE_TEMPLATE's
+- Implement GitHub Reusable workflows.
+- Remove unnecessary doc folder.
+- Upgrade to support Python 13.1
+- Update formatting configuration files
+  - flake8
+  - .gitattributes
+  - .gitignore
+  - .pre-commit-config.yaml
+  - readthedocs.yaml
+  - rstcheck.cfg
+- Delete redundant files
+  - Docker files
+  - install.ps1
+- Add utility scripts
+  - InstallDevEnv.ps1
+  - SetupDotEnv.ps1
+  - SetupGitHubAccess.ps1
+  - SetupPrivateRepoAccess.ps1
+
+______________________________________________________________________
+
 # Release 5.2.4
 
 - Increase python range to 3.10 to later
