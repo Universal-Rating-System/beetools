@@ -3,6 +3,7 @@ repos:
     rev: v5.0.0
     hooks:
       - id: check-added-large-files
+        args: [ '--maxkb=500' ]
       - id: check-json
       - id: check-merge-conflict
       - id: check-toml
@@ -14,9 +15,26 @@ repos:
       - id: no-commit-to-branch
         args: [ --branch, master ]
       - id: pretty-format-json
-      - id: requirements-txt-fixer
-#      - id: trailing-whitespace
-#        args: [ --markdown-linebreak-ext=md ]
+        args: [ --autofix, --no-sort-keys ]
+      - id: trailing-whitespace
+        args: [ --markdown-linebreak-ext=md ]
+
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.22  # Use the ref you want to point at
+    hooks:
+      - id: mdformat
+        args: [ --end-of-line, crlf, README.md, ReleaseNotes.md ]
+        additional_dependencies:
+          - mdformat-black
+          - mdformat-gfm
+          - mdformat_frontmatter
+
+#  - repo: https://github.com/rstcheck/rstcheck
+#    rev: v6.2.4
+#    hooks:
+#      - id: rstcheck
+#        additional_dependencies: [ sphinx ]
+#        args: [ "--config", ".rstcheck.cfg" ]
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.19.1
@@ -25,7 +43,7 @@ repos:
         args: [ --py311-plus ]
 
   - repo: https://github.com/pycqa/isort
-    rev: 6.0.0
+    rev: 6.0.1
     hooks:
       - id: isort
         args: [ "--profile", "black", "--filter-files", "--force-single-line-imports",
@@ -35,7 +53,7 @@ repos:
     rev: v2.4.1
     hooks:
       - id: codespell
-        args: [--write, --toml, pyproject.toml]
+        args: [ --write, --toml, pyproject.toml ]
         additional_dependencies:
           - tomli
 
