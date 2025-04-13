@@ -60,10 +60,10 @@ if (-not $Pester) {
         elseif ($Organization -eq "RTE")
         {
             $Organization = "RealTimeEvents"
+        }
         elseif ($Organization -eq "URS")
         {
             $Organization = "Universal-Rating-System"
-        }
         }
 
         if (-not $RepoName) {
