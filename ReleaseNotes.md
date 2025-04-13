@@ -1,5 +1,21 @@
 # Release 4.2.5
 
+- Updated workflows
+  - py-temp-dep-pvt_no_docker-fork.yaml
+  - py-temp-fork-sync-def.yaml
+- Update configuration files
+  - .gitignore
+  - .pre-commit-config.yaml
+  - pyproject.toml
+- Update scripts
+  - SetupDotEnv.ps1
+  - SetupGitHubAccess.ps1
+  - SetupPrivateRepoAccess.ps1
+
+______________________________________________________________________
+
+# Release 4.2.5
+
 - Update ISSUE_TEMPLATE's
 - Implement GitHub Reusable workflows.
 - Remove unnecessary doc folder.
