@@ -1,3 +1,21 @@
+# Release 4.3.0
+
+- Remove the ISSUE_TEMPLATE relying on the .github repository for the defaults.
+- Add new workflows:
+  - py-temp-fork-pvt_merge_with_local-def.yaml
+  - py-temp-fork-scheduled_sync_with_upstream-def.yaml
+- Removed workflow:
+  - python-template-pypi-public-no-docker.yaml
+- Updated config files
+  - .gitignore
+  - pre-commit-config.yaml
+- Updated scripts
+  - SetupDotEnv.ps1
+  - SetupGitHubAccess.ps1
+  - SetupPrivateRepoAccess.ps1
+
+______________________________________________________________________
+
 # Release 4.2.5
 
 - Updated workflows
