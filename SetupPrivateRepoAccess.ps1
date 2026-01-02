@@ -14,8 +14,7 @@ function Remove-RepositoryConfiguration {
     Invoke-Expression $command
 }
 
-function Publish-RepositoryConfiguration
-{
+function Publish-RepositoryConfiguration {
     param (
         [Object]$RepoDetails
     )
