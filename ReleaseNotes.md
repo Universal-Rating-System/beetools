@@ -1,25 +1,23 @@
 # Release 5.5.0
 
-- Update GitHub Actions workflows:
-  - Add `py-temp-pr-pub-no_docker-def.yaml`
-  - Add `py-temp-publish-pub-build_release_notify_after_merge-def.yaml`
-- Update configuration and lock files:
-  - `pyproject.toml`
-  - `poetry.lock`
-  - `coverage.xml`
+- Features:
+  - Major overhaul of `README.md` with project description, key features, and quick start guide.
+- GitHub Actions:
+  - Update `py-temp-publish-pub-build_release_notify_after_merge-def.yaml` secrets and configuration.
+- Others:
+  - Update `coverage.xml`.
+  - Update `pyproject.toml` version to 5.5.0.
 
 ## Statistics
 
 - Branch: hendrik/urs-312-feature-beetools-remove-discontinued-workflow-copy
-- Files changed: 6
-- Insertions: 118
-- Deletions: 4
+- Files changed: 4
+- Insertions: 74
+- Deletions: 28
 - Files:
-  - .github/workflows/py-temp-pr-pub-no_docker-def.yaml
   - .github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml
-  - ReleaseNotes.md
+  - README.md
   - coverage.xml
-  - poetry.lock
   - pyproject.toml
 
 ______________________________________________________________________
