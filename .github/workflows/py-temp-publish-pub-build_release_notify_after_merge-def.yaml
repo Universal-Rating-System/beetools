@@ -17,7 +17,8 @@ jobs:
       contents: write
     uses: BrightEdgeeServices/devops-automation/.github/workflows/py-wf-publish-pub-build_release_notify_after_merge-def.yaml@master
     secrets:
-      GH_REPO_ACCESS_BEE_MASTER: ${{secrets.GH_REPO_ACCESS_BEE_MASTER }}
-      GH_REPO_ACCESS_RTE_MASTER: ${{secrets.GH_REPO_ACCESS_RTE_MASTER }}
+      # GH_REPO_ACCESS_BEE_MASTER: ${{secrets.GH_REPO_ACCESS_BEE_MASTER }}
+      # GH_REPO_ACCESS_RTE_MASTER: ${{secrets.GH_REPO_ACCESS_RTE_MASTER }}
+      PYPI_API_TOKEN_PROD: ${{secrets.PYPI_API_TOKEN_PROD }}
       RELEASE_EMAIL_USER:     ${{vars.RELEASE_EMAIL_USER }}
       RELEASE_EMAIL_PASSWORD: ${{secrets.RELEASE_EMAIL_PASSWORD }}
