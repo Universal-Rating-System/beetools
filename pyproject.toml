@@ -6,7 +6,7 @@
 
 [project]
 name = 'beetools'
-version = '5.5.0'
+version = '5.5.1'
 description = 'Tools for batch scripts, virtual environments and utilities.'
 authors = [
     { name = "Hendrik du Toit", email = "hendrik@brightedge.co.za" }
@@ -40,7 +40,7 @@ requires-python = ">=3.10"
 [project.urls]
     # documentation = "https://readthedocs.org"
 issues = "https://github.com/BrightEdgeeServices/beetools/issues"
-changelog = 'https://github.com/BrightEdgeeServices/beetools/blob/enhancement/master/ReleaseNotes.md'
+changelog = 'https://github.com/BrightEdgeeServices/beetools/releases'
 homepage = 'https://github.com/BrightEdgeeServices/beetools'
 repository = "https://github.com/BrightEdgeeServices/beetools.git"
 

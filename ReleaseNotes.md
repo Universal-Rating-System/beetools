@@ -1,3 +1,19 @@
+# Release 5.5.1
+
+- Maintenance:
+  - Updated release log URL in `pyproject.toml`.
+
+## Statistics
+
+- Branch: hendrik/urs-312-feature-beetools-remove-discontinued-workflow-copy
+- Files changed: 1
+- Insertions: 1
+- Deletions: 1
+- Files:
+  - pyproject.toml
+
+______________________________________________________________________
+
 # Release 5.5.0
 
 - Features:
