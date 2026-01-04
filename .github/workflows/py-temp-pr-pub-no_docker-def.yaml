@@ -7,10 +7,11 @@ on:
   push:
 
 jobs:
-  py-temp-pypi-pub_no_docker-def:
+  py-temp-pr-pub-no_docker-def:
     permissions:
       id-token: write
       contents: write
+      pull-requests: write
     #    if: github.event.pull_request.merged == true
     uses: BrightEdgeeServices/devops-automation/.github/workflows/py-wf-pr-pub-no_docker-def.yaml@master
     with:
