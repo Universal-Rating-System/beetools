@@ -25,5 +25,7 @@ jobs:
       # MYSQL_ROOT_PASSWORD:       ${{secrets.MYSQL_ROOT_PASSWORD}}
       # MYSQL_USER:                ${{secrets.MYSQL_USER}}
       # PYPI_API_TOKEN_PROD:       ${{secrets.PYPI_API_TOKEN_PROD}}
+      ORIGINAL_OWNER:       ${{vars.ORIGINAL_OWNER}}
+      ORIGINAL_REPO_NAME:   ${{vars.ORIGINAL_REPO_NAME}}
       # RELEASE_EMAIL_USER:        ${{secrets.RELEASE_EMAIL_USER }}
       # RELEASE_EMAIL_PASSWORD:    ${{secrets.RELEASE_EMAIL_PASSWORD }}
