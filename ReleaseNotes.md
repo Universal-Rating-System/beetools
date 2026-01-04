@@ -1,3 +1,34 @@
+# Release 5.4.0
+
+- Remove discontinued workflows:
+  - all-temp-fork-pub_scheduled_sync_with_upstream-weekly.yaml
+  - py-temp-fork-pvt_merge_with_local-def.yaml
+  - py-temp-fork-scheduled_sync_with_upstream-def.yaml
+- Rename workflow:
+  - py-temp-fork-pub_merge_no_docker-def.yaml to py-temp-pr-pub-no_docker-def.yaml
+- Add new workflow:
+  - py-temp-publish-pub-build_release_notify_after_merge-def.yaml
+- Remove .github/CODEOWNERS
+- Update Poetry lock file and coverage.xml
+
+## Statistics
+
+- Branch: hendrik/urs-312-feature-beetools-remove-discontinued-workflow-copy
+- Files changed: 8
+- Insertions: 59
+- Deletions: 122
+- Files:
+  - .github/CODEOWNERS
+  - .github/workflows/all-temp-fork-pub_scheduled_sync_with_upstream-weekly.yaml
+  - .github/workflows/py-temp-fork-pvt_merge_with_local-def.yaml
+  - .github/workflows/py-temp-fork-scheduled_sync_with_upstream-def.yaml
+  - .github/workflows/py-temp-fork-pub_merge_no_docker-def.yaml (renamed to .github/workflows/py-temp-pr-pub-no_docker-def.yaml)
+  - .github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml
+  - coverage.xml
+  - poetry.lock
+
+______________________________________________________________________
+
 # Release 4.3.0
 
 - Remove the ISSUE_TEMPLATE relying on the .github repository for the defaults.
